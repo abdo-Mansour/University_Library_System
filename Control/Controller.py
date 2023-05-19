@@ -1,9 +1,11 @@
-# Warning: 
+# Warning: MVC Pattern is applied here, DO NOT RETURN BOOK Object for example
+# Only Pass data to viewer, not objects
 
 
 class Controller:
     def __init__(self):
-        self.batee5
+        self.authenticator
+        self.library
         pass
 
     # Functions related to normal user querey
@@ -25,7 +27,7 @@ class Controller:
         """
         pass
 
-    def getNBooks(self, n, ):
+    def getNBooks(self, n):
         # returns list of lists where every sub-list has all the data of the book
         pass
 
@@ -33,21 +35,23 @@ class Controller:
         # returns location of the book
         pass
 
-    def addStudent(self, studentInfo):
-        # Functions related to Admin Only Use
+    def getUserDetails(self):
         pass
 
-    def updateBookDetails(self, bookID, bookInfo):
-        # updates the book details
+    def addStudent(self, studentInfo):
+        # Functions related to Admin Only Use
         pass
 
     def addBook(self, listOfBookDetails):
         # like the login, throws exception if the data entered is not valid
         pass
 
-    def getUserDetails(self):
+    def updateBookDetails(self, bookID, bookInfo):
+        # updates the book details
         pass
 
-    def updateUserDetails(self):
-        # returns
+    def updateUserDetails(self , userInfo):
+        # like the login, throws exception if the data entered is not valid
         pass
+
+
