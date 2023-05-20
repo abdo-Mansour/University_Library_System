@@ -9,7 +9,8 @@ create table library.book(
   description nvarchar(3500),
   publisher nvarchar(500),
   minimumAgeToRead int check (minimumAgeToRead >= 1),
-  publicationYear smallint
+  publicationYear smallint,
+  locationID int,
 );
 
 create table library.bookGenre(
@@ -43,15 +44,14 @@ create table library.location(
 
 create table library.person(
     personID int primary key identity,
+    email nvarchar(200) not null,
+    passwordHash nvarchar(500) not null,
     firstName nvarchar(500) not null ,
     lastName nvarchar(500) not null,
     phoneNumber nvarchar(15) unique,
     dateOfBirth date,
     sex smallint,
     isAdmin smallint,
-    email nvarchar(200) not null,
-    passwordHash nvarchar(500) not null,
-
 )
 
 create table library.bookCopy(
@@ -65,6 +65,7 @@ create table library.bookCopy(
     periodInDays smallint,
 
     primary key (copyID, bookID),
-    foreign key (borrowerID) references library.person (personID),
-    foreign key (locationID) references library.location (locationID)
+    -- the following two lines are probably not good for our use
+--     foreign key (borrowerID) references library.person (personID),
+--     foreign key (locationID) references library.location (locationID)
 )

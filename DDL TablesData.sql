@@ -65,11 +65,11 @@ VALUES
     (4, 'Romance', 5),
     (3, 'History', 4);
 
-INSERT INTO library.person (firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash)
+INSERT INTO library.person (email, passwordHash, firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin)
 VALUES
     ('user1@example.com', 'password1', 'John', 'Doe', '1234567890', '1990-05-12', 1, 0),
     ('user2@example.com', 'password2', 'Jane', 'Smith', '9876543210', '1985-09-23', 0, 0),
-    ('admin@example.com', 'adminpassword', 'Admin', 'User', '5555555555', '1978-12-03', 1, 1),
+    ('admin@example.com', 'adminpass', 'Admin', 'User', '5555555555', '1978-12-03', 1, 1),
     ('user3@example.com', 'password3', 'David', 'Johnson', '9999999999', '1998-07-01', 1, 0),
     ('user4@example.com', 'password4', 'Emily', 'Williams', '1111111111', '1992-03-18', 0, 0),
     ('user5@example.com', 'password5', 'Sarah', 'Brown', '2222222222', '1987-11-10', 0, 0),
