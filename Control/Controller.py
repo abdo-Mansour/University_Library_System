@@ -1,18 +1,47 @@
 # Warning: MVC Pattern is applied here, DO NOT RETURN BOOK Object for example
 # Only Pass data to viewer, not objects
 
+from Model import Person
+from Model import Authenticator as auth
+
+
 class Controller:
     def __init__(self):
-        self.authenticator
+        self.Person
+        self.loggedIn = False
         self.library
         pass
 
     # Functions related to normal user query
     def logIn(self, email, password):
         # Returns Exceptions if something wrong happened or true if success
-        pass
+        if(auth(email, password)):
+            self.Person = auth.returnPersonData()
+            self.loggedIn = True
+            # View should take true and display it as signed in
+            return True
+
+        else:
+            # View should take false and display it as error
+            return False
 
     def getBooksUnder(self, query, value):
+
+        if self.loggedIn == True:
+            queries = ["bookGenre", "author", "authorsOfBook", "location"]
+
+            if query in queries:
+
+                # this function should return a list of lists
+                data = checkDatabase(query, value)
+
+                # View should display this returned data, also the data should be returned as a list
+                return data
+            else:
+
+                # This should be displayed to the user as no books found
+                return False
+
         """
         Returns list of lists under given query and value
 
@@ -26,19 +55,33 @@ class Controller:
         """
         pass
 
-    def getNBooks(self, n):
-        # returns list of lists where every sub-list has all the data of the book
-        pass
+    def getNBooks(self, book):
+        # returns dictionary where every sub-list has all the data of the book
+        if self.loggedIn == True:
+            data = getDetails(book.id)
+            if data:
+                return data
+            else:
+                return False
 
     def getLocation(self, bookID):
         # returns location of the book
+        if self.loggedIn == True:
+            # I dont know how to fully implement this yet rn cause there are no functions in the database for this
+            pass
         pass
 
     def getUserDetails(self):
-        pass
+        if self.loggedIn == True:
+            return self.Person
 
     def addStudent(self, studentInfo):
         # Functions related to Admin Only Use
+        # studentInfo should be a list where data is [id, firstName, lastName, number, dob, sex, isAdmin, email, password]
+        if self.loggedIn and self.isAdmin:
+            newUser = Person(id=studentInfo[0], firstName=studentInfo[1], lastName=studentInfo[2], number=studentInfo[3],
+                             dob=studentInfo[4], sex=studentInfo[5], isAdmin=studentInfo[6], email=studentInfo[7], password=studentInfo[8])
+            addToDatabase(newUser)
         pass
 
     def addBook(self, listOfBookDetails):
@@ -49,6 +92,6 @@ class Controller:
         # updates the book details
         pass
 
-    def updateUserDetails(self , userInfo):
+    def updateUserDetails(self, userInfo):
         # like the login, throws exception if the data entered is not valid
         pass

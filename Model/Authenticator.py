@@ -1,8 +1,18 @@
 import Database as db
 
+
 class Authenticator:
-    def __init__(self):
-        DBHead = db.Database.connectToDataBase() # This is used as the curser for the database
+    def __init__(self, email, password):
+        # This is used as the curser for the database
+        DBHead = db.Database.connectToDataBase()
+        # if something:
+        #    return True
+        #   returnPersonData()
+        # else
+        #    return false
+
+# Make a function here that returns the data of the student if the email and password are correct
+    def returnPersonData():
         pass
 
 # you can use DBHead like the following
@@ -21,5 +31,3 @@ class Authenticator:
 #         print("No matching books found.")
 # except pyodbc.Error as e:
 #     print(f"Error searching for book: {str(e)}")
-
-
