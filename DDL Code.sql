@@ -1,6 +1,8 @@
 use librarySystem;
 
-create table library.book(
+CREATE DATABASE library;
+
+CREATE TABLE book(
   bookID int primary key identity,
   title nvarchar(500) not null ,
   pageCount int check (pageCount > 0),
@@ -12,40 +14,40 @@ create table library.book(
   publicationYear smallint
 );
 
-create table library.bookGenre(
+CREATE TABLE bookGenre(
     bookID int not null ,
     genre nvarchar(50) not null ,
     primary key (bookID, genre),
-    foreign key (bookID) references library.book(bookID)
+    foreign key (bookID) references book(bookID)
 )
 
-create table library.author(
+CREATE TABLE author(
     authorID int primary key identity,
     firstName nvarchar(500) not null ,
     thirdName nvarchar(500) not null ,
 )
 
-create table library.authorsOfBook(
+CREATE TABLE authorsOfBook(
     bookID int not null ,
     authorID int not null ,
     primary key (bookID,authorID),
-    foreign key (bookID) references library.book(bookID),
-    foreign key (authorID) references library.author(authorID)
+    foreign key (bookID) references book(bookID),
+    foreign key (authorID) references author(authorID)
 )
 
-create table library.location(
+CREATE TABLE location(
     locationID int primary key identity,
     floor smallint,
     section nvarchar(500),
     shelfNumber int check (shelfNumber > 0)
 )
 
-create table library.account(
+CREATE TABLE account(
     email nvarchar(200) primary key not null,
     passwordHash nvarchar(500),
 )
 
-create table library.person(
+CREATE TABLE person(
     personID int primary key identity,
     firstName nvarchar(500) not null ,
     thirdName nvarchar(500) not null,
@@ -55,15 +57,15 @@ create table library.person(
     isAdmin smallint
 )
 
-create table library.emailOf(
+CREATE TABLE emailOf(
     personID int not null,
     email nvarchar(200) not null,
     primary key (personID,email),
-    foreign key (email) references library.account (email),
-    foreign key (personID) references library.person (personID),
+    foreign key (email) references account (email),
+    foreign key (personID) references person (personID),
 )
 
-create table library.bookCopy(
+CREATE TABLE bookCopy(
     copyID int not null,
     bookID int not null,
     borrowerID int,
@@ -74,6 +76,6 @@ create table library.bookCopy(
     periodInDays smallint,
 
     primary key (copyID, bookID),
-    foreign key (borrowerID) references library.person (personID),
-    foreign key (locationID) references library.location (locationID)
+    foreign key (borrowerID) references person (personID),
+    foreign key (locationID) references location (locationID)
 )
