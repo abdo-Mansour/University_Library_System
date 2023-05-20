@@ -1,8 +1,16 @@
 import Database as db
 
 class Authenticator:
-    def __init__(self):
+    def __init__(self, email, password):
         DBHead = db.Database.connectToDataBase() # This is used as the curser for the database
+        # if something:
+        #    return True
+        #   returnPersonData()
+        # else
+        #    return false
+
+# Make a function here that returns the data of the student if the email and password are correct
+    def returnPersonData():
         pass
 
 # you can use DBHead like the following
