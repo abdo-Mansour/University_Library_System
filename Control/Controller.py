@@ -11,6 +11,7 @@ class Controller:
     # Functions related to normal user querey
     def logIn(self, email, password):
         # Returns Exceptions if something wrong happend or true if success
+        
         pass
 
     def getBooksUnder(self, query, value):
