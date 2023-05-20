@@ -42,27 +42,16 @@ CREATE TABLE location(
     shelfNumber int check (shelfNumber > 0)
 )
 
-CREATE TABLE account(
-    email nvarchar(200) primary key not null,
-    passwordHash nvarchar(500),
-)
-
 CREATE TABLE person(
     personID int primary key identity,
+    accountEmail nvarchar(500) unique not null,
+    accountPassword nvarchar(500) not null,
     firstName nvarchar(500) not null ,
     lastName nvarchar(500) not null,
     phoneNumber nvarchar(15) unique,
     dateOfBirth date,
     sex smallint,
     isAdmin smallint
-)
-
-CREATE TABLE emailOf(
-    personID int not null,
-    email nvarchar(200) not null,
-    primary key (personID,email),
-    foreign key (email) references account (email),
-    foreign key (personID) references person (personID),
 )
 
 CREATE TABLE bookCopy(
