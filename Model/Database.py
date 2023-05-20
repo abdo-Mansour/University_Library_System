@@ -1,27 +1,23 @@
 """
 IMPORTANT FOR THIS TO WORK:
-1. INSTALL Microsoft ODBC Driver 17 for SQL Server (check if you have it already)
-2. INSTALL pyodbc (pip install pyodbc)
 
-try:
-        conn = odbc.connect(connection_string)
-    except Exception as e:
-        print(e)
-        print("Task is Terminated!")
-        sys.exit(0)
+INSTALL pyodbc (pip install pyodbc)
 
-    return conn
+after installing find out the name of the server and the database you want to connect to
+use this query to find out the server name:
+    SELECT @@SERVERNAME
+
 """
 
 # database object
 import pyodbc
-
+import sys
 
 class Database:
     def __init__(self):
         self._db = None
-        self.serverName = 'LAPTOP-F2RRO5TA'
-        self.databaseName = 'Toffee'
+        self.serverName = None
+        self.databaseName = None
         self.cursor = None
 
     def connectToDataBase(self):
@@ -29,14 +25,23 @@ class Database:
         # server = 'localhost\sqlexpress' # for a named instance
         # server = 'myserver,port' # to specify an alternate port
         # ENCRYPT defaults to yes starting in ODBC Driver 18. It's good to always specify ENCRYPT=yes on the client side to avoid MITM attacks.
+        # ask the user for the server name and database name
+        self.serverName = input("Enter the server name: ")
+        self.databaseName = input("Enter the database name: ")
+        
         connection_string = f"""
         DRIVER={"SQL SERVER"};
         SERVER={self.serverName};
         DATABASE={self.databaseName};
         Trust_Connection=yes;
         """
-        cnxn = pyodbc.connect(connection_string)
-        self.cursor = cnxn.cursor()
+        try:
+            cnxn = pyodbc.connect(connection_string)
+            self.cursor = cnxn.cursor()
+        except Exception as e:
+            print(e)
+            print("Task is Terminated!")
+            sys.exit(0)
 
     def closeConnection(self):
         self.cursor.close()
