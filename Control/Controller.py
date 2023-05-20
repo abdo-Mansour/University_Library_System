@@ -52,12 +52,3 @@ class Controller:
     def updateUserDetails(self , userInfo):
         # like the login, throws exception if the data entered is not valid
         pass
-
-
-class Student:
-    def __init__(self):
-        self.id
-        self.name
-        self.email
-        self.password
-        pass
