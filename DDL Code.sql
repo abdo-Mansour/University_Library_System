@@ -24,7 +24,7 @@ CREATE TABLE bookGenre(
 CREATE TABLE author(
     authorID int primary key identity,
     firstName nvarchar(500) not null ,
-    thirdName nvarchar(500) not null ,
+    lastName nvarchar(500) not null ,
 )
 
 CREATE TABLE authorsOfBook(
