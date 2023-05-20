@@ -1,3 +1,7 @@
-import view.View as View
 
-View.print_me()
+import Model.Database as db
+
+database = db.Database()
+database.connectToDataBase()
+database.executeQuery("SELECT * FROM \"User\"")
+
