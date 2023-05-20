@@ -1,8 +1,6 @@
 use librarySystem;
 
-CREATE DATABASE library;
-
-CREATE TABLE book(
+create table library.book(
   bookID int primary key identity,
   title nvarchar(500) not null ,
   pageCount int check (pageCount > 0),
@@ -14,57 +12,59 @@ CREATE TABLE book(
   publicationYear smallint
 );
 
-CREATE TABLE bookGenre(
+create table library.bookGenre(
     bookID int not null ,
     genre nvarchar(50) not null ,
     primary key (bookID, genre),
-    foreign key (bookID) references book(bookID)
+    foreign key (bookID) references library.book(bookID)
 )
 
-CREATE TABLE author(
+create table library.author(
     authorID int primary key identity,
     firstName nvarchar(500) not null ,
-    lastName nvarchar(500) not null ,
+    thirdName nvarchar(500) not null ,
 )
 
-CREATE TABLE authorsOfBook(
+create table library.authorsOfBook(
     bookID int not null ,
     authorID int not null ,
     primary key (bookID,authorID),
-    foreign key (bookID) references book(bookID),
-    foreign key (authorID) references author(authorID)
+    foreign key (bookID) references library.book(bookID),
+    foreign key (authorID) references library.author(authorID)
 )
 
-CREATE TABLE location(
+create table library.location(
     locationID int primary key identity,
     floor smallint,
     section nvarchar(500),
     shelfNumber int check (shelfNumber > 0)
 )
 
-CREATE TABLE person(
+
+create table library.person(
     personID int primary key identity,
-    accountEmail nvarchar(500) unique not null,
-    accountPassword nvarchar(500) not null,
     firstName nvarchar(500) not null ,
-    lastName nvarchar(500) not null,
+    thirdName nvarchar(500) not null,
     phoneNumber nvarchar(15) unique,
     dateOfBirth date,
     sex smallint,
-    isAdmin smallint
+    isAdmin smallint,
+    email nvarchar(200) primary key not null,
+    passwordHash nvarchar(500) not null,
+
 )
 
-CREATE TABLE bookCopy(
+create table library.bookCopy(
     copyID int not null,
     bookID int not null,
     borrowerID int,
     locationID int,
-    bookCondition nvarchar(500),
+    physicalCondition nvarchar(500),
     isReturned smallint,
     borrowedDate date,
     periodInDays smallint,
 
     primary key (copyID, bookID),
-    foreign key (borrowerID) references person (personID),
-    foreign key (locationID) references location (locationID)
+    foreign key (borrowerID) references library.person (personID),
+    foreign key (locationID) references library.location (locationID)
 )
