@@ -13,8 +13,9 @@ try:
     return conn
 """
 
-#database object
+# database object
 import pyodbc
+
 
 class Database:
     def __init__(self):
@@ -46,4 +47,3 @@ class Database:
         while row:
             print(row)
             row = self.cursor.fetchone()
-

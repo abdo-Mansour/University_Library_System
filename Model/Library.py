@@ -1,8 +1,10 @@
 import Database as db
 
+
 class Library:
     def __init__(self):
-        DBHead = db.Database.connectToDataBase() # This is used as the curser for the database
+        # This is used as the curser for the database
+        DBHead = db.Database.connectToDataBase()
         pass
 
 # you can use DBHead like the following (not real code):
@@ -19,5 +21,3 @@ class Library:
 #         print("No matching books found.")
 # except pyodbc.Error as e:
 #     print(f"Error searching for book: {str(e)}")
-
-

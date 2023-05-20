@@ -4,6 +4,7 @@
 from Model import Person
 from Model import Authenticator as auth
 
+
 class Controller:
     def __init__(self):
         self.Person
@@ -19,7 +20,7 @@ class Controller:
             self.loggedIn = True
             # View should take true and display it as signed in
             return True
-        
+
         else:
             # View should take false and display it as error
             return False
@@ -78,7 +79,8 @@ class Controller:
         # Functions related to Admin Only Use
         # studentInfo should be a list where data is [id, firstName, lastName, number, dob, sex, isAdmin, email, password]
         if self.loggedIn and self.isAdmin:
-            newUser = Person(id = studentInfo[0], firstName = studentInfo[1], lastName = studentInfo[2], number = studentInfo[3], dob = studentInfo[4], sex = studentInfo[5], isAdmin = studentInfo[6], email = studentInfo[7], password = studentInfo[8])
+            newUser = Person(id=studentInfo[0], firstName=studentInfo[1], lastName=studentInfo[2], number=studentInfo[3],
+                             dob=studentInfo[4], sex=studentInfo[5], isAdmin=studentInfo[6], email=studentInfo[7], password=studentInfo[8])
             addToDatabase(newUser)
         pass
 
@@ -90,6 +92,6 @@ class Controller:
         # updates the book details
         pass
 
-    def updateUserDetails(self , userInfo):
+    def updateUserDetails(self, userInfo):
         # like the login, throws exception if the data entered is not valid
         pass
