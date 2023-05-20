@@ -1,11 +1,27 @@
-import Database as db
+import Model.Database as db
+import Model.Book as Book
 
 
 class Library:
     def __init__(self):
         # This is used as the curser for the database
-        DBHead = db.Database.connectToDataBase()
-        pass
+        self.database = db.Database()
+        self.database.connectToDataBase()
+        self.cursor = self.database.getCursor()
+
+    def getBooksBy(self, column, value):
+        query = "SELECT * FROM Book WHERE "
+        query += column + ' = ?'
+        self.cursor.execute(query, value)
+        rows = self.cursor.fetchall()
+        booksList = []
+        for row in rows:
+            tempBook = Book.Book()
+            for element, infoAtt in zip(row, tempBook.attributes):
+                setattr(tempBook, infoAtt, element)
+            booksList.append(tempBook)
+        return booksList
+
 
 # you can use DBHead like the following (not real code):
 
