@@ -9,10 +9,7 @@ class Library:
         self.database.connectToDataBase()
         self.cursor = self.database.getCursor()
 
-    def getBooksBy(self, column, value):
-        query = "SELECT * FROM Book WHERE "
-        query += column + ' = ?'
-        self.cursor.execute(query, value)
+    def bookDataParse(self):
         rows = self.cursor.fetchall()
         booksList = []
         for row in rows:
@@ -22,6 +19,16 @@ class Library:
             booksList.append(tempBook)
         return booksList
 
+    def getBooksBy(self, column, value):
+        query = "SELECT * FROM Book WHERE "
+        query += column + ' = ?'
+        self.cursor.execute(query, value)
+        return self.bookDataParse()
+
+    def getNBooks(self, N, offset):
+        query = "SELECT * FROM book ORDER BY bookID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;"
+        self.cursor.execute(query, (offset, N))
+        return self.bookDataParse()
 
 # you can use DBHead like the following (not real code):
 
