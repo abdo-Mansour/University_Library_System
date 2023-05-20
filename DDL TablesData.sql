@@ -1,5 +1,6 @@
+use librarySystem;
 
-INSERT INTO book (title, pageCount, ISBN, language, description, publisher, minimumAgeToRead, publicationYear)
+INSERT INTO library.book (title, pageCount, ISBN, language, description, publisher, minimumAgeToRead, publicationYear)
 VALUES
     ('The Great Gatsby', 218, '9780743273565', 'English', 'A novel by F. Scott Fitzgerald', 'Scribner', 14, 1925),
     ('To Kill a Mockingbird', 324, '9780061120084', 'English', 'A novel by Harper Lee', 'HarperCollins', 13, 1960),
@@ -12,7 +13,7 @@ VALUES
     ('The Lord of the Rings', 1178, '9780618640157', 'English', 'A fantasy novel by J.R.R. Tolkien', 'Houghton Mifflin Harcourt', 14, 1954),
     ('The Chronicles of Narnia', 767, '9780066238500', 'English', 'A series of fantasy novels by C.S. Lewis', 'HarperCollins', 10, 1950);
 
-INSERT INTO bookGenre (bookID, genre)
+INSERT INTO library.bookGenre (bookID, genre)
 VALUES
     (1, 'Fiction'),
     (2, 'Classic'),
@@ -25,7 +26,7 @@ VALUES
     (6, 'Children'),
     (7, 'Fiction');
 
-INSERT INTO author (firstName, lastName)
+INSERT INTO library.author (firstName, lastName)
 VALUES
     ('F. Scott', 'Fitzgerald'),
     ('Harper', 'Lee'),
@@ -38,7 +39,7 @@ VALUES
     ('C.S.', 'Lewis'),
     ('Markus', 'Zusak');
 
-INSERT INTO authorsOfBook (bookID, authorID)
+INSERT INTO library.authorsOfBook (bookID, authorID)
 VALUES
     (1, 1),
     (2, 2),
@@ -51,7 +52,7 @@ VALUES
     (9, 5),
     (10, 9);
 
-INSERT INTO location (floor, section, shelfNumber)
+INSERT INTO library.location (floor, section, shelfNumber)
 VALUES
     (1, 'Fiction', 3),
     (2, 'Classics', 2),
@@ -64,7 +65,7 @@ VALUES
     (4, 'Romance', 5),
     (3, 'History', 4);
 
-INSERT INTO person (accountEmail, accountPassword, firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin)
+INSERT INTO library.person (firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash)
 VALUES
     ('user1@example.com', 'password1', 'John', 'Doe', '1234567890', '1990-05-12', 1, 0),
     ('user2@example.com', 'password2', 'Jane', 'Smith', '9876543210', '1985-09-23', 0, 0),
@@ -77,7 +78,7 @@ VALUES
     ('user8@example.com', 'password8', 'Christopher', 'Martinez', '5533255555', '1999-02-27', 1, 0),
     ('user9@example.com', 'password9', 'Amanda', 'Thomas', '6666666666', '1993-04-20', 0, 0);
 
-INSERT INTO bookCopy (copyID, bookID, borrowerID, locationID, bookCondition, isReturned, borrowedDate, periodInDays)
+INSERT INTO library.bookCopy (copyID, bookID, borrowerID, locationID, physicalCondition, isReturned, borrowedDate, periodInDays)
 VALUES
     (1, 1, NULL, 1, 'Good', 1, '2023-05-10', 14),
     (2, 2, 2, 2, 'Excellent', 0, '2023-04-25', 21),

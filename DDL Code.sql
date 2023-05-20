@@ -22,7 +22,7 @@ create table library.bookGenre(
 create table library.author(
     authorID int primary key identity,
     firstName nvarchar(500) not null ,
-    thirdName nvarchar(500) not null ,
+    lastName nvarchar(500) not null ,
 )
 
 create table library.authorsOfBook(
@@ -44,7 +44,7 @@ create table library.location(
 create table library.person(
     personID int primary key identity,
     firstName nvarchar(500) not null ,
-    thirdName nvarchar(500) not null,
+    lastName nvarchar(500) not null,
     phoneNumber nvarchar(15) unique,
     dateOfBirth date,
     sex smallint,
