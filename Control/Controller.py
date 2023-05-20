@@ -1,16 +1,15 @@
 # Warning: MVC Pattern is applied here, DO NOT RETURN BOOK Object for example
 # Only Pass data to viewer, not objects
 
-
 class Controller:
     def __init__(self):
         self.authenticator
         self.library
         pass
 
-    # Functions related to normal user querey
+    # Functions related to normal user query
     def logIn(self, email, password):
-        # Returns Exceptions if something wrong happend or true if success
+        # Returns Exceptions if something wrong happened or true if success
         pass
 
     def getBooksUnder(self, query, value):
@@ -55,3 +54,10 @@ class Controller:
         pass
 
 
+class Student:
+    def __init__(self):
+        self.id
+        self.name
+        self.email
+        self.password
+        pass
