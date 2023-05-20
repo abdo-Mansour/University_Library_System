@@ -25,7 +25,7 @@ class Controller:
             # View should take false and display it as error
             return False
 
-    def getBooksUnder(self, query, value):
+    def getBooksBy(self, query, value):
 
         if self.loggedIn == True:
             queries = ["bookGenre", "author", "authorsOfBook", "location"]
