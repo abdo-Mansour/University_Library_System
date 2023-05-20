@@ -1,3 +1,3 @@
-import view.placeholder as View
+import view.View as View
 
 View.print_me()
