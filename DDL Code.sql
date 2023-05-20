@@ -49,7 +49,7 @@ create table library.person(
     dateOfBirth date,
     sex smallint,
     isAdmin smallint,
-    email nvarchar(200) primary key not null,
+    email nvarchar(200) not null,
     passwordHash nvarchar(500) not null,
 
 )
