@@ -5,8 +5,9 @@ IMPORTANT FOR THIS TO WORK:
 
 """
 
-#database object
+# database object
 import pyodbc
+
 
 class Database:
     def __init__(self):
@@ -22,7 +23,8 @@ class Database:
         # server = 'localhost\sqlexpress' # for a named instance
         # server = 'myserver,port' # to specify an alternate port
         # ENCRYPT defaults to yes starting in ODBC Driver 18. It's good to always specify ENCRYPT=yes on the client side to avoid MITM attacks.
-        cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+self.serverName+';DATABASE='+self.databaseName+';ENCRYPT=yes;UID='+self.userName+';PWD='+ self.password)
+        cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+self.serverName +
+                              ';DATABASE='+self.databaseName+';ENCRYPT=yes;UID='+self.userName+';PWD=' + self.password)
         self.cursor = cnxn.cursor()
 
     def closeConnection(self):
@@ -34,4 +36,3 @@ class Database:
         while row:
             print(row)
             row = self.cursor.fetchone()
-
