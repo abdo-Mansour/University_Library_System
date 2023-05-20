@@ -59,7 +59,7 @@ CREATE TABLE bookCopy(
     bookID int not null,
     borrowerID int,
     locationID int,
-    Condition nvarchar(500),
+    bookCondition nvarchar(500),
     isReturned smallint,
     borrowedDate date,
     periodInDays smallint,
