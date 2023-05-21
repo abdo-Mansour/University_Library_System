@@ -38,12 +38,14 @@ class Library:
             if i < len(attributes)-1:
                 query += ', '
             else:
-                query += ')'
+                query += ') '
         query += "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)"
         valuesList = []
         for i in range(len(attributes)):
             valuesList.append(getattr(book, attributes[i]))
-        self.cursor.execute(query, tuple(valuesList))
+        tempTuple = tuple(valuesList)
+        self.cursor.execute(query, tempTuple)
+
 
 # you can use DBHead like the following (not real code):
 
