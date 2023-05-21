@@ -1,12 +1,12 @@
 # University_Library_System
 
 ### Dependencies Used in this project
--[x] pyodbc
+* pyodbc
 ```
 pip install pyodbc
 ```
--[x] tkinter: should be installed with python
--[x] customtkinter: install this using
+* tkinter: should be installed with python
+* customtkinter: install this using
 ```
 pip install customtkinter
 ```
