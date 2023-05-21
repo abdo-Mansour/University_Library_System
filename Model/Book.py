@@ -7,7 +7,7 @@ class Book:
         self.Language = Language
         self.Description = Description
         self.Publisher = Publisher
-        self.MinAgeToRead = MinAgeToRead
+        self.MinimumAgeToRead = MinAgeToRead
         self.PublicationYear = PublicationYear
         self.attributes = ['BookID', 'Title', 'ISBN',
                            'PageCount', 'Language', ' Description', 'Publisher', 'MinAgeToRead', 'PublicationYear']

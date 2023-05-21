@@ -31,8 +31,8 @@ class Library:
         return self.bookDataParse()
 
     def addBook(self, book):
-        attributes = ['title', 'pageCount', 'ISBN', 'language',
-                      'description', 'publisher', 'minimumAgeToRead', 'publicationYear']
+        attributes = ['Title', 'PageCount', 'ISBN', 'Language',
+                      'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
         query = "INSERT INTO book ("
         for i in range(len(attributes)):
             query += attributes[i]
