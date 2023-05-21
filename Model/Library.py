@@ -30,6 +30,22 @@ class Library:
         self.cursor.execute(query, (offset, N))
         return self.bookDataParse()
 
+    def addBook(self, book):
+        attributes = ['title', 'pageCount', 'ISBN', 'language',
+                      'description', 'publisher', 'minimumAgeToRead', 'publicationYear']
+        query = "INSERT INTO book ("
+        for i in range(len(attributes)):
+            query += attributes[i]
+            if i < len(attributes)-1:
+                query += ', '
+            else:
+                query += ')'
+        query += "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)"
+        valuesList = []
+        for i in range(len(attributes)):
+            valuesList.append(getattr(book, attributes[i]))
+        self.cursor.execute(query, tuple(valuesList))
+
 # you can use DBHead like the following (not real code):
 
 # try:
