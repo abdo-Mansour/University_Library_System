@@ -25,11 +25,11 @@ class Database:
         #used to connect to the database
         #this function will ask the user for the server name and the database name
         
-        # input("Enter the server name: ")
-        self.serverName = "DESKTOP-VHJ2UQ7\SQLEXPRESS"
+        self.serverName = input("Enter the server name: ")
+        # self.serverName = "DESKTOP-VHJ2UQ7\SQLEXPRESS"
 
-        # input("Enter the database name: ")
-        self.databaseName = "library"
+        self.databaseName = input("Enter the database name: ")
+        # self.databaseName = "library"
         
         connection_string = f"""
         DRIVER={"SQL SERVER"};

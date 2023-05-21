@@ -9,7 +9,7 @@ class Controller:
     def __init__(self):
         self.Person = None
         self.loggedIn = False
-        self.library
+        self.library = None
         self.ath = Authenticator()
         pass
 
@@ -104,3 +104,4 @@ class Controller:
     def updateUserDetails(self, userInfo):
         # like the login, throws exception if the data entered is not valid
         pass
+

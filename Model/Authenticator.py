@@ -1,5 +1,5 @@
-import Database as db
-import Person as prs
+from Model.Database import Database as db
+from Model.Person import Person as prs
 import sys
 
 class Authenticator:
@@ -7,7 +7,7 @@ class Authenticator:
         
         # object of person Class
         self.pr = None
-        
+        print("---AUTHENTICATOR CLASS---")
         # object of the database Class
         self.database = db.Database()
         self.database.connectToDataBase()
@@ -20,6 +20,7 @@ class Authenticator:
 
 
     def isAuth(self, email, password):
+        print("---IS AUTH FUNCTION IN AUTHOR. CLASS---")
         email_index = self.column_names.index("email")
         password_index = self.column_names.index("passwordHash")
        
@@ -58,7 +59,7 @@ class Authenticator:
                         )
         return self.pr
 
-    def addStudent(self , newStudent: prs.Person):
+    def addStudent(self , newStudent: prs):
         # this print statements for testing
         print("---ADD STUDENT FUNCTION IN AUTHOR. CLASS---")
         print("student id: ",newStudent.id)
@@ -66,3 +67,4 @@ class Authenticator:
         print("student phone: ",newStudent.phone)
         query = f"INSERT INTO PERSON(firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) Values({newStudent.id})"
         self.database.executeQuery("")
+
