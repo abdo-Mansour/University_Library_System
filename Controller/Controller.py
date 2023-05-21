@@ -50,15 +50,15 @@ class Controller:
         else:
             print("You're not logged in")
 
-    def getNBooks(self, book: Book):              # SEMI DONE
+    def getNBooks(self, book):              # SEMI DONE
         # return a list of book dictionaries
         N, offset = None    # Need to put values for these
         if self.loggedIn:
             try:
-                books = Library.getNBooks(self, N, offset)
+                bookCollection = Library.getNBooks(self, N, offset)
                 data = []
-                for book in books:
-                    data.append(book.__dict__)
+                for books in bookCollection:
+                    data.append(books.__dict__)
                 return data
             except:
                 print("Error getting data")
