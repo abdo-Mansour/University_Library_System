@@ -2,11 +2,6 @@
 IMPORTANT FOR THIS TO WORK:
 
 INSTALL pyodbc (pip install pyodbc)
-
-after installing find out the name of the server and the database you want to connect to
-use this query to find out the server name:
-    SELECT @@SERVERNAME
-
 """
 
 import pyodbc
