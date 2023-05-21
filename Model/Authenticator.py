@@ -7,7 +7,6 @@ class Authenticator:
     def __init__(self):
         # Object of person class
         self.pr = None
-        print("---AUTHENTICATOR CLASS---")
 
         # Object of the database class
         self.database = db()
@@ -15,8 +14,6 @@ class Authenticator:
         self.cursor = self.database.getCursor()
 
     def isAuth(self, email, password):
-        print("---IS AUTH FUNCTION IN AUTH. CLASS---")
-        
         rows = self.database.executeQuery("SELECT * FROM person")
         column_names = [desc[0] for desc in self.database.getCursor().description]
         
@@ -62,19 +59,6 @@ class Authenticator:
         return self.pr
 
     def addStudent(self, newStudent: Person):
-        # This print statements for testing
-        print("---ADD STUDENT FUNCTION IN AUTHOR. CLASS---")
-
-        # debug Print statements 
-        print("student id: ", newStudent.id)
-        print("student firstName: ", newStudent.firstName)
-        print("student lastName: ", newStudent.lastName)
-        print("student phoneNubmer: ", newStudent.number)
-        print("student DateOfBirth: ", newStudent.dob)
-        print("student sex: ", newStudent.sex)
-        print("student isAdmin: ", newStudent.isAdmin)
-        print("student email: ", newStudent.email)
-        print("student password: ", newStudent.password)
 
         query = "INSERT INTO PERSON (firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) "
         query += "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"

@@ -68,9 +68,6 @@ class Controller:
     # Functions related to Admin Only Use
     def addStudent(self, studentInfo):      # DONE
         
-        print("isLoggedIn? :",self.loggedIn)
-        print("isAdmin? :", self.isAdmin)
- 
         # This is to check if the user is both LOGGED IN and IS AN ADMIN, because this function is only for admins
         if self.loggedIn and self.isAdmin:
             newUser = Person(
