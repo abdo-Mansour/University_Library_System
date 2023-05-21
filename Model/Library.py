@@ -45,7 +45,7 @@ class Library:
             valuesList.append(getattr(book, attributes[i]))
         tempTuple = tuple(valuesList)
         self.cursor.execute(query, tempTuple)
-
+        self.database.connectionHead.commit()
 
 # you can use DBHead like the following (not real code):
 
