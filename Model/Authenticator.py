@@ -1,5 +1,5 @@
 from Model.Database import Database as db
-from Model.Person import Person as prs
+from Model.Person import Person 
 import sys
 
 
@@ -48,7 +48,7 @@ class Authenticator:
             for row in rows:
                 if row[email_index] == email:
                     if row[password_index] == password:
-                        self.pr = prs.Person(
+                        self.pr = Person(
                             row[id_index],
                             row[Fname_index],
                             row[Lname_index],
@@ -61,7 +61,7 @@ class Authenticator:
                         )
         return self.pr
 
-    def addStudent(self, newStudent: prs):
+    def addStudent(self, newStudent: Person):
         # This print statements for testing
         print("---ADD STUDENT FUNCTION IN AUTHOR. CLASS---")
 
@@ -79,3 +79,4 @@ class Authenticator:
         query = f"INSERT INTO PERSON(firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) "
         query += f"Values( '{newStudent.firstName}', '{newStudent.lastName}', '{newStudent.phoneNumber}', '{newStudent.dob}', '{newStudent.sex}', '{newStudent.isAdmin}', '{newStudent.email}', '{newStudent.password}')"
         self.database.executeQuery(query)
+        print("Student has benn Added Successfully")

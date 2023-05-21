@@ -63,8 +63,8 @@ class Controller:
 
     # Functions related to Admin Only Use
     def addStudent(self, studentInfo):      # DONE
-
-        if self.loggedIn and self.isAdmin:
+        
+        if self.loggedIn and studentInfo[6]:
             newUser = Person(
                 id=studentInfo[0],
                 firstName=studentInfo[1],
@@ -79,6 +79,8 @@ class Controller:
 
             # returns a list where data is [id, firstName, lastName, number, dob, sex, isAdmin, email, password]
             self.auth.addStudent(newUser)
+        else:
+            print("you can't add Person you are not Admin")
 
     def addBook(self, listOfBookDetails):   # DONE
         Library.addBook(listOfBookDetails)
