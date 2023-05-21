@@ -4,18 +4,18 @@ import sys
 
 class Authenticator:
     def __init__(self):
-        
-        # object of person Class
+        # Object of person class
         self.pr = None
         print("---AUTHENTICATOR CLASS---")
-        # object of the database Class
+
+        # Object of the database class
         self.database = db.Database()
         self.database.connectToDataBase()
-
-        # retrieved query (default query)
+        
+        # Retrieved query (default query)
         self.rows = self.database.executeQuery("SELECT * FROM person")
         
-        # all of the person attributes names 
+        # All of the person attributes names 
         self.column_names = [desc[0] for desc in self.database.getCursor().description]
 
 
@@ -30,7 +30,7 @@ class Authenticator:
                     return True
         return False
 
-# Make a function here that returns the data of the student if the email and password are correct
+    # Make a function here that returns the data of the student if the email and password are correct
     def returnPersonData(self, email, password):
         if self.isAuth(email, password):
             id_index          = self.column_names.index("personID")
@@ -42,7 +42,7 @@ class Authenticator:
             dateOfBirth_index = self.column_names.index("dateOfBirth")
             email_index       = self.column_names.index("email")
             password_index    = self.column_names.index("passwordHash")
-                
+            
             for row in self.rows:
                 if row[email_index] == email:
                     if row[password_index] == password:
@@ -60,7 +60,7 @@ class Authenticator:
         return self.pr
 
     def addStudent(self , newStudent: prs):
-        # this print statements for testing
+        # This print statements for testing
         print("---ADD STUDENT FUNCTION IN AUTHOR. CLASS---")
         print("student id: ",newStudent.id)
         print("student email: ",newStudent.email)

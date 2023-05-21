@@ -10,14 +10,14 @@ class Controller:
         self.Person = None
         self.loggedIn = False
         self.library = None
-        self.ath = Authenticator()
+        self.auth = Authenticator()
         pass
 
     # Functions related to normal user query
     def logIn(self, email, password):
         # Returns Exceptions if something wrong happened or true if success
-        if self.ath.isAuth(email, password):
-            self.Person = self.ath.returnPersonData(email, password)
+        if self.auth.isAuth(email, password):
+            self.Person = self.auth.returnPersonData(email, password)
             self.loggedIn = True
             # View should take true and display it as signed in
             return True
