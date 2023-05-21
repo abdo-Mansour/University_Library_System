@@ -14,6 +14,7 @@ class Database:
         self.__serverName = None
         self.databaseName = None
         self.cursor = None
+        self.connectionHead = None
         self.__username = None
         self.__password = None
         self.__driver = None
@@ -42,7 +43,7 @@ class Database:
         try:
             cnxn = pyodbc.connect(connection_string)
             self.cursor = cnxn.cursor()
-            
+            self.connectionHead = cnxn
             # confirmation message
             print("Connected to Database")
         except Exception as e:
