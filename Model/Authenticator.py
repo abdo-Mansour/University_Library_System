@@ -1,5 +1,7 @@
 from Model.Database import Database as db
-from Model.Person import Person 
+from Model.Person import Person
+
+import hashlib
 import sys
 
 
@@ -13,6 +15,8 @@ class Authenticator:
         self.database = db()
         self.database.connectToDataBase()
 
+    def __stringToMD5Hash(self, string):
+        return (hashlib.md5(string.encode())).hexdigest()
 
     def isAuth(self, email, password):
         print("---IS AUTH FUNCTION IN AUTH. CLASS---")
@@ -23,9 +27,11 @@ class Authenticator:
         email_index    = column_names.index("email")
         password_index = column_names.index("passwordHash")
 
+        passwordHash = self.__stringToMD5Hash(password)
+
         for row in rows:
             if row[email_index] == email:
-                if row[password_index] == password:
+                if row[password_index] == passwordHash:
                     return True
         return False
 
@@ -45,9 +51,11 @@ class Authenticator:
             email_index       = column_names.index("email")
             password_index    = column_names.index("passwordHash")
 
+            passwordHash = self.__stringToMD5Hash(password)
+
             for row in rows:
                 if row[email_index] == email:
-                    if row[password_index] == password:
+                    if row[password_index] == passwordHash:
                         self.pr = Person(
                             row[id_index],
                             row[Fname_index],
@@ -77,6 +85,6 @@ class Authenticator:
         print("student password: ", newStudent.password)
 
         query = f"INSERT INTO PERSON(firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) "
-        query += f"Values( '{newStudent.firstName}', '{newStudent.lastName}', '{newStudent.phoneNumber}', '{newStudent.dob}', '{newStudent.sex}', '{newStudent.isAdmin}', '{newStudent.email}', '{newStudent.password}')"
+        query += f"Values( '{newStudent.firstName}', '{newStudent.lastName}', '{newStudent.phoneNumber}', '{newStudent.dob}', '{newStudent.sex}', '{newStudent.isAdmin}', '{newStudent.email}', '{self.__stringToMD5Hash(newStudent.password)}')"
         self.database.executeQuery(query)
         print("Student has benn Added Successfully")
