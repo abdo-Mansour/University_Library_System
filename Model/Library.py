@@ -25,6 +25,11 @@ class Library:
         self.cursor.execute(query, value)
         return self.bookDataParse()
 
+    def getBooksByAuthor(self, authorID):
+        query = "SELECT book.* FROM book, authorsOfBook WHERE book.bookID = authorsOfBook.bookID AND authorID = ?"
+        self.cursor.execute(query, authorID)
+        return self.bookDataParse()
+
     def getNBooks(self, N, offset):
         query = "SELECT * FROM book ORDER BY bookID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;"
         self.cursor.execute(query, (offset, N))
