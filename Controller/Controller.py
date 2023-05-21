@@ -9,10 +9,10 @@ from Model.Library import Library
 class Controller:
     def __init__(self):
         self.Person = None
-        self.loggedIn = False
         self.Library = None
         self.auth = Authenticator()
-        pass
+        self.loggedIn = False
+        self.isAdmin = False
 
     # Functions related to normal user query
     def logIn(self, email, password):       # DONE
@@ -20,7 +20,11 @@ class Controller:
         # Returns Exceptions if something wrong happened or true if success
         if self.auth.isAuth(email, password):
             self.Person = self.auth.returnPersonData(email, password)
+
+            if(self.Person.isAdmin):
+                self.isAdmin = True
             self.loggedIn = True
+            
             # View should take true and display it as signed in
             return True
         else:
@@ -64,7 +68,8 @@ class Controller:
     # Functions related to Admin Only Use
     def addStudent(self, studentInfo):      # DONE
         
-        if self.loggedIn and studentInfo[6]:
+        # This is to check if the user is both LOGGED IN and IS AN ADMIN, because this function is only for admins
+        if self.loggedIn and self.isAdmin:
             newUser = Person(
                 id=studentInfo[0],
                 firstName=studentInfo[1],
@@ -80,7 +85,7 @@ class Controller:
             # returns a list where data is [id, firstName, lastName, number, dob, sex, isAdmin, email, password]
             self.auth.addStudent(newUser)
         else:
-            print("you can't add Person you are not Admin")
+            print("Can't add students as you're not an admin")
 
     def addBook(self, listOfBookDetails):   # DONE
         Library.addBook(listOfBookDetails)
@@ -101,5 +106,3 @@ class Controller:
             # I dont know how to fully implement this yet rn cause there are no functions in the database for this
             pass
         pass
-
-# 15 commits baby
