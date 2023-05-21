@@ -1,6 +1,6 @@
 use librarySystem;
 
-create table library.book(
+create table book(
   bookID int primary key identity,
   title nvarchar(500) not null ,
   pageCount int check (pageCount > 0),
@@ -13,28 +13,28 @@ create table library.book(
   locationID int,
 );
 
-create table library.bookGenre(
+create table bookGenre(
     bookID int not null ,
     genre nvarchar(50) not null ,
     primary key (bookID, genre),
-    foreign key (bookID) references library.book(bookID)
+    foreign key (bookID) references book(bookID)
 )
 
-create table library.author(
+create table author(
     authorID int primary key identity,
     firstName nvarchar(500) not null ,
     lastName nvarchar(500) not null ,
 )
 
-create table library.authorsOfBook(
+create table authorsOfBook(
     bookID int not null ,
     authorID int not null ,
     primary key (bookID,authorID),
-    foreign key (bookID) references library.book(bookID),
-    foreign key (authorID) references library.author(authorID)
+    foreign key (bookID) references book(bookID),
+    foreign key (authorID) references author(authorID)
 )
 
-create table library.location(
+create table location(
     locationID int primary key identity,
     floor smallint,
     section nvarchar(500),
@@ -42,7 +42,7 @@ create table library.location(
 )
 
 
-create table library.person(
+create table person(
     personID int primary key identity,
     email nvarchar(200) not null,
     passwordHash nvarchar(500) not null,
@@ -54,7 +54,7 @@ create table library.person(
     isAdmin smallint,
 )
 
-create table library.bookCopy(
+create table bookCopy(
     copyID int not null,
     bookID int not null,
     borrowerID int,
@@ -66,6 +66,6 @@ create table library.bookCopy(
 
     primary key (copyID, bookID),
     -- the following two lines are probably not good for our use
---     foreign key (borrowerID) references library.person (personID),
---     foreign key (locationID) references library.location (locationID)
+--     foreign key (borrowerID) references person (personID),
+--     foreign key (locationID) references location (locationID)
 )
