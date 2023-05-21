@@ -1,6 +1,6 @@
-use librarySystem;
+use db_a99989_librarysystem;
 
-INSERT INTO library.book (title, pageCount, ISBN, language, description, publisher, minimumAgeToRead, publicationYear)
+INSERT INTO book (title, pageCount, ISBN, language, description, publisher, minimumAgeToRead, publicationYear)
 VALUES
     ('The Great Gatsby', 218, '9780743273565', 'English', 'A novel by F. Scott Fitzgerald', 'Scribner', 14, 1925),
     ('To Kill a Mockingbird', 324, '9780061120084', 'English', 'A novel by Harper Lee', 'HarperCollins', 13, 1960),
@@ -13,7 +13,7 @@ VALUES
     ('The Lord of the Rings', 1178, '9780618640157', 'English', 'A fantasy novel by J.R.R. Tolkien', 'Houghton Mifflin Harcourt', 14, 1954),
     ('The Chronicles of Narnia', 767, '9780066238500', 'English', 'A series of fantasy novels by C.S. Lewis', 'HarperCollins', 10, 1950);
 
-INSERT INTO library.bookGenre (bookID, genre)
+INSERT INTO bookGenre (bookID, genre)
 VALUES
     (1, 'Fiction'),
     (2, 'Classic'),
@@ -26,7 +26,7 @@ VALUES
     (6, 'Children'),
     (7, 'Fiction');
 
-INSERT INTO library.author (firstName, lastName)
+INSERT INTO author (firstName, lastName)
 VALUES
     ('F. Scott', 'Fitzgerald'),
     ('Harper', 'Lee'),
@@ -39,7 +39,7 @@ VALUES
     ('C.S.', 'Lewis'),
     ('Markus', 'Zusak');
 
-INSERT INTO library.authorsOfBook (bookID, authorID)
+INSERT INTO authorsOfBook (bookID, authorID)
 VALUES
     (1, 1),
     (2, 2),
@@ -52,7 +52,7 @@ VALUES
     (9, 5),
     (10, 9);
 
-INSERT INTO library.location (floor, section, shelfNumber)
+INSERT INTO location (floor, section, shelfNumber)
 VALUES
     (1, 'Fiction', 3),
     (2, 'Classics', 2),
@@ -65,28 +65,28 @@ VALUES
     (4, 'Romance', 5),
     (3, 'History', 4);
 
-INSERT INTO library.person (email, passwordHash, firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin)
+INSERT INTO person (email, passwordHash, firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin)
 VALUES
-    ('user1@example.com', 'password1', 'John', 'Doe', '1234567890', '1990-05-12', 1, 0),
-    ('user2@example.com', 'password2', 'Jane', 'Smith', '9876543210', '1985-09-23', 0, 0),
-    ('admin@example.com', 'adminpass', 'Admin', 'User', '5555555555', '1978-12-03', 1, 1),
-    ('user3@example.com', 'password3', 'David', 'Johnson', '9999999999', '1998-07-01', 1, 0),
-    ('user4@example.com', 'password4', 'Emily', 'Williams', '1111111111', '1992-03-18', 0, 0),
-    ('user5@example.com', 'password5', 'Sarah', 'Brown', '2222222222', '1987-11-10', 0, 0),
-    ('user6@example.com', 'password6', 'Michael', 'Davis', '3333333333', '1995-06-05', 1, 0),
-    ('user7@example.com', 'password7', 'Jennifer', 'Anderson', '4444444444', '1991-09-15', 0, 0),
-    ('user8@example.com', 'password8', 'Christopher', 'Martinez', '5533255555', '1999-02-27', 1, 0),
-    ('user9@example.com', 'password9', 'Amanda', 'Thomas', '6666666666', '1993-04-20', 0, 0);
+    ('user1@example.com', '02829fb05c3076ec5a6caebd12477dec', 'John', 'Doe', '1234567890', '1990-05-12', 1, 0),
+    ('user2@example.com', '02829fb05c3076ec5a6caebd12477dec', 'Jane', 'Smith', '9876543210', '1985-09-23', 0, 0),
+    ('admin@example.com', '02829fb05c3076ec5a6caebd12477dec', 'Admin', 'User', '5555555555', '1978-12-03', 1, 1),
+    ('user3@example.com', '02829fb05c3076ec5a6caebd12477dec', 'David', 'Johnson', '9999999999', '1998-07-01', 1, 0),
+    ('user4@example.com', '02829fb05c3076ec5a6caebd12477dec', 'Emily', 'Williams', '1111111111', '1992-03-18', 0, 0),
+    ('user5@example.com', '02829fb05c3076ec5a6caebd12477dec', 'Sarah', 'Brown', '2222222222', '1987-11-10', 0, 0),
+    ('user6@example.com', '02829fb05c3076ec5a6caebd12477dec', 'Michael', 'Davis', '3333333333', '1995-06-05', 1, 0),
+    ('user7@example.com', '02829fb05c3076ec5a6caebd12477dec', 'Jennifer', 'Anderson', '4444444444', '1991-09-15', 0, 0),
+    ('user8@example.com', '02829fb05c3076ec5a6caebd12477dec', 'Christopher', 'Martinez', '5533255555', '1999-02-27', 1, 0),
+    ('user9@example.com', '02829fb05c3076ec5a6caebd12477dec', 'Amanda', 'Thomas', '6666666666', '1993-04-20', 0, 0);
 
-INSERT INTO library.bookCopy (copyID, bookID, borrowerID, locationID, physicalCondition, isReturned, borrowedDate, periodInDays)
+INSERT INTO bookCopy (bookID, borrowerID, locationID, physicalCondition, isReturned, borrowedDate, periodInDays)
 VALUES
-    (1, 1, NULL, 1, 'Good', 1, '2023-05-10', 14),
-    (2, 2, 2, 2, 'Excellent', 0, '2023-04-25', 21),
-    (3, 3, 3, 3, 'Fair', 0, '2023-05-01', 7),
-    (4, 4, NULL, 4, 'Good', 1, '2023-05-15', 10),
-    (5, 5, 5, 5, 'Very Good', 0, '2023-04-28', 14),
-    (6, 6, 6, 6, 'Excellent', 0, '2023-05-02', 14),
-    (7, 7, NULL, 7, 'Fair', 1, '2023-05-12', 14),
-    (8, 8, 7, 8, 'Good', 0, '2023-05-03', 7),
-    (9, 9, 8, 9, 'Excellent', 0, '2023-04-30', 21),
-    (10, 10, NULL, 10, 'Very Good', 1, '2023-05-08', 14);
+    (1, NULL, 1, 'Good', 1, '2023-05-10', 14),
+    (2, 2, 2, 'Excellent', 0, '2023-04-25', 21),
+    (3, 3, 3, 'Fair', 0, '2023-05-01', 7),
+    (4, NULL, 4, 'Good', 1, '2023-05-15', 10),
+    (5, 5, 5, 'Very Good', 0, '2023-04-28', 14),
+    (6, 6, 6, 'Excellent', 0, '2023-05-02', 14),
+    (7, NULL, 7, 'Fair', 1, '2023-05-12', 14),
+    (8, 7, 8, 'Good', 0, '2023-05-03', 7),
+    (9, 8, 9, 'Excellent', 0, '2023-04-30', 21),
+    (10, NULL, 10, 'Very Good', 1, '2023-05-08', 14);
