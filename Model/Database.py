@@ -19,9 +19,8 @@ class Database:
         self.__driver = None
 
     def connectToDataBase(self):
-        # used to connect to the database
-        # this function will ask the user for the server name and the database name
-
+        
+        # Used to connect to the database
         self.__serverName = 'SQL8005.site4now.net'
 
         self.databaseName = 'db_a99989_librarysystem'
@@ -43,7 +42,9 @@ class Database:
         try:
             cnxn = pyodbc.connect(connection_string)
             self.cursor = cnxn.cursor()
+            
             # confirmation message
+            print("Connected to Database")
         except Exception as e:
             print(e)
             print("Connection To Data Base failed, make sure you have internet connection.")
