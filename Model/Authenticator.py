@@ -69,4 +69,3 @@ class Authenticator:
         print("student phone: ", newStudent.phone)
         query = f"INSERT INTO PERSON(firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) Values({newStudent.id})"
         self.database.executeQuery(query)
-
