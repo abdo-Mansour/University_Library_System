@@ -88,8 +88,12 @@ class Controller:
             print("Can't add students as you're not an admin")
 
     def addBook(self, listOfBookDetails):   # DONE
-        Library.addBook(listOfBookDetails)
-        return True
+        try:
+            Library.addBook(listOfBookDetails)
+            return True
+        except:
+            print("Failed to add book to database")
+            return False
 
     def updateBookDetails(self, bookInfo):  # NOT DONE
         # updates the book details
