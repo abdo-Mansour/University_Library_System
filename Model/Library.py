@@ -1,11 +1,50 @@
-import Database as db
+import Model.Database as db
+import Model.Book as Book
 
 
 class Library:
     def __init__(self):
         # This is used as the curser for the database
-        DBHead = db.Database.connectToDataBase()
-        pass
+        self.database = db.Database()
+        self.database.connectToDataBase()
+        self.cursor = self.database.getCursor()
+
+    def bookDataParse(self):
+        rows = self.cursor.fetchall()
+        booksList = []
+        for row in rows:
+            tempBook = Book.Book()
+            for element, infoAtt in zip(row, tempBook.attributes):
+                setattr(tempBook, infoAtt, element)
+            booksList.append(tempBook)
+        return booksList
+
+    def getBooksBy(self, column, value):
+        query = "SELECT * FROM Book WHERE "
+        query += column + ' = ?'
+        self.cursor.execute(query, value)
+        return self.bookDataParse()
+
+    def getNBooks(self, N, offset):
+        query = "SELECT * FROM book ORDER BY bookID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;"
+        self.cursor.execute(query, (offset, N))
+        return self.bookDataParse()
+
+    def addBook(self, book):
+        attributes = ['Title', 'PageCount', 'ISBN', 'Language',
+                      'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
+        query = "INSERT INTO book ("
+        for i in range(len(attributes)):
+            query += attributes[i]
+            if i < len(attributes)-1:
+                query += ', '
+            else:
+                query += ')'
+        query += "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)"
+        valuesList = []
+        for i in range(len(attributes)):
+            valuesList.append(getattr(book, attributes[i]))
+        self.cursor.execute(query, tuple(valuesList))
 
 # you can use DBHead like the following (not real code):
 

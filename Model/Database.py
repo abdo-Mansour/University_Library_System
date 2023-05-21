@@ -24,8 +24,12 @@ class Database:
     def connectToDataBase(self):
         #used to connect to the database
         #this function will ask the user for the server name and the database name
+        
         self.serverName = input("Enter the server name: ")
+        # self.serverName = "DESKTOP-VHJ2UQ7\SQLEXPRESS"
+
         self.databaseName = input("Enter the database name: ")
+        # self.databaseName = "library"
         
         connection_string = f"""
         DRIVER={"SQL SERVER"};
@@ -36,6 +40,7 @@ class Database:
         try:
             cnxn = pyodbc.connect(connection_string)
             self.cursor = cnxn.cursor()
+            # confirmation message 
         except Exception as e:
             print(e)
             print("Task is Terminated!")
@@ -55,4 +60,3 @@ class Database:
     
     
     
-        
