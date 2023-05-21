@@ -1,4 +1,4 @@
-import Control.Controller as Controller
+import Controller.Controller as Controller
 
 
 def print_me():

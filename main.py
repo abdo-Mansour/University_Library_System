@@ -1,6 +1,6 @@
 
 # import Model.Database as db
-from Control.Controller import Controller
+from Controller.Controller import Controller
 # from Model.Person import Person
 # from Model.Authenticator import Authenticator
 
