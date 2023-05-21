@@ -21,11 +21,9 @@ class Controller:
         if self.auth.isAuth(email, password):
             self.Person = self.auth.returnPersonData(email, password)
             self.loggedIn = True
-
             # View should take true and display it as signed in
             return True
         else:
-
             # View should take false and display it as error
             return False
 
