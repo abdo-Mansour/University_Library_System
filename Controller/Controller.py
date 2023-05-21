@@ -1,10 +1,11 @@
 # Warning: MVC Pattern is applied here, DO NOT RETURN BOOK Object for example
 # Only Pass data to viewer, not objects
+# ALL PRINT STATEMENTS MUST BE REMOVED
+
 
 from Model.Person import Person
 from Model.Authenticator import Authenticator 
-from Model.Library import Library
-
+from Model.Library import Library, Book
 
 class Controller:
     def __init__(self):
@@ -21,8 +22,7 @@ class Controller:
         if self.auth.isAuth(email, password):
             self.Person = self.auth.returnPersonData(email, password)
 
-            if(self.Person.isAdmin):
-                self.isAdmin = True
+            self.isAdmin = True if self.Person.isAdmin else False
             self.loggedIn = True
             
             # View should take true and display it as signed in
@@ -33,7 +33,7 @@ class Controller:
 
     def getBooksBy(self, query, value):     # DONE
 
-        if self.loggedIn == True:
+        if self.loggedIn:
             queries = ["bookGenre", "author", "ISBN", "title", "pageCount", "language", "publisher", "publicationYear"]
 
             if query in queries:
@@ -47,27 +47,45 @@ class Controller:
 
                 # This should be displayed to the user as no books found
                 return False
+        else:
+            print("You're not logged in")
 
-    def getNBooks(self, book):              # DONE
-
-        # returns dictionary where every sub-list has all the data of the book
-        #TODO: take the list of Books objects and return a list of dictionaries
-        if self.loggedIn == True:
-            data = Library.getNBooks(book.id)
-            if data:
+    def getNBooks(self, book: Book):              # SEMI DONE
+        # return a list of book dictionaries
+        N, offset = None    # Need to put values for these
+        if self.loggedIn:
+            try:
+                books = Library.getNBooks(self, N, offset)
+                data = []
+                for book in books:
+                    data.append(book.__dict__)
                 return data
-            else:
-                return False
-
+            except:
+                print("Error getting data")
+        else:
+            print("You're not logged in")
 
     def getUserDetails(self):               # DONE
-        if self.loggedIn == True:
+        if self.loggedIn:
             # Returns all data of user as a dictionary for view to use
             return self.Person.__dict__
+        else:
+            print("You're not logged in")
+
+    
+    def getLocation(self, bookID , copyID):          # DONE
+        # returns location of the book as dictionary
+        if self.loggedIn:
+            try:
+                location = Library.getBookCopyLocation(self,bookID, copyID)
+                return location.__dict__
+            except:
+                print("Error retrieving book data")
+        else:
+            print("You're not logged in")
 
     # Functions related to Admin Only Use
     def addStudent(self, studentInfo):      # DONE
-        
         # This is to check if the user is both LOGGED IN and IS AN ADMIN, because this function is only for admins
         if self.loggedIn and self.isAdmin:
             newUser = Person(
@@ -81,27 +99,31 @@ class Controller:
                 email=studentInfo[7],
                 password=studentInfo[8]
             )
-
-            # returns a list where data is [id, firstName, lastName, number, dob, sex, isAdmin, email, password]
             self.auth.addPerson(newUser)
         else:
-            print("Can't add students as you're not an admin")
+            print("Sorry you're not an admin")
 
     def addBook(self, listOfBookDetails):   # DONE
-        try:
-            Library.addBook(listOfBookDetails)
-            return True
-        except:
-            print("Failed to add book to database")
-            return False
+        if self.loggedIn and self.isAdmin:
+            try:
+                Library.addBook(listOfBookDetails)
+                return True
+            except:
+                print("Failed to add book to database")
+                return False
+        else:
+            print("Sorry you're not an admin")
 
-    def updateBookDetails(self, bookInfo):  # NOT DONE
-        # updates the book details
-        pass
+    def updateBookDetails(self, bookInfo):  # DONE
+        if self.loggedIn and self.isAdmin:
+            try:
+                Library.updateBookDetails(bookInfo)
+            except:
+                print("Error updating book details")
+        else:
+            print("Sorry you're not an admin")
 
-    # Functions related to Admin Only Use
-    def updateUserDetails(self, personInfo):  # NOT DONE
-        # This is to check if the user is both LOGGED IN and IS AN ADMIN, because this function is only for admins
+    def updateUserDetails(self, personInfo):  # DONE
         if self.loggedIn and self.isAdmin:
             updatedPerson = Person(
                 id       = personInfo[0],
@@ -114,16 +136,6 @@ class Controller:
                 email    = personInfo[7],
                 password = personInfo[8]
             )
-
-            # returns a list where data is [id, firstName, lastName, number, dob, sex, isAdmin, email, password]
             self.auth.updatePerson(updatedPerson)
         else:
-            print("Can't Update students as you're not an admin")
-
-    def getLocation(self, bookID , copyID):          # NOT DONE
-
-        # returns location of the book
-        if self.loggedIn == True:
-            # I dont know how to fully implement this yet rn cause there are no functions in the database for this
-            pass
-        pass
+            print("Sorry you're not an admin")
