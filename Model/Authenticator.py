@@ -64,8 +64,18 @@ class Authenticator:
     def addStudent(self, newStudent: prs):
         # This print statements for testing
         print("---ADD STUDENT FUNCTION IN AUTHOR. CLASS---")
+
+        # debug Print statements 
         print("student id: ", newStudent.id)
+        print("student firstName: ", newStudent.firstName)
+        print("student lastName: ", newStudent.lastName)
+        print("student phoneNubmer: ", newStudent.number)
+        print("student DateOfBirth: ", newStudent.dob)
+        print("student sex: ", newStudent.sex)
+        print("student isAdmin: ", newStudent.isAdmin)
         print("student email: ", newStudent.email)
-        print("student phone: ", newStudent.phone)
-        query = f"INSERT INTO PERSON(firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) Values({newStudent.id})"
+        print("student password: ", newStudent.password)
+
+        query = f"INSERT INTO PERSON(firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) "
+        query += f"Values( '{newStudent.firstName}', '{newStudent.lastName}', '{newStudent.phoneNumber}', '{newStudent.dob}', '{newStudent.sex}', '{newStudent.isAdmin}', '{newStudent.email}', '{newStudent.password}')"
         self.database.executeQuery(query)
