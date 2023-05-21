@@ -21,6 +21,10 @@ class Library:
         return booksList
 
     def getBooksBy(self, column, value):
+        if column == 'genre':
+            return self.getBookByGenre(value)
+        if (column == 'author'):
+            return self.getBooksByAuthor(value)
         query = f'SELECT * FROM Book WHERE {column} = ?'
         self.cursor.execute(query, value)
         return self.bookDataParse()
