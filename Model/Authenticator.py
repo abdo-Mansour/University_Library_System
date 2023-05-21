@@ -12,7 +12,7 @@ class Authenticator:
         # Object of the database class
         self.database = db()
         self.database.connectToDataBase()
-
+        self.cursor = self.database.getCursor()
 
     def isAuth(self, email, password):
         print("---IS AUTH FUNCTION IN AUTH. CLASS---")
@@ -76,7 +76,13 @@ class Authenticator:
         print("student email: ", newStudent.email)
         print("student password: ", newStudent.password)
 
-        query = f"INSERT INTO PERSON(firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) "
-        query += f"Values( '{newStudent.firstName}', '{newStudent.lastName}', '{newStudent.phoneNumber}', '{newStudent.dob}', '{newStudent.sex}', '{newStudent.isAdmin}', '{newStudent.email}', '{newStudent.password}')"
-        self.database.executeQuery(query)
+        query = "INSERT INTO PERSON (firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) "
+        query += f"VALUES ('{newStudent.firstName}', '{newStudent.lastName}', '{newStudent.number}', "
+        query += f"CONVERT(DATE, '{newStudent.dob}', 120), '{newStudent.sex}', '{newStudent.isAdmin}', "
+        query += f"'{newStudent.email}', '{newStudent.password}')"
+        
+        self.cursor.execute(query)
+        # self.database.executeQuery(query)
+        self.database.connectionHead.commit()
+        
         print("Student has benn Added Successfully")
