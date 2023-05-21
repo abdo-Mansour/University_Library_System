@@ -13,19 +13,17 @@ class Authenticator:
         self.database = db()
         self.database.connectToDataBase()
 
-        # Retrieved query (default query)
-        self.rows = self.database.executeQuery("SELECT * FROM person")
-
-        # All of the person attributes names
-        self.column_names = [desc[0]
-                             for desc in self.database.getCursor().description]
 
     def isAuth(self, email, password):
         print("---IS AUTH FUNCTION IN AUTH. CLASS---")
-        email_index = self.column_names.index("email")
-        password_index = self.column_names.index("passwordHash")
+        
+        rows = self.database.executeQuery("SELECT * FROM person")
+        column_names = [desc[0] for desc in self.database.getCursor().description]
+        
+        email_index    = column_names.index("email")
+        password_index = column_names.index("passwordHash")
 
-        for row in self.rows:
+        for row in rows:
             if row[email_index] == email:
                 if row[password_index] == password:
                     return True
@@ -33,18 +31,21 @@ class Authenticator:
 
     # Make a function here that returns the data of the student if the email and password are correct
     def returnPersonData(self, email, password):
+        rows = self.database.executeQuery("SELECT * FROM person")
+        column_names = [desc[0] for desc in self.database.getCursor().description]
+        
         if self.isAuth(email, password):
-            id_index = self.column_names.index("personID")
-            Fname_index = self.column_names.index("firstName")
-            Lname_index = self.column_names.index("lastName")
-            phone_index = self.column_names.index("phoneNumber")
-            sex_index = self.column_names.index("sex")
-            isAdmin_index = self.column_names.index("isAdmin")
-            dateOfBirth_index = self.column_names.index("dateOfBirth")
-            email_index = self.column_names.index("email")
-            password_index = self.column_names.index("passwordHash")
+            id_index          = column_names.index("personID")
+            Fname_index       = column_names.index("firstName")
+            Lname_index       = column_names.index("lastName")
+            phone_index       = column_names.index("phoneNumber")
+            sex_index         = column_names.index("sex")
+            isAdmin_index     = column_names.index("isAdmin")
+            dateOfBirth_index = column_names.index("dateOfBirth")
+            email_index       = column_names.index("email")
+            password_index    = column_names.index("passwordHash")
 
-            for row in self.rows:
+            for row in rows:
                 if row[email_index] == email:
                     if row[password_index] == password:
                         self.pr = prs.Person(
@@ -67,9 +68,5 @@ class Authenticator:
         print("student email: ", newStudent.email)
         print("student phone: ", newStudent.phone)
         query = f"INSERT INTO PERSON(firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) Values({newStudent.id})"
-<<<<<<< HEAD
-        self.database.executeQuery("")
-=======
         self.database.executeQuery(query)
 
->>>>>>> 035c15c3b3e4cde1ac7490ed29168eaa189ec478
