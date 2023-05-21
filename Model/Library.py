@@ -1,5 +1,6 @@
 import Model.Database as db
 import Model.Book as Book
+import Model.Location as Location
 
 
 class Library:
@@ -59,6 +60,18 @@ class Library:
         tempTuple = tuple(valuesList)
         self.cursor.execute(query, tempTuple)
         self.database.connectionHead.commit()
+
+    def getBookCopyLocation(self, bookID, copyID):
+        query = "SELECT location.* FROM location, bookCopy WHERE bookCopy.bookID = ? AND bookCopy.copyID = ? AND bookCopy.locationID = location.locationID"
+        resultLocation = Location.Location()
+        self.cursor.execute(query, (bookID, copyID))
+        # bookID and copyID are priamry keys, so it is impossible to return more than 1 row
+        row = self.cursor.fetchall()
+        resultLocation.locationID = row[0][0]
+        resultLocation.floor = row[0][1]
+        resultLocation.section = row[0][2]
+        resultLocation.shelfNumber = row[0][3]
+        return resultLocation
 
 # you can use DBHead like the following (not real code):
 
