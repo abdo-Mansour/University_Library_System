@@ -77,12 +77,11 @@ class Authenticator:
         print("student password: ", newStudent.password)
 
         query = "INSERT INTO PERSON (firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) "
-        query += f"VALUES ('{newStudent.firstName}', '{newStudent.lastName}', '{newStudent.number}', "
-        query += f"CONVERT(DATE, '{newStudent.dob}', 120), '{newStudent.sex}', '{newStudent.isAdmin}', "
-        query += f"'{newStudent.email}', '{newStudent.password}')"
-        
-        self.cursor.execute(query)
-        # self.database.executeQuery(query)
+        query += "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+
+        values = (newStudent.firstName, newStudent.lastName, newStudent.number, newStudent.dob, newStudent.sex, newStudent.isAdmin, newStudent.email, newStudent.password)
+
+        self.cursor.execute(query, values)
         self.database.connectionHead.commit()
         
         print("Student has benn Added Successfully")
