@@ -14,6 +14,7 @@ class Database:
         self.__serverName = None
         self.databaseName = None
         self.cursor = None
+        self.connectionHead = None
         self.__username = None
         self.__password = None
         self.__driver = None
