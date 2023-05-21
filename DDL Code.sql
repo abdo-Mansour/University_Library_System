@@ -65,6 +65,7 @@ create table bookCopy(
     periodInDays smallint,
 
     primary key (copyID, bookID),
+    foreign key (bookID) references book (bookID)
     -- the following two lines are probably not good for our use
 --     foreign key (borrowerID) references person (personID),
 --     foreign key (locationID) references location (locationID)
