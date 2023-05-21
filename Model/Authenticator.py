@@ -20,7 +20,7 @@ class Authenticator:
 
 
     def isAuth(self, email, password):
-        print("---IS AUTH FUNCTION IN AUTHOR. CLASS---")
+        print("---IS AUTH FUNCTION IN AUTH. CLASS---")
         email_index = self.column_names.index("email")
         password_index = self.column_names.index("passwordHash")
        
@@ -66,5 +66,5 @@ class Authenticator:
         print("student email: ",newStudent.email)
         print("student phone: ",newStudent.phone)
         query = f"INSERT INTO PERSON(firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) Values({newStudent.id})"
-        self.database.executeQuery("")
+        self.database.executeQuery(query)
 

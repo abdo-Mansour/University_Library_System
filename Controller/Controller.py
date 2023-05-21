@@ -19,9 +19,11 @@ class Controller:
         if self.auth.isAuth(email, password):
             self.Person = self.auth.returnPersonData(email, password)
             self.loggedIn = True
+
             # View should take true and display it as signed in
             return True
         else:
+
             # View should take false and display it as error
             return False
 
@@ -73,7 +75,9 @@ class Controller:
 
     def getUserDetails(self):
         if self.loggedIn == True:
-            return self.Person
+
+            # Returns all data of user as a dictionary for view to use
+            return self.Person.__dict__
 
     def addStudent(self, studentInfo):
         # Functions related to Admin Only Use
@@ -91,7 +95,7 @@ class Controller:
                 password=studentInfo[8]
             )
 
-            self.ath.addStudent(newUser)
+            self.auth.addStudent(newUser)
 
     def addBook(self, listOfBookDetails):
         # like the login, throws exception if the data entered is not valid
