@@ -30,7 +30,7 @@ class Controller:
     def getBooksBy(self, query, value):     # DONE
 
         if self.loggedIn == True:
-            queries = ["bookGenre", "author", "authorsOfBook", "location"]
+            queries = ["bookGenre", "author", "ISBN", "title", "pageCount", "language", "publisher", "publicationYear"]
 
             if query in queries:
 
