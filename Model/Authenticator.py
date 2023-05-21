@@ -58,7 +58,7 @@ class Authenticator:
                         )
         return self.pr
 
-    def addStudent(self, newStudent: Person):
+    def addPerson(self, newStudent: Person):
 
         query = "INSERT INTO PERSON (firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) "
         query += "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
@@ -69,3 +69,7 @@ class Authenticator:
         self.database.connectionHead.commit()
         
         print("Student has benn Added Successfully")
+    
+    def updatePerson(self):
+        pass
+

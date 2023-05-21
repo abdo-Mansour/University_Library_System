@@ -83,7 +83,7 @@ class Controller:
             )
 
             # returns a list where data is [id, firstName, lastName, number, dob, sex, isAdmin, email, password]
-            self.auth.addStudent(newUser)
+            self.auth.addPerson(newUser)
         else:
             print("Can't add students as you're not an admin")
 
@@ -99,9 +99,26 @@ class Controller:
         # updates the book details
         pass
 
-    def updateUserDetails(self, userInfo):  # NOT DONE
-        # like the login, throws exception if the data entered is not valid
-        pass
+    # Functions related to Admin Only Use
+    def updateUserDetails(self, personInfo):  # NOT DONE
+        # This is to check if the user is both LOGGED IN and IS AN ADMIN, because this function is only for admins
+        if self.loggedIn and self.isAdmin:
+            updatedPerson = Person(
+                id       = personInfo[0],
+                firstName= personInfo[1],
+                lastName = personInfo[2],
+                number   = personInfo[3],
+                dob      = personInfo[4],
+                sex      = personInfo[5],
+                isAdmin  = personInfo[6],
+                email    = personInfo[7],
+                password = personInfo[8]
+            )
+
+            # returns a list where data is [id, firstName, lastName, number, dob, sex, isAdmin, email, password]
+            self.auth.updatePerson(updatedPerson)
+        else:
+            print("Can't Update students as you're not an admin")
 
     def getLocation(self, bookID , copyID):          # NOT DONE
 
