@@ -88,7 +88,7 @@ class Controller:
         # like the login, throws exception if the data entered is not valid
         pass
 
-    def updateBookDetails(self, bookID, bookInfo):
+    def updateBookDetails(self, bookInfo):
         # updates the book details
         pass
 
