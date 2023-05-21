@@ -58,18 +58,34 @@ class Authenticator:
                         )
         return self.pr
 
-    def addPerson(self, newStudent: Person):
+    def addPerson(self, newPerson: Person):
 
         query = "INSERT INTO PERSON (firstName, lastName, phoneNumber, dateOfBirth, sex, isAdmin, email, passwordHash) "
         query += "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 
-        values = (newStudent.firstName, newStudent.lastName, newStudent.number, newStudent.dob, newStudent.sex, newStudent.isAdmin, newStudent.email, newStudent.password)
+        values = (newPerson.firstName, newPerson.lastName, newPerson.number, newPerson.dob, newPerson.sex, newPerson.isAdmin, newPerson.email, newPerson.password)
 
         self.cursor.execute(query, values)
         self.database.connectionHead.commit()
         
         print("Student has benn Added Successfully")
     
-    def updatePerson(self):
-        pass
+    def updatePerson(self, updatedPerson: Person):
+
+        query =  "UPDATE Person "
+        query += "SET firstName   = '{0}', ".format(updatedPerson.firstName)
+        query += "    lastName    = '{0}', ".format(updatedPerson.lastName)
+        query += "    phoneNumber = '{0}', ".format(updatedPerson.number)
+        query += "    dateOfBirth = '{0}', ".format(updatedPerson.dob)
+        query += "    sex         = '{0}', ".format(updatedPerson.sex)
+        query += "    isAdmin     = '{0}', ".format(updatedPerson.isAdmin)
+        query += "    email       = '{0}', ".format(updatedPerson.email)
+        query += "    passwordHash= '{0}' ".format(updatedPerson.password)
+        query += "WHERE personID  = {0}".format(updatedPerson.id)
+
+
+        self.cursor.execute(query)
+        self.database.connectionHead.commit()
+
+        print("Person has been Updated Successfully")
 
