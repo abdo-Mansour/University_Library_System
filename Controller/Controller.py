@@ -47,6 +47,7 @@ class Controller:
     def getNBooks(self, book):              # DONE
 
         # returns dictionary where every sub-list has all the data of the book
+        #TODO: take the list of Books objects and return a list of dictionaries
         if self.loggedIn == True:
             data = Library.getNBooks(book.id)
             if data:
@@ -54,13 +55,6 @@ class Controller:
             else:
                 return False
 
-    def getLocation(self, bookID):          # NOT DONE
-
-        # returns location of the book
-        if self.loggedIn == True:
-            # I dont know how to fully implement this yet rn cause there are no functions in the database for this
-            pass
-        pass
 
     def getUserDetails(self):               # DONE
         if self.loggedIn == True:
@@ -98,3 +92,10 @@ class Controller:
         # like the login, throws exception if the data entered is not valid
         pass
 
+    def getLocation(self, bookID , copyID):          # NOT DONE
+
+        # returns location of the book
+        if self.loggedIn == True:
+            # I dont know how to fully implement this yet rn cause there are no functions in the database for this
+            pass
+        pass
