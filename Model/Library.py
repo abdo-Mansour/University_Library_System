@@ -47,6 +47,19 @@ class Library:
         self.cursor.execute(query, tempTuple)
         self.database.connectionHead.commit()
 
+    def updateBookDetails(self, updatedBook):
+        # updated book is a book object that contains the updated book data
+        attributes = ['Title', 'PageCount', 'ISBN', 'Language',
+                      'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
+        query = "UPDATE book SET Title = ?, PageCount = ?, ISBN= ?, Language = ?,Description= ?, Publisher= ?, MinimumAgeToRead= ?, PublicationYear= ? WHERE bookID = ?"
+        valuesList = []
+        for i in range(len(attributes)):
+            valuesList.append(getattr(updatedBook, attributes[i]))
+        valuesList.append(updatedBook.BookID)
+        tempTuple = tuple(valuesList)
+        self.cursor.execute(query, tempTuple)
+        self.database.connectionHead.commit()
+
 # you can use DBHead like the following (not real code):
 
 # try:
