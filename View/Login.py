@@ -1,53 +1,39 @@
-from customtkinter import CTkFrame,  CTkButton, CTkLabel
-import customtkinter as ctk
-import tkinter.messagebox as tkmb
-class Login(CTkFrame):
+
+import tkinter as tk
+from tkinter import ttk
+
+
+class Login(ttk.Frame):
     def __init__(self, parent, controller):
-        super().__init__(parent)
+        print("Login.__init__")
+        ttk.Frame.__init__(self, parent)
+        self.style = ttk.Style(self)
         self.controller = controller
-        self.pack()
+        #styles
 
-
-        self.label = ctk.CTkLabel(parent,text="Welcome To FCAI Library System",font=("Arial",30,"bold"))
+        #widgets
+        # self.frame = ttk.Frame(self )
+        # # self.frame.grid(row = 0 , column = 0, pady=20,padx=40)
+        # # Configure the row and column weights
+        # parent.grid_rowconfigure(0, weight=1)
+        # parent.grid_columnconfigure(0, weight=1)
+        # self.frame.grid(row=0, column=0, pady=20, padx=40 ,sticky= "nswe")
+        
+        self.label = ttk.Label(self,text='Enter Your Email and Password',font=("Arial",20,'bold'))
+        self.label.grid(row=0, column=0, pady=70, padx=260 , sticky= "nswe")
+        
+        
+        user_entry= ttk.Entry(self,width=30,text="Email",font=("Arial",15))
+        user_entry.grid(row=1, column=0, pady=12, padx=10)
+        
+        user_pass= ttk.Entry(self,width=30,text="Password",show="*",textvariable="Password",font=("Arial",15))
+        user_pass.grid(row=2, column=0, pady=12, padx=10)
+        
+        
+        button = ttk.Button(self,width=30,text='Login')
+        button.grid(row=3, column=0,rowspan=2, pady=50, padx=10)
+        
+        checkbox = ttk.Checkbutton(self,text='Login as Admin')
+        checkbox.grid(row=5, column=0, pady=22, padx=10)
   
-        self.label.pack(pady=0)
-        
-        
-        self.frame = ctk.CTkFrame(master=parent)
-        self.frame.pack(pady=20,padx=40,fill='both')
-        
-        self.label = ctk.CTkLabel(master=self.frame,text='Please Enter Your Email and Password',font=("Arial",20,'bold'))
-        self.label.pack(pady=40,padx=10)
-        
-        
-        user_entry= ctk.CTkEntry(master=self.frame,width=300 , height= 40 ,placeholder_text="Email",font=("Arial",20))
-        user_entry.pack(pady=12,padx=10)
-        
-        user_pass= ctk.CTkEntry(master=self.frame,width=300 , height= 40 ,placeholder_text="Password",font=("Arial",20),show="*")
-        user_pass.pack(pady=12,padx=10)
-        
-        
-        button = ctk.CTkButton(master=self.frame,text='Login',font=("Arial",20,"bold"),command=login)
-        button.pack(pady=22,padx=10)
-        
-        checkbox = ctk.CTkCheckBox(master=self.frame,text='Login as Admin',font=("Arial",20))
-        checkbox.pack(pady=22,padx=10)
-
-    def button_callbck(self):
-        self.controller.show_frame("Home")
-    
-    def on_show(self):
-        print("Login frame is shown")
-        
-# # Selecting GUI theme - dark, light , system (for system default)
-# ctk.set_appearance_mode("dark")
-  
-# # Selecting color theme - blue, green, dark-blue
-# ctk.set_default_color_theme("dark-blue")
-  
-# app = ctk.CTk()
-# app.geometry("1000x580")
-# app.title("Library System")
-  
-  
-
+       

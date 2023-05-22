@@ -3,11 +3,12 @@ LARGEFONT =("Verdana", 35)
   
 import tkinter as tk
 from tkinter import ttk
-from StartPage import StartPage 
+from ttkthemes import ThemedStyle
 class App(tk.Tk):
     
     # __init__ function for class tkinterApp
     def __init__(self, *args, **kwargs):
+        from Login import Login 
         print("I AM RUNNING")     
         # __init__ function for class Tk
         tk.Tk.__init__(self, *args, **kwargs)
@@ -22,7 +23,7 @@ class App(tk.Tk):
         container.grid_columnconfigure(0, weight = 1)
   
         self.frames = {}
-        for F in (StartPage, Page1, Page2):
+        for F in (Login,Page1, Page2):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -32,7 +33,7 @@ class App(tk.Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("Page1")
+        self.show_frame("Login")
     # to display the current frame passed as
     # parameter
     def show_frame(self, cont):
@@ -101,5 +102,8 @@ class Page2(ttk.Frame):
   
 # Driver Code
 app = App()
+app.title("Library System")
+style = ThemedStyle(app)
+style.set_theme("equilux")
 app.geometry("1000x580")
 app.mainloop()
