@@ -8,7 +8,17 @@ class App(tk.Tk):
     
     # __init__ function for class tkinterApp
     def __init__(self, *args, **kwargs):
-        from Login import Login 
+        from Login import Login
+        from AddBook import AddBook
+        from AddUser import AddUser
+        from Browse import Browse
+        from SearchBook import SearchBook
+        from UpdateBookDetails import UpdateBookDetails
+        from UpdateUserDetails import UpdateUserDetails
+        from DeleteBook import DeleteBook
+        from DeleteUser import DeleteUser
+        from BookLocation import BookLocation
+        from BorrowBook import BorrowBook
         print("I AM RUNNING")     
         # __init__ function for class Tk
         tk.Tk.__init__(self, *args, **kwargs)
