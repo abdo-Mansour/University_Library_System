@@ -168,7 +168,7 @@ class Controller:
     def deleteBook(self, ISBN):  # TODO:
         pass
 
-    def deleteUser(self, userID):  # TODO:
+    def deleteUser(self, userEmail):  # TODO:
         pass
 
     # def borrowBook(self, ISBN, copyID , userID): #TODO:
