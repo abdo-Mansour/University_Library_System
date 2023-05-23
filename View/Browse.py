@@ -1,7 +1,7 @@
 
 
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, CENTER
 import tkinter as tk
 from tkinter.messagebox import showinfo
 from tkinter.ttk import Label
@@ -19,59 +19,31 @@ class Browse(ttk.Frame):
         self.bookViewLables = []
         # widgets
 
-        self.window = self
+        message = Label(self, text="All Books", font=24)
+        message.place(x=self.app.WIDTH / 2, y=12, anchor=CENTER)
 
-        Title = ttk.Label(self, text='Browse Books', font=(
-            "Helvetica", 17, 'bold'))
-        Title.place(relx=0.5, y=10, anchor='center')
+        book_list = tk.Listbox(self, width=60, font=18, height=1)
+        books = controller.getAllBooks()
+        for i in books:
+            line_content = f"{i['Title']}, ISBN: {i['ISBN']}"
 
-        searchBoxX = 175
-        searchBoxY = 50
+            book_list.insert(tk.END, line_content)
 
+        book_list.place(x=5, y=250, anchor="w")
 
-       
-        # Create a style object
-        style = ttk.Style(self.window)
+        if "AdminMenu" in self.app.frames:
+            button_back = ttk.Button(self, text="Back", command=self.backToAdmin())
+            button_back.place(x=5, y=400, anchor="w")
 
-        # Set the font and background color of the OptionMenu
-        style.configure("TCombobox", font=("Arial", 12))
-        style.configure("TCombobox", fieldbackground="white")
-
-        # Set the highlight color of the OptionMenu
-        style.map("TCombobox", fieldbackground=[("readonly", "white")])
+    def backToAdmin(self):
+        command = self.app.show_frame("AdminMenu")
 
 
-
-        self.bookListView = tk.Canvas(self.window, width=700,
-                                      height=500)
-
-        self.bookListView.place(x=50, y=150)
-        self.getBooksQuery()
-        # self.displayBookListView()
-
-    def displayBookListView(self):
-        for l in self.bookViewLables:
-            l.destroy()
-        y = 50
-
-        for i in range(len(self.bookList)):
-            label = Label(self.bookListView, text=str(i + 1) + ")\nBook title: " +
-                          self.bookList[i].Title + '\n' + "ISBN: " + str(self.bookList[i].ISBN) + '\n', font=("Courier", 15))
-            self.bookViewLables.append(label)
-            self.bookListView.create_window(0, y, window=label, anchor='w')
-            y += 100
-
-        scrollbar = tk.Scrollbar(
-            self.bookListView, orient='vertical', command=self.bookListView.yview)
-        scrollbar.place(relx=1, rely=0, relheight=1, anchor='ne')
-        self.bookListView.config(yscrollcommand=scrollbar.set,
-                                 scrollregion=(0, 0, 0, y))
-
-    def getBooksQuery(self):
-        result = self.controller.getAllBooks()
-        print(result)
-        self.bookList = result
-        # self.displayBookListView()
+    # def getBooksQuery(self):
+    #     result = self.controller.getAllBooks()
+    #     print(result)
+    #     self.bookList = result
+    #     # self.displayBookListView()
         
   
        
