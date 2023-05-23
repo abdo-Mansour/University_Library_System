@@ -167,7 +167,7 @@ class Controller:
 
     def deleteBook(self, ISBN):
         if self.loggedIn and self.isAdmin:
-            if(self.auth.deleteBook(ISBN)):
+            if(self.Library.deleteBook(ISBN)):
                 return True
             else:
                 return False
@@ -178,7 +178,7 @@ class Controller:
     def deleteUser(self, userEmail):
         
         if self.loggedIn and self.isAdmin:
-            if(self.auth.deleteUser(userEmail)):
+            if(self.Library.deleteUser(userEmail)):
                 return True
             else:
                 return False
