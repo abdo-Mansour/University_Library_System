@@ -22,6 +22,9 @@ class App(tk.Tk):
         from View.DeleteBook import DeleteBook
         from View.DeleteUser import DeleteUser
         from View.BookLocation import BookLocation
+        # from View.BorrowBook import BorrowBook
+        from View.StudentMenu import StudentMenu
+        # from View.AdminMenu import AdminMenu
 
         print("I AM RUNNING")
 
@@ -48,7 +51,7 @@ class App(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (Login, Browse, SearchBook, AddBook, UpdateUserDetails, AddUser, UpdateBookDetails, Report, AdminMenu):
+        for F in (Login, Report, Browse, UpdateUserDetails, UpdateBookDetails, SearchBook, AddBook, AddUser, StudentMenu, AdminMenu):
             page_name = F.__name__
             frame = F(parent=container, app=self, controller=self.controller)
             self.frames[page_name] = frame
@@ -58,7 +61,7 @@ class App(tk.Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("Browse")
+        self.show_frame("Login")
     # to display the current frame passed as
     # parameter
 
