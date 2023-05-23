@@ -29,6 +29,9 @@ class UpdateBookDetails(ttk.Frame):
         ttk.Button(self, text="Save Changes", command=self.save_changes).grid(
             row=3, column=0, columnspan=2, pady=20)
 
+        button_back = ttk.Button(self, text="Back", command=lambda: self.app.show_frame("AdminMenu")) # might be an error here, check if self is right and not ttk.Frame(self)
+        button_back.grid(row=15, column=0, columnspan=2, pady=10)
+
     def create_book_info_table(self):
         book_info_labels = {
             "BookID": "Book Id",

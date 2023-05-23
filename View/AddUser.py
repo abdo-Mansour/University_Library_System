@@ -67,12 +67,13 @@ class AddUser(ttk.Frame):
         button_frame = ttk.Frame(self)
         button_frame.pack(pady=10)
 
+        button_back = ttk.Button(button_frame, text="Back", command=lambda: self.app.show_frame("AdminMenu"))
+        button_back.pack(side="left", padx=10)
+
         button_add_user = ttk.Button(button_frame, text="Add User", command=self.add_user)
         button_add_user.pack(side="left", padx=10)
 
-        if "AdminMenu" in self.app.frames:
-            button_back = ttk.Button(button_frame, text="Back", command=lambda: self.app.show_frame("AdminMenu"))
-            button_back.pack(side="left", padx=10)
+
 
     def add_user(self):
         # Get the input values

@@ -27,7 +27,7 @@ class DeleteBook(ttk.Frame):
         button_delete_book = ttk.Button(button_frame, text="Delete Book", command=self.delete_book)
         button_delete_book.pack(side="left", padx=10)
 
-        button_back = ttk.Button(button_frame, text="Back", command=self.go_back)
+        button_back = ttk.Button(button_frame, text="Back", command=lambda: self.app.show_frame("AdminMenu"))
         button_back.pack(side="left", padx=10)
 
     def delete_book(self):
@@ -41,5 +41,4 @@ class DeleteBook(ttk.Frame):
             else:
                 showinfo("Error", "Book not found")
 
-    def go_back(self):
-        pass
+

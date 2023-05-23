@@ -10,7 +10,7 @@ class AddBook(ttk.Frame):
         self.style = ttk.Style(self)
         self.controller = controller
         self.app = app
-        
+
         # Widgets
         label_title = ttk.Label(self, text="Add Book", font=("Helvetica", 20, 'bold'))
         label_title.pack(pady=10)
@@ -72,10 +72,9 @@ class AddBook(ttk.Frame):
         self.language_dropdown = ttk.OptionMenu(frame_language_genre, self.language_var, *language_options)
         self.language_dropdown.pack(side="left", pady=5)
 
-
         frame_description = ttk.Frame(self)
         frame_description.pack(pady=10)
-        
+
         self.text_description = tk.Text(frame_description, width=40, height=5)
         self.text_description.pack(side="top", padx=10, pady=5)
         self.text_description.insert("1.0", "Description")  # Placeholder text
@@ -115,8 +114,10 @@ class AddBook(ttk.Frame):
         label_genre = ttk.Label(frame_floor_shelf_genre, text="Genre")
         label_genre.pack(side="left", padx=10)
 
-        genre_options = ["", "Mystery", "Romance", "Thriller", "Sci-Fi", "Fantasy", "Adventure", "Historical Fiction", "Biography", "Horror", 
-                        "Comedy", "Drama", "Action", "Crime", "Western", "Young Adult", "Children's", "Poetry", "Self-help", "Cooking"]
+        genre_options = ["", "Mystery", "Romance", "Thriller", "Sci-Fi", "Fantasy", "Adventure", "Historical Fiction",
+                         "Biography", "Horror",
+                         "Comedy", "Drama", "Action", "Crime", "Western", "Young Adult", "Children's", "Poetry",
+                         "Self-help", "Cooking"]
 
         self.genre_var = tk.StringVar()
         self.genre_var.set("")  # Default genre selection
@@ -124,16 +125,15 @@ class AddBook(ttk.Frame):
         self.genre_dropdown = ttk.OptionMenu(frame_floor_shelf_genre, self.genre_var, *genre_options)
         self.genre_dropdown.pack(side="left", padx=5)
 
-
         button_frame = ttk.Frame(self)
         button_frame.pack(pady=10)
+
+        button_back = ttk.Button(button_frame, text="Back", command=lambda: self.app.show_frame("AdminMenu"))
+        button_back.pack(side="left", padx=10)
 
         button_add_book = ttk.Button(button_frame, text="Add Book", command=self.add_book)
         button_add_book.pack(side="left", padx=10)
 
-        if "AdminMenu" in self.app.frames:
-            button_back = ttk.Button(button_frame, text="Back", command=lambda: self.app.show_frame("AdminMenu"))
-            button_back.pack(side="left", padx=10)
 
 
     def add_book(self):
@@ -152,22 +152,22 @@ class AddBook(ttk.Frame):
 
         # Check if any of the inputs are empty or None
         if (
-            not author or author == "Author" or
-            not publisher or publisher == "Publisher" or
-            not book_title or book_title == "Title" or
-            not isbn or isbn == "ISBN" or
-            not page_count or page_count == "Page Count" or
-            not language or language == "" or
-            not publication_year or publication_year == "Publication Year" or
-            not description or description.strip() == "Description" or
-            not book_copies or book_copies == "Book Copies" or
-            not min_age or min_age == "Min Age to Read" or
-            not genre or genre == "" or
-            not self.floor_var.get() or not self.shelf_var.get()
+                not author or author == "Author" or
+                not publisher or publisher == "Publisher" or
+                not book_title or book_title == "Title" or
+                not isbn or isbn == "ISBN" or
+                not page_count or page_count == "Page Count" or
+                not language or language == "" or
+                not publication_year or publication_year == "Publication Year" or
+                not description or description.strip() == "Description" or
+                not book_copies or book_copies == "Book Copies" or
+                not min_age or min_age == "Min Age to Read" or
+                not genre or genre == "" or
+                not self.floor_var.get() or not self.shelf_var.get()
         ):
             showinfo("Invalid Input", "Please fill all fields with correct values")
             return
-        
+
         data = [book_title, isbn, page_count, language, description, publisher, min_age, publication_year]
 
         if self.controller.addBook(data):

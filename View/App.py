@@ -66,29 +66,12 @@ class App(tk.Tk):
     # parameter
 
     def show_frame(self, cont):
-        print("I am trying to show frame " + cont)
+        # print("I am trying to show frame " + cont)
         frame = self.frames[cont]
         frame.tkraise()
     # to display the current frame passed as
     # parameter
 
-    def printName(self):
-        print("App.py")
+    # def printName(self):
+    #     print("App.py")
 
-    # def create_if_doesnt_exist(self, name_of_frame):
-    #     if(name_of_frame not in self.frames):
-    #         frame = self.frameClasses[name_of_frame](parent= self.container, app=self, controller=self.controller)
-    #         self.frames[name_of_frame] = frame 
-        
-    
-    # def destroy_frame(self, name_of_frame):
-    #     self.frames[name_of_frame].grid_forget()
-    
-
-    # def show_frame(self, cont):
-    #     print("I am trying to show frame " + cont)
-    #     frame = self.frames[cont]
-    #     frame.tkraise()
-
-
-# first window frame startpage
