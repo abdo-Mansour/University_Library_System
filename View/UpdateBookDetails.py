@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
+
 class UpdateBookDetails(ttk.Frame):
     def __init__(self, parent, app, controller):
         ttk.Frame.__init__(self, parent)
@@ -10,24 +11,29 @@ class UpdateBookDetails(ttk.Frame):
         print("UpdateBookDetails.__init__")
 
         # Widgets
-        self.show_info_label = ttk.Label(self, text='Update Book Details', font=("Helvetica", 18, 'bold'))
-        self.show_info_label.grid(row=0, column=0, columnspan=2, pady=10, sticky=tk.W)
+        self.show_info_label = ttk.Label(
+            self, text='Update Book Details', font=("Helvetica", 18, 'bold'))
+        self.show_info_label.grid(
+            row=0, column=0, columnspan=2, pady=10, sticky=tk.W)
 
         self.isbn_entry = ttk.Entry(self, width=30)
         self.isbn_entry.grid(row=1, column=1, padx=10, pady=5, sticky=tk.W)
-        ttk.Label(self, text="ISBN", font=("Helvetica", 14, 'bold')).grid(row=1, column=0, padx=10, pady=5, sticky=tk.W)
+        ttk.Label(self, text="ISBN", font=("Helvetica", 14, 'bold')).grid(
+            row=1, column=0, padx=10, pady=5, sticky=tk.W)
 
         self.book_info_entries = {}
         self.create_book_info_table()
 
-        ttk.Button(self, text="Search", command=self.search_book).grid(row=2, column=0, columnspan=2, pady=10)
-        ttk.Button(self, text="Save Changes", command=self.save_changes).grid(row=3, column=0, columnspan=2, pady=20)
+        ttk.Button(self, text="Search", command=self.search_book).grid(
+            row=2, column=0, columnspan=2, pady=10)
+        ttk.Button(self, text="Save Changes", command=self.save_changes).grid(
+            row=3, column=0, columnspan=2, pady=20)
 
     def create_book_info_table(self):
         book_info_labels = {
             "Title": "Title",
-            "PageCount": "ISBN",
-            "ISBN": "Page Count",
+            "PageCount": "Page Count",
+            "ISBN": "ISBN",
             "Language": "Language",
             "Description": "Description",
             "Publisher": "Publisher",
@@ -37,7 +43,8 @@ class UpdateBookDetails(ttk.Frame):
 
         row = 4
         for key, label_text in book_info_labels.items():
-            ttk.Label(self, text=label_text, font=("Helvetica", 14, 'bold')).grid(row=row, column=0, padx=10, pady=5, sticky=tk.W)
+            ttk.Label(self, text=label_text, font=("Helvetica", 14, 'bold')).grid(
+                row=row, column=0, padx=10, pady=5, sticky=tk.W)
             entry = ttk.Entry(self, width=30)
             entry.grid(row=row, column=1, padx=10, pady=5, sticky=tk.W)
             self.book_info_entries[key] = entry
@@ -48,7 +55,8 @@ class UpdateBookDetails(ttk.Frame):
         book_info_list = self.controller.getBooksBy("ISBN", isbn)
         print(book_info_list[0])
         if book_info_list:
-            book_info = book_info_list[0]  # Assuming there's only one book with the given ISBN
+            # Assuming there's only one book with the given ISBN
+            book_info = book_info_list[0]
             for key, entry in self.book_info_entries.items():
                 entry.delete(0, tk.END)
                 entry.insert(tk.END, book_info.get(key, ""))
