@@ -8,7 +8,7 @@ class UpdateUserDetails(ttk.Frame):
         self.style = ttk.Style(self)
         self.controller = controller
         self.app = app
-        print("UpdateUserDetails.__init__")
+        # print("UpdateUserDetails.__init__")
         # styles
 
         # widgets
@@ -18,6 +18,9 @@ class UpdateUserDetails(ttk.Frame):
             self, text='Update User Details', font=("Helvetica", 18, 'bold'))
         self.show_info_label.grid(
             row=0, column=0, columnspan=2, pady=10, sticky=tk.W)
+
+        button_back = ttk.Button(self, text="Back", command=self.back)
+        button_back.grid(row=15, column=0, columnspan=2, pady=30, sticky=tk.W)
 
         self.user_info_entries = {}
         self.create_user_info_table()
@@ -104,3 +107,9 @@ class UpdateUserDetails(ttk.Frame):
             print(value)
         # Call the controller function to save the updated details
         self.controller.updateUserDetails(updated_details)
+
+    def back(self):
+        if self.controller.isAdmin:
+            command = self.app.show_frame("AdminMenu")
+        else:
+            command = self.app.show_frame("StudentMenu")

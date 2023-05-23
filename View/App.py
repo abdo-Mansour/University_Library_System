@@ -66,8 +66,17 @@ class App(tk.Tk):
     # parameter
 
     def show_frame(self, cont):
-        print("I am trying to show frame " + cont)
+        # print("I am trying to show frame " + cont)
         frame = self.frames[cont]
         frame.tkraise()
+<<<<<<< HEAD
 
 # first window frame startpage
+=======
+    # to display the current frame passed as
+    # parameter
+
+    # def printName(self):
+    #     print("App.py")
+
+>>>>>>> 6465e3275af510a9fb8b3ea8b71de890582d2406

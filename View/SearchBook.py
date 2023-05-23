@@ -10,6 +10,10 @@ class SearchBook(ttk.Frame):
 
     def __init__(self, parent, controller, app):
         ttk.Frame.__init__(self, parent)
+<<<<<<< HEAD
+=======
+        # print(app.printName())
+>>>>>>> 6465e3275af510a9fb8b3ea8b71de890582d2406
         self.style = ttk.Style(self)
         self.controller = controller
         self.app = app
