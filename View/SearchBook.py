@@ -54,12 +54,27 @@ class SearchBook(ttk.Frame):
 
         # Create the variable to hold the selected option
         var = tk.StringVar(window)
-
         # Set the initial option
         var.set(options[0])
-
         # Create the OptionMenu with the customized style
         optionMenu = ttk.OptionMenu(window, var, *options)
         optionMenuX = searchBoxX + 320
         optionMenuY = searchBoxY - 4
         optionMenu.place(x=optionMenuX, y=optionMenuY)
+
+        self.bookList = tk.Canvas(window, width=700,
+                                  height=400)
+
+        self.bookList.place(x=50, y=150)
+        y = 0
+        for i in range(1, 100):
+            label = Label(self.bookList, text="File number " +
+                          str(i), font=("Courier", 10))
+            self.bookList.create_window(0, y, window=label)
+            y += 10
+
+        scrollbar = tk.Scrollbar(
+            self.bookList, orient='vertical', command=self.bookList.yview)
+        scrollbar.place(relx=1, rely=0, relheight=1, anchor='ne')
+        self.bookList.config(yscrollcommand=scrollbar.set,
+                             scrollregion=(0, 0, 0, y))
