@@ -19,7 +19,7 @@ class Browse(ttk.Frame):
         self.bookViewLables = []
         # widgets
 
-        self.window = self.app
+        self.window = self
 
         Title = ttk.Label(self, text='Browse Books', font=(
             "Helvetica", 17, 'bold'))
