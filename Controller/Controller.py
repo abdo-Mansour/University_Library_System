@@ -165,11 +165,26 @@ class Controller:
         else:
             print("Sorry you're not an admin")
 
-    def deleteBook(self, ISBN):  # TODO:
-        pass
+    def deleteBook(self, ISBN):
+        if self.loggedIn and self.isAdmin:
+            if(self.auth.deleteBook(ISBN)):
+                return True
+            else:
+                return False
+        else:
+            print("Sorry you're not an admin")
+            return False
 
-    def deleteUser(self, userEmail):  # TODO:
-        pass
+    def deleteUser(self, userEmail):
+        
+        if self.loggedIn and self.isAdmin:
+            if(self.auth.deleteUser(userEmail)):
+                return True
+            else:
+                return False
+        else:
+            print("Sorry you're not an admin")
+            return False
 
     # def borrowBook(self, ISBN, copyID , userID): #TODO:
     #     pass
