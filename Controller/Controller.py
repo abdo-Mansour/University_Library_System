@@ -66,8 +66,7 @@ class Controller:
         offset = 0    # Need to put values for these
         if self.loggedIn:
             try:
-                
-                bookCollection = Library.getNBooks(self, N, offset)
+                bookCollection = self.Library.getNBooks(self, N, offset)
                 data = []
                 for books in bookCollection:
                     data.append(books.__dict__)
@@ -183,7 +182,7 @@ class Controller:
 
     def deleteBook(self, ISBN):
         if self.loggedIn and self.isAdmin:
-            if(self.auth.deleteBook(ISBN)):
+            if(self.Library.deleteBook(ISBN)):
                 return True
             else:
                 return False
@@ -194,7 +193,7 @@ class Controller:
     def deleteUser(self, userEmail):
         
         if self.loggedIn and self.isAdmin:
-            if(self.auth.deleteUser(userEmail)):
+            if(self.Library.deleteUser(userEmail)):
                 return True
             else:
                 return False
