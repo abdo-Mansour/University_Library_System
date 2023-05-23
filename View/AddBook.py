@@ -83,7 +83,7 @@ class AddBook(ttk.Frame):
         frame_location = ttk.Frame(self)
         frame_location.pack(pady=10)
 
-        label_location = ttk.Label(frame_location, text="Location:")
+        label_location = ttk.Label(frame_location, text="Location")
         label_location.pack(side="top", padx=10)
 
         frame_floor_shelf_genre = ttk.Frame(frame_location)
@@ -147,6 +147,8 @@ class AddBook(ttk.Frame):
         book_copies = self.entry_book_copies.get()
         min_age = self.entry_min_age.get()
         genre = self.genre_var.get()
+        floor_no = self.floor_var.get()
+        shelf_no = self.shelf_var.get()
 
         # Check if any of the inputs are empty or None
         if (
@@ -165,14 +167,16 @@ class AddBook(ttk.Frame):
         ):
             showinfo("Invalid Input", "Please fill all fields with correct values")
             return
+        
 
-        # Get the selected location values
-        floor_no = self.floor_var.get()
-        shelf_no = self.shelf_var.get()
+        locationID = floor_no + shelf_no
+        data = [book_title, page_count, isbn, language, description, publisher, min_age, publication_year, locationID]
 
-        # Perform necessary actions to add the book
-        # ...
-        # You can use the self.controller or self.app to interact with the rest of the application
+        if self.controller.addBook(data):
+            showinfo("Success", "Book added successfully")
+            self.go_back()
+        else:
+            showinfo("Error", "Something went wrong")
         pass
 
     def go_back(self):

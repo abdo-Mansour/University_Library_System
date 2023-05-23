@@ -60,12 +60,26 @@ class Controller:
         else:
             print("You're not logged in")
 
-    def getNBooks(self, book):              # SEMI DONE
+    def getNBooks(self):              # SEMI DONE
         # return a list of book dictionaries
-        N, offset = None    # Need to put values for these
+        N = 100
+        offset = 0    # Need to put values for these
         if self.loggedIn:
             try:
                 bookCollection = self.Library.getNBooks(self, N, offset)
+                data = []
+                for books in bookCollection:
+                    data.append(books.__dict__)
+                return data
+            except:
+                print("Error getting data")
+        else:
+            print("You're not logged in")
+
+    def getAllBooks(self):
+        if self.loggedIn:
+            try:
+                bookCollection = Library.getAllBooks(self)
                 data = []
                 for books in bookCollection:
                     data.append(books.__dict__)
@@ -136,7 +150,17 @@ class Controller:
     def addBook(self, listOfBookDetails):   # DONE
         if self.loggedIn and self.isAdmin:
             try:
-                Library.addBook(listOfBookDetails)
+                book = Book(listOfBookDetails[0],
+                            listOfBookDetails[1],
+                            listOfBookDetails[2],
+                            listOfBookDetails[3],
+                            listOfBookDetails[4],
+                            listOfBookDetails[5],
+                            listOfBookDetails[6],
+                            listOfBookDetails[7],
+                            listOfBookDetails[8]
+                            )
+                Library.addBook(book)
                 return True
             except:
                 print("Failed to add book to database")
@@ -167,7 +191,7 @@ class Controller:
 
     def deleteBook(self, ISBN):
         if self.loggedIn and self.isAdmin:
-            if(self.Library.deleteBook(ISBN)):
+            if (self.Library.deleteBook(ISBN)):
                 return True
             else:
                 return False
@@ -176,9 +200,9 @@ class Controller:
             return False
 
     def deleteUser(self, userEmail):
-        
+
         if self.loggedIn and self.isAdmin:
-            if(self.Library.deleteUser(userEmail)):
+            if (self.Library.deleteUser(userEmail)):
                 return True
             else:
                 return False
