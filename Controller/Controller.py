@@ -145,7 +145,19 @@ class Controller:
     def updateBookDetails(self, bookInfo):  # DONE
         if self.loggedIn and self.isAdmin:
             try:
-                Library.updateBookDetails(bookInfo)
+                book = Book(
+                    BookID=bookInfo[0],
+                    Title=bookInfo[1],
+                    ISBN=bookInfo[2],
+                    PageCount=bookInfo[3],
+                    Language=bookInfo[4],
+                    Description=bookInfo[5],
+                    Publisher=bookInfo[6],
+                    MinAgeToRead=bookInfo[7],
+                    PublicationYear=bookInfo[8]
+                )
+
+                Library.updateBookDetails(book)
             except:
                 print("Error updating book details")
         else:
