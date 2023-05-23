@@ -55,7 +55,7 @@ class Library:
         query = "INSERT INTO book ("
         for i in range(len(attributes)):
             query += attributes[i]
-            if i < len(attributes)-1:
+            if i < len(attributes) - 1:
                 query += ', '
             else:
                 query += ') '
@@ -84,7 +84,7 @@ class Library:
         query = "SELECT location.* FROM location, bookCopy WHERE bookCopy.bookID = ? AND bookCopy.copyID = ? AND bookCopy.locationID = location.locationID"
         resultLocation = Location.Location()
         self.cursor.execute(query, (bookID, copyID))
-        
+
         # bookID and copyID are primary keys, so it is impossible to return more than 1 row
         row = self.cursor.fetchall()
         resultLocation.locationID = row[0][0]
@@ -104,7 +104,29 @@ class Library:
         self.cursor.execute(query, userEmail)
         self.database.connectionHead.commit()
         return True
-    
+    def getNoOfBooks(self):
+        query = "select count(*) from book"
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
+
+    def getNoOfStudents(self):
+        query = "select count(*) from person where isAdmin = 0"
+        cursor = self.database.getCursor()
+        cursor.execute(query)
+        return cursor.fetchall()
+
+    def getNoOfBooksForEveryGenre(self):
+        query = "select  genre, count(*) from bookGenre group by genre order by genre"
+        cursor = self.database.getCursor()
+        cursor.execute(query)
+        return cursor.fetchall()
+
+    def getNoOfBooksForEveryLang(self):
+        query = "select  language, count(*) from book group by language order by language"
+        cursor = self.database.getCursor()
+        cursor.execute(query)
+        return cursor.fetchall()
+
 # you can use DBHead like the following (not real code):
 
 # try:
