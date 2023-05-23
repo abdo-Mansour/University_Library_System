@@ -22,17 +22,18 @@ class Browse(ttk.Frame):
         message = Label(self, text="All Books", font=24)
         message.place(x=self.app.WIDTH / 2, y=12, anchor=CENTER)
 
-        book_list = tk.Listbox(self, width=60, font=18, height=1)
+        book_list = tk.Listbox(self, width=80, font=18, height=10)
         books = controller.getAllBooks()
+        index = 1;
         for i in books:
-            line_content = f"{i['Title']}, ISBN: {i['ISBN']}"
-
+            line_content = f"{index}) {i['Title']}, ISBN: {i['ISBN']}"
+            index += 1
             book_list.insert(tk.END, line_content)
 
         book_list.place(x=5, y=250, anchor="w")
 
         button_back = ttk.Button(self, text="Back", command=self.backToAdmin)
-        button_back.place(x=5, y=400, anchor="w")
+        button_back.place(x=self.app.WIDTH / 2, y=400, anchor=CENTER)
 
     def backToAdmin(self):
         command = self.app.show_frame("AdminMenu")
