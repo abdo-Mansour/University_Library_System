@@ -215,7 +215,7 @@ class Controller:
                     PublicationYear=bookInfo[8]
                 )
 
-                Library.updateBookDetails(book)
+                self.Library.updateBookDetails(book)
             except:
                 print("Error updating book details")
         else:
