@@ -49,13 +49,24 @@ class Controller:
 
                 bookCollection = []
                 # this function should return a list of books
-                data = Library.getBooksBy(query, value)
+                data = self.Library.getBooksBy(query, value)
                 for book in data:
-                    bookCollection.append(book.__dict__)
+                    bookDic = {}
+                    bookDic['BookID'] = book.BookID
+                    bookDic['Title'] = book.Title
+                    bookDic['ISBN'] = book.ISBN
+                    bookDic['PageCount'] = book.PageCount
+                    bookDic['Language'] = book.Language
+                    bookDic['Description'] = book.Description
+                    bookDic['Publisher'] = book.Publisher
+                    bookDic['MinimumAgeToRead'] = book.MinimumAgeToRead
+                    bookDic['PublicationYear'] = book.PublicationYear
+                    bookCollection.append(bookDic)
 
                 # View should display this returned data, also the data should be returned as a list of dictionaries
                 return bookCollection
             else:
+
                 # This should be displayed to the user as no books found
                 return False
         else:
@@ -63,33 +74,52 @@ class Controller:
 
     def getNBooks(self):              # SEMI DONE
         # return a list of book dictionaries
-        N =100
+        N = 100
         offset = 0    # Need to put values for these
         if self.loggedIn:
             try:
                 bookCollection = self.Library.getNBooks(self, N, offset)
                 data = []
-                for books in bookCollection:
-                    data.append(books.__dict__)
-                return data
-            except:
-                print("Error getting data")
-        else:
-            print("You're not logged in")
-            
-    def getAllBooks(self):
-        if self.loggedIn:
-            try:
-                bookCollection = Library.getAllBooks(self)
-                data = []
-                for books in bookCollection:
-                    data.append(books.__dict__)
+                for book in bookCollection:
+                    bookDic = {}
+                    bookDic['BookID'] = book.BookID
+                    bookDic['Title'] = book.Title
+                    bookDic['ISBN'] = book.ISBN
+                    bookDic['PageCount'] = book.PageCount
+                    bookDic['Language'] = book.Language
+                    bookDic['Description'] = book.Description
+                    bookDic['Publisher'] = book.Publisher
+                    bookDic['MinimumAgeToRead'] = book.MinimumAgeToRead
+                    bookDic['PublicationYear'] = book.PublicationYear
+                    data.append(bookDic)
                 return data
             except:
                 print("Error getting data")
         else:
             print("You're not logged in")
 
+    def getAllBooks(self):
+        if self.loggedIn:
+            try:
+                bookCollection = self.Library.getAllBooks(self)
+                data = []
+                for book in bookCollection:
+                    bookDic = {}
+                    bookDic['BookID'] = book.BookID
+                    bookDic['Title'] = book.Title
+                    bookDic['ISBN'] = book.ISBN
+                    bookDic['PageCount'] = book.PageCount
+                    bookDic['Language'] = book.Language
+                    bookDic['Description'] = book.Description
+                    bookDic['Publisher'] = book.Publisher
+                    bookDic['MinimumAgeToRead'] = book.MinimumAgeToRead
+                    bookDic['PublicationYear'] = book.PublicationYear
+                    data.append(bookDic)
+                return data
+            except:
+                print("Error getting data")
+        else:
+            print("You're not logged in")
 
     def getUserDetails(self):               # DONE
         if self.loggedIn:
@@ -191,9 +221,16 @@ class Controller:
         else:
             print("Sorry you're not an admin")
 
+    def generateStatisticsReport(self):
+        report = {"nBooks": int(self.Library.getNoOfBooks()[0][0]),
+                  "nBooksForEveryGenre": self.Library.getNoOfBooksForEveryGenre(),
+                  "nBooksForEveryLang": self.Library.getNoOfBooksForEveryLang(),
+                  "nStudents": int(self.Library.getNoOfStudents()[0][0])}
+        return report
+
     def deleteBook(self, ISBN):
         if self.loggedIn and self.isAdmin:
-            if(self.Library.deleteBook(ISBN)):
+            if (self.Library.deleteBook(ISBN)):
                 return True
             else:
                 return False
@@ -202,9 +239,9 @@ class Controller:
             return False
 
     def deleteUser(self, userEmail):
-        
+
         if self.loggedIn and self.isAdmin:
-            if(self.Library.deleteUser(userEmail)):
+            if (self.Library.deleteUser(userEmail)):
                 return True
             else:
                 return False

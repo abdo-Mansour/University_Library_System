@@ -19,7 +19,7 @@ class SearchBook(ttk.Frame):
         self.bookViewLables = []
         # widgets
         self.entry = ttk.Entry(self, width=50)
-        self.window = self.app
+        self.window = self
 
         Title = ttk.Label(self, text='Search Books', font=(
             "Helvetica", 17, 'bold'))
@@ -78,7 +78,7 @@ class SearchBook(ttk.Frame):
 
         for i in range(len(self.bookList)):
             label = Label(self.bookListView, text=str(i + 1) + ")\nBook title: " +
-                          self.bookList[i].Title + '\n' + "ISBN: " + str(self.bookList[i].ISBN) + '\n', font=("Courier", 15))
+                          self.bookList[i]['Title'] + '\n' + "ISBN: " + str(self.bookList[i]['ISBN']) + '\n', font=("Courier", 15))
             self.bookViewLables.append(label)
             self.bookListView.create_window(0, y, window=label, anchor='w')
             y += 100
