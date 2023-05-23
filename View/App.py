@@ -54,8 +54,8 @@ class App(tk.Tk):
         self.frameClasses = {"Login": Login, "AddBook": AddBook, "AdminMenu": AdminMenu, "AddUser": AddUser, "Browse": Browse, "Report": Report, "SearchBook": SearchBook, "UpdateBookDetails": UpdateBookDetails, "UpdateUserDetails": UpdateUserDetails, "DeleteBook": DeleteBook, "DeleteUser": DeleteUser, "BookLocation": BookLocation, "StudentMenu": StudentMenu}
         # for F in (Login):
 
-        page_name = F.__name__
-        frame = F(parent=self.container, app=self, controller=self.controller)
+        page_name = Login.__name__
+        frame = Login(parent=self.container, app=self, controller=self.controller)
         self.frames[page_name] = frame
         
         # put all of the pages in the same location;
