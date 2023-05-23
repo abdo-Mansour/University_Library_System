@@ -1,12 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
+from Controller.Controller import Controller
 
 class AddUser(ttk.Frame):
-    def __init__(self, parent, app, controller):
+    def __init__(self, parent, app, controller: Controller):
         ttk.Frame.__init__(self, parent)
         self.style = ttk.Style(self)
-        self.controller = controller
+        self.Controller = controller
         self.app = app
 
         # Widgets
@@ -94,10 +95,16 @@ class AddUser(ttk.Frame):
         ):
             showinfo("Invalid Input", "Please fill all fields with correct values")
             return
+        
+        gender = 0 if gender == 'Male' else 1;
 
-        # All values are valid, proceed with adding the user
-        # Add user logic
-        # ...
+        data = [first_name, last_name, phone_number, dob, gender, admin, email, password]
+        
+        if self.Controller.addUser(data):
+            showinfo("Success", "User added successfully")
+            self.go_back()
+        else:
+            showinfo("Error", "Something went wrong")
 
     def go_back(self):
         pass

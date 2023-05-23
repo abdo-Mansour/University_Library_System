@@ -13,8 +13,8 @@ class Controller:
         self.Person = None
         self.Library = None
         self.auth = Authenticator()
-        self.loggedIn = False
-        self.isAdmin = False
+        self.loggedIn = True
+        self.isAdmin = True
 
     # Functions related to normal user query
     def login(self, email, password, isAdmin):       # DONE
@@ -96,19 +96,23 @@ class Controller:
         # This is to check if the user is both LOGGED IN and IS AN ADMIN, because this function is only for admins
         if self.loggedIn and self.isAdmin:
             newUser = Person(
-                id=userInfo[0],
-                firstName=userInfo[1],
-                lastName=userInfo[2],
-                number=userInfo[3],
-                dob=userInfo[4],
-                sex=userInfo[5],
-                isAdmin=userInfo[6],
-                email=userInfo[7],
-                password=userInfo[8]
+                firstName=userInfo[0],
+                lastName=userInfo[1],
+                number=userInfo[2],
+                dob=userInfo[3],
+                sex=userInfo[4],
+                isAdmin=userInfo[5],
+                email=userInfo[6],
+                password=userInfo[7]
             )
-            self.auth.addPerson(newUser)
+            
+            if(self.auth.addPerson(newUser)):
+                return True
+            else:
+                return False
         else:
-            print("Sorry you're not an admin")
+            print("Sorry you're not an admin") 
+            return False
 
     def addBook(self, listOfBookDetails):   # DONE
         if self.loggedIn and self.isAdmin:

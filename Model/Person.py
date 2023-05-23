@@ -1,7 +1,6 @@
 
 class Person:
-    def __init__(self, id, firstName, lastName, number, dob, sex, isAdmin, email= None, password= None):
-        self.id = id
+    def __init__(self, firstName, lastName, number, dob, sex, isAdmin, email= None, password= None, id= None):
         self.firstName = firstName
         self.lastName = lastName
         self.number = number
@@ -10,4 +9,5 @@ class Person:
         self.isAdmin = isAdmin
         self.email = email
         self.password = password
+        self.id = id
 
