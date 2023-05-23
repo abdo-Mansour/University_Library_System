@@ -135,7 +135,7 @@ class Controller:
             print("Sorry you're not an admin")
 
     def updateUserDetails(self, personInfo):  # DONE
-        if self.loggedIn and self.isAdmin:
+        if self.loggedIn:
             updatedPerson = Person(
                 id=personInfo[0],
                 firstName=personInfo[1],
