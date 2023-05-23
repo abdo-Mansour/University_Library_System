@@ -7,22 +7,35 @@ from ttkthemes import ThemedStyle
 class App(tk.Tk):
     
     # __init__ function for class tkinterApp
-    def __init__(self, *args, **kwargs):
-        from Login import Login
-        from AddBook import AddBook
-        from AddUser import AddUser
-        from Browse import Browse
-        from SearchBook import SearchBook
-        from UpdateBookDetails import UpdateBookDetails
-        from UpdateUserDetails import UpdateUserDetails
-        from DeleteBook import DeleteBook
-        from DeleteUser import DeleteUser
-        from BookLocation import BookLocation
-        from BorrowBook import BorrowBook
+    def __init__(self,controller, *args, **kwargs):
+        #import all the views
+        from View.Login import Login
+        from View.AddBook import AddBook
+        from View.AddUser import AddUser
+        from View.Browse import Browse
+        from View.SearchBook import SearchBook
+        from View.UpdateBookDetails import UpdateBookDetails
+        from View.UpdateUserDetails import UpdateUserDetails
+        from View.DeleteBook import DeleteBook
+        from View.DeleteUser import DeleteUser
+        from View.BookLocation import BookLocation
+        from View.BorrowBook import BorrowBook
+
         print("I AM RUNNING")     
+        
         # __init__ function for class Tk
         tk.Tk.__init__(self, *args, **kwargs)
          
+        self.title("Library System")
+        self.WIDTH = 1000
+        self.HEIGHT = 580
+        self.geometry(f"{self.WIDTH}x{self.HEIGHT}")
+        self.resizable(False,False)
+        
+        self.style = ThemedStyle(self)
+        self.style.set_theme("equilux")
+        self.controller = controller
+        
         # creating a container
         container = ttk.Frame(self)
         #set width and height
@@ -31,11 +44,11 @@ class App(tk.Tk):
   
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
-  
+
         self.frames = {}
-        for F in (Login,AddBook, AddUser,Browse,SearchBook,UpdateBookDetails,UpdateUserDetails,DeleteBook,DeleteUser,BookLocation,BorrowBook):
+        for F in (Login,AddBook):
             page_name = F.__name__
-            frame = F(parent=container, controller=self)
+            frame = F(parent=container, app=self , controller=self.controller)
             self.frames[page_name] = frame
 
             # put all of the pages in the same location;
@@ -54,12 +67,3 @@ class App(tk.Tk):
  
   
   
-
-  
-# Driver Code
-app = App()
-app.title("Library System")
-style = ThemedStyle(app)
-style.set_theme("equilux")
-app.geometry("1000x580")
-app.mainloop()
