@@ -17,7 +17,7 @@ class AdminMenu(ttk.Frame):
         self.grid_columnconfigure(1, weight=1)
         self.grid_columnconfigure(2, weight=1)
 
-        message = Label(self, text="Hello, Student! How may I server you ?")
+        message = Label(self, text="Hello, Admin! How may I server you ?")
         message.grid(row=0, column=1, padx=10, pady=10)
 
         # Row 1
