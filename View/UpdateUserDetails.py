@@ -40,7 +40,7 @@ class UpdateUserDetails(ttk.Frame):
             entry = ttk.Entry(self, width=30)
 
             if key == "ID":
-                self.controller.login("Admin@example.com", "02829fb05c3076ec5a6caebd12477dec", 1)
+                self.controller.login("user3@example.com", "02829fb05c3076ec5a6caebd12477dec", 0)
                 user_details = self.controller.getUserDetails()
                 user_id = user_details['id']
 
