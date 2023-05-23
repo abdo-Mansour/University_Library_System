@@ -42,32 +42,45 @@ class App(tk.Tk):
         self.controller = controller
 
         # creating a container
-        container = ttk.Frame(self)
+        self.container = ttk.Frame(self)
         # set width and height
-        container.config(width=1000, height=580)
-        container.pack(side="top", fill="both", expand=True)
+        self.container.config(width=1000, height=580)
+        self.container.pack(side="top", fill="both", expand=True)
 
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
+        self.container.grid_rowconfigure(0, weight=1)
+        self.container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (Login, Report, Browse, UpdateUserDetails, UpdateBookDetails, SearchBook, AddBook, AddUser, StudentMenu, AdminMenu):
-            page_name = F.__name__
-            frame = F(parent=container, app=self, controller=self.controller)
-            self.frames[page_name] = frame
+        self.frameClasses = {"Login": Login, "AddBook": AddBook, "AdminMenu": AdminMenu, "AddUser": AddUser, "Browse": Browse, "Report": Report, "SearchBook": SearchBook, "UpdateBookDetails": UpdateBookDetails, "UpdateUserDetails": UpdateUserDetails, "DeleteBook": DeleteBook, "DeleteUser": DeleteUser, "BookLocation": BookLocation, "StudentMenu": StudentMenu}
+        # for F in (Login):
 
-            # put all of the pages in the same location;
-            # the one on the top of the stacking order
-            # will be the one that is visible.
-            frame.grid(row=0, column=0, sticky="nsew")
-
+        page_name = F.__name__
+        frame = F(parent=self.container, app=self, controller=self.controller)
+        self.frames[page_name] = frame
+        
+        # put all of the pages in the same location;
+        # the one on the top of the stacking order
+        # will be the one that is visible.
+        frame.grid(row=0, column=0, sticky="nsew")
+        
         self.show_frame("Login")
     # to display the current frame passed as
     # parameter
+
+    def create_if_doesnt_exist(self, name_of_frame):
+        if(name_of_frame not in self.frames):
+            frame = self.frameClasses[name_of_frame](parent= self.container, app=self, controller=self.controller)
+            self.frames[name_of_frame] = frame 
+        
+    
+    def destroy_frame(self, name_of_frame):
+        self.frames[name_of_frame].grid_forget()
+    
 
     def show_frame(self, cont):
         print("I am trying to show frame " + cont)
         frame = self.frames[cont]
         frame.tkraise()
+
 
 # first window frame startpage
