@@ -31,6 +31,7 @@ class UpdateBookDetails(ttk.Frame):
 
     def create_book_info_table(self):
         book_info_labels = {
+            "BookID": "Book Id",
             "Title": "Title",
             "PageCount": "Page Count",
             "ISBN": "ISBN",
@@ -66,6 +67,7 @@ class UpdateBookDetails(ttk.Frame):
 
     def save_changes(self):
         updated_details = [
+            self.book_info_entries["BookID"].get(),
             self.book_info_entries["Title"].get(),
             self.book_info_entries["PageCount"].get(),
             self.isbn_entry.get(),
@@ -76,3 +78,4 @@ class UpdateBookDetails(ttk.Frame):
             self.book_info_entries["PublicationYear"].get()
         ]
         self.controller.updateBookDetails(updated_details)
+        print("New Info Updated Successfully")

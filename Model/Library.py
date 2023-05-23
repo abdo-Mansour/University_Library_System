@@ -70,7 +70,7 @@ class Library:
     def updateBookDetails(self, updatedBook):
         # updated book is a book object that contains the updated book data
         attributes = ['Title', 'PageCount', 'ISBN', 'Language',
-                      'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
+                      'Description', 'Publisher', 'MinAgeToRead', 'PublicationYear']
         query = "UPDATE book SET Title = ?, PageCount = ?, ISBN= ?, Language = ?,Description= ?, Publisher= ?, MinimumAgeToRead= ?, PublicationYear= ? WHERE bookID = ?"
         valuesList = []
         for i in range(len(attributes)):
