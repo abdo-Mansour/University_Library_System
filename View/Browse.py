@@ -31,9 +31,8 @@ class Browse(ttk.Frame):
 
         book_list.place(x=5, y=250, anchor="w")
 
-        if "AdminMenu" in self.app.frames:
-            button_back = ttk.Button(self, text="Back", command=self.backToAdmin())
-            button_back.place(x=5, y=400, anchor="w")
+        button_back = ttk.Button(self, text="Back", command=self.backToAdmin)
+        button_back.place(x=5, y=400, anchor="w")
 
     def backToAdmin(self):
         command = self.app.show_frame("AdminMenu")

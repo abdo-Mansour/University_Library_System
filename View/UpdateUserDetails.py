@@ -56,7 +56,7 @@ class UpdateUserDetails(ttk.Frame):
             self.user_info_entries[key] = entry
             row += 1
 
-        ttk.Button(self, text="Save Changes", command=self.save_changes).grid(
+        ttk.Button(self, text="Save Changes", command=lambda: self.save_changes).grid(
             row=row, column=0, columnspan=2, pady=20)
 
     def ShowUserInfo(self):
