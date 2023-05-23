@@ -13,15 +13,26 @@ class SearchBook(ttk.Frame):
         self.style = ttk.Style(self)
         self.controller = controller
         self.app = app
+        self.optionDictionary = {}
         # widgets
-        entry = tk.Entry(self, width=50)
+        entry = ttk.Entry(self, width=50)
         window = self.app
-        entry.pack(side=tk.LEFT)
+
+        Title = ttk.Label(self, text='Search Books', font=(
+            "Helvetica", 17, 'bold'))
+        Title.place(relx=0.5, y=10, anchor='center')
+
+        searchBoxX = 175
+        searchBoxY = 50
+
+        entry.place(x=searchBoxX, y=searchBoxY)
 
         # Create the "Search" button
-        search_button = tk.Button(
+        searchButton = ttk.Button(
             self, text="Search")
-        search_button.grid(row=0, column=0, padx=10, pady=1)
+        searchButtonX = searchBoxX + 155
+        searchButtonY = searchBoxY + 40
+        searchButton.place(x=searchButtonX, y=searchButtonY)
         # Create a style object
         style = ttk.Style(window)
 
@@ -33,8 +44,13 @@ class SearchBook(ttk.Frame):
         style.map("TCombobox", fieldbackground=[("readonly", "white")])
 
         # Create a list of options
-        options = ['None', 'Title', 'PageCount', 'ISBN', 'Language',
+        options = ['Choose filter', 'Title', 'Page count', 'ISBN', 'Language',
+                   'Description', 'Publisher', 'Minimum age', 'Publication year']
+        queries = ['Title', 'PageCount', 'ISBN', 'Language',
                    'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
+
+        for option, query in zip(options, queries):
+            self.optionDictionary[option] = query
 
         # Create the variable to hold the selected option
         var = tk.StringVar(window)
@@ -43,5 +59,7 @@ class SearchBook(ttk.Frame):
         var.set(options[0])
 
         # Create the OptionMenu with the customized style
-        option_menu = ttk.OptionMenu(window, var, *options)
-        option_menu.pack(pady=10)
+        optionMenu = ttk.OptionMenu(window, var, *options)
+        optionMenuX = searchBoxX + 320
+        optionMenuY = searchBoxY - 4
+        optionMenu.place(x=optionMenuX, y=optionMenuY)

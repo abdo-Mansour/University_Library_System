@@ -57,7 +57,7 @@ class App(tk.Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("Login")
+        self.show_frame("SearchBook")
     # to display the current frame passed as
     # parameter
 
