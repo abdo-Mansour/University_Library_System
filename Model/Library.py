@@ -51,7 +51,7 @@ class Library:
     
     def addBook(self, book):
         attributes = ['Title', 'PageCount', 'ISBN', 'Language',
-                      'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear', 'LocationID']
+                      'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
         query = "INSERT INTO book ("
         for i in range(len(attributes)):
             query += attributes[i]
@@ -59,7 +59,7 @@ class Library:
                 query += ', '
             else:
                 query += ') '
-        query += "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        query += "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)"
         valuesList = []
         for i in range(len(attributes)):
             valuesList.append(getattr(book, attributes[i]))
