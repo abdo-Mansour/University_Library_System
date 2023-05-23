@@ -136,7 +136,17 @@ class Controller:
     def addBook(self, listOfBookDetails):   # DONE
         if self.loggedIn and self.isAdmin:
             try:
-                Library.addBook(listOfBookDetails)
+                book = Book(listOfBookDetails[0],
+                            listOfBookDetails[1],
+                            listOfBookDetails[2],
+                            listOfBookDetails[3],
+                            listOfBookDetails[4],
+                            listOfBookDetails[5],
+                            listOfBookDetails[6],
+                            listOfBookDetails[7],
+                            listOfBookDetails[8]
+                            )
+                Library.addBook(book)
                 return True
             except:
                 print("Failed to add book to database")
