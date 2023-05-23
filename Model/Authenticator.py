@@ -68,7 +68,7 @@ class Authenticator:
         self.cursor.execute(query, values)
         self.database.connectionHead.commit()
         
-        print("Student has benn Added Successfully")
+        print("Student has been Added Successfully")
     
     def updatePerson(self, updatedPerson: Person):
 
