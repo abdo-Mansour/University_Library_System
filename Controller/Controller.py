@@ -89,7 +89,7 @@ class Controller:
                     bookDic['Language'] = book.Language
                     bookDic['Description'] = book.Description
                     bookDic['Publisher'] = book.Publisher
-                    bookDic['MinimumAgeToRead'] = book.MinimumAgeToRead
+                    bookDic['MinAgeToRead'] = book.MinAgeToRead
                     bookDic['PublicationYear'] = book.PublicationYear
                     data.append(bookDic)
                 return data
