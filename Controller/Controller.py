@@ -13,8 +13,8 @@ class Controller:
         self.Person = None
         self.Library = Library()
         self.auth = Authenticator()
-        self.loggedIn = True
-        self.isAdmin = True
+        self.loggedIn = False
+        self.isAdmin = False
 
     # Functions related to normal user query
     def login(self, email, password, isAdmin):       # DONE
@@ -55,6 +55,7 @@ class Controller:
                 # View should display this returned data, also the data should be returned as a list of dictionaries
                 return bookCollection
             else:
+
                 # This should be displayed to the user as no books found
                 return False
         else:
@@ -79,7 +80,7 @@ class Controller:
     def getAllBooks(self):
         if self.loggedIn:
             try:
-                bookCollection = Library.getAllBooks(self)
+                bookCollection = self.Library.getAllBooks()
                 data = []
                 for books in bookCollection:
                     data.append(books.__dict__)
@@ -188,6 +189,13 @@ class Controller:
                 print("Error updating book details")
         else:
             print("Sorry you're not an admin")
+
+    def generateStatisticsReport(self):
+        report = {"nBooks": int(self.Library.getNoOfBooks()[0][0]),
+                  "nBooksForEveryGenre": self.Library.getNoOfBooksForEveryGenre(),
+                  "nBooksForEveryLang": self.Library.getNoOfBooksForEveryLang(),
+                  "nStudents": int(self.Library.getNoOfStudents()[0][0])}
+        return report
 
     def deleteBook(self, ISBN):
         if self.loggedIn and self.isAdmin:
