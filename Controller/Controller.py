@@ -48,7 +48,7 @@ class Controller:
 
                 # this function should return a list of lists
                 data = Library.getBooksBy(query, value)
-
+                
                 # View should display this returned data, also the data should be returned as a list
                 return data
             else:
