@@ -14,9 +14,12 @@ class SearchBook(ttk.Frame):
         self.controller = controller
         self.app = app
         self.optionDictionary = {}
+        self.bookList = []
+        self.prevYCoordForBookListView = 0
+        self.bookViewLables = []
         # widgets
-        entry = ttk.Entry(self, width=50)
-        window = self.app
+        self.entry = ttk.Entry(self, width=50)
+        self.window = self.app
 
         Title = ttk.Label(self, text='Search Books', font=(
             "Helvetica", 17, 'bold'))
@@ -25,16 +28,16 @@ class SearchBook(ttk.Frame):
         searchBoxX = 175
         searchBoxY = 50
 
-        entry.place(x=searchBoxX, y=searchBoxY)
+        self.entry.place(x=searchBoxX, y=searchBoxY)
 
         # Create the "Search" button
-        searchButton = ttk.Button(
-            self, text="Search")
+        self.searchButton = ttk.Button(
+            self, text="Search", command=self.getBooksQuery)
         searchButtonX = searchBoxX + 155
         searchButtonY = searchBoxY + 40
-        searchButton.place(x=searchButtonX, y=searchButtonY)
+        self.searchButton.place(x=searchButtonX, y=searchButtonY)
         # Create a style object
-        style = ttk.Style(window)
+        style = ttk.Style(self.window)
 
         # Set the font and background color of the OptionMenu
         style.configure("TCombobox", font=("Arial", 12))
@@ -46,35 +49,53 @@ class SearchBook(ttk.Frame):
         # Create a list of options
         options = ['Choose filter', 'Title', 'Page count', 'ISBN', 'Language',
                    'Description', 'Publisher', 'Minimum age', 'Publication year']
-        queries = ['Title', 'PageCount', 'ISBN', 'Language',
+        queries = ['None', 'Title', 'PageCount', 'ISBN', 'Language',
                    'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
 
         for option, query in zip(options, queries):
             self.optionDictionary[option] = query
 
         # Create the variable to hold the selected option
-        var = tk.StringVar(window)
+        self.filter = tk.StringVar(self.window)
         # Set the initial option
-        var.set(options[0])
+        self.filter.set(options[0])
         # Create the OptionMenu with the customized style
-        optionMenu = ttk.OptionMenu(window, var, *options)
+        self.optionMenu = ttk.OptionMenu(self.window, self.filter, *options)
         optionMenuX = searchBoxX + 320
         optionMenuY = searchBoxY - 4
-        optionMenu.place(x=optionMenuX, y=optionMenuY)
+        self.optionMenu.place(x=optionMenuX, y=optionMenuY)
 
-        self.bookList = tk.Canvas(window, width=700,
-                                  height=400)
+        self.bookListView = tk.Canvas(self.window, width=700,
+                                      height=400)
 
-        self.bookList.place(x=50, y=150)
-        y = 0
-        for i in range(1, 100):
-            label = Label(self.bookList, text="File number " +
-                          str(i), font=("Courier", 10))
-            self.bookList.create_window(0, y, window=label)
-            y += 10
+        self.bookListView.place(x=50, y=150)
+        self.displayBookListView()
+
+    def displayBookListView(self):
+        for l in self.bookViewLables:
+            l.destroy()
+        y = 50
+
+        for i in range(len(self.bookList)):
+            label = Label(self.bookListView, text=str(i + 1) + ")\nBook title: " +
+                          self.bookList[i].Title + '\n' + "ISBN: " + str(self.bookList[i].ISBN) + '\n', font=("Courier", 15))
+            self.bookViewLables.append(label)
+            self.bookListView.create_window(0, y, window=label, anchor='w')
+            y += 100
 
         scrollbar = tk.Scrollbar(
-            self.bookList, orient='vertical', command=self.bookList.yview)
+            self.bookListView, orient='vertical', command=self.bookListView.yview)
         scrollbar.place(relx=1, rely=0, relheight=1, anchor='ne')
-        self.bookList.config(yscrollcommand=scrollbar.set,
-                             scrollregion=(0, 0, 0, y))
+        self.bookListView.config(yscrollcommand=scrollbar.set,
+                                 scrollregion=(0, 0, 0, y))
+
+    def getBooksQuery(self):
+        query = self.entry.get()
+        result = self.controller.getBooksBy(
+            self.optionDictionary[self.filter.get()], query)
+        if (result == False):
+
+            showinfo("Query error", "Please choose a filter")
+        else:
+            self.bookList = result
+            self.displayBookListView()

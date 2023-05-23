@@ -88,6 +88,17 @@ class Library:
         resultLocation.shelfNumber = row[0][3]
         return resultLocation
 
+    def deleteBook(self, bookISBN):
+        query = "DELETE FROM book WHERE ISBN = ?"
+        self.cursor.execute(query, bookISBN)
+        self.database.connectionHead.commit()
+        return True
+
+    def deleteUser(self, userEmail):
+        query = "DELETE FROM person WHERE email = ?"
+        self.cursor.execute(query, userEmail)
+        self.database.connectionHead.commit()
+        return True
     
 # you can use DBHead like the following (not real code):
 

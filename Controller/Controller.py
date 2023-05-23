@@ -11,7 +11,7 @@ from Model.Library import Library, Book
 class Controller:
     def __init__(self):
         self.Person = None
-        self.Library = None
+        self.Library = Library()
         self.auth = Authenticator()
         self.loggedIn = True
         self.isAdmin = True
@@ -41,18 +41,20 @@ class Controller:
     def getBooksBy(self, query, value):     # DONE
 
         if self.loggedIn:
-            queries = ['Title', 'PageCount', 'ISBN', 'Language',
-                       'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
+            queries = ['Title', 'PageCount', 'ISBN', 'Language', 'Description',
+                       'Publisher', 'MinimumAgeToRead', 'PublicationYear']
 
             if query in queries:
 
-                # this function should return a list of lists
+                bookCollection = []
+                # this function should return a list of books
                 data = Library.getBooksBy(query, value)
+                for book in data:
+                    bookCollection.append(book.__dict__)
 
-                # View should display this returned data, also the data should be returned as a list
-                return data
+                # View should display this returned data, also the data should be returned as a list of dictionaries
+                return bookCollection
             else:
-
                 # This should be displayed to the user as no books found
                 return False
         else:
@@ -63,7 +65,7 @@ class Controller:
         N, offset = None    # Need to put values for these
         if self.loggedIn:
             try:
-                bookCollection = Library.getNBooks(self, N, offset)
+                bookCollection = self.Library.getNBooks(self, N, offset)
                 data = []
                 for books in bookCollection:
                     data.append(books.__dict__)
@@ -90,7 +92,7 @@ class Controller:
                 print("Error retrieving book data")
         else:
             print("You're not logged in")
-            
+
     def updateUserDetails(self, personInfo):  # DONE
         if self.loggedIn:
             updatedPerson = Person(
@@ -123,12 +125,12 @@ class Controller:
                 password=userInfo[7]
             )
 
-            if(self.auth.addPerson(newUser)):
+            if (self.auth.addPerson(newUser)):
                 return True
             else:
                 return False
         else:
-            print("Sorry you're not an admin") 
+            print("Sorry you're not an admin")
             return False
 
     def addBook(self, listOfBookDetails):   # DONE
@@ -163,12 +165,26 @@ class Controller:
         else:
             print("Sorry you're not an admin")
 
+    def deleteBook(self, ISBN):
+        if self.loggedIn and self.isAdmin:
+            if(self.Library.deleteBook(ISBN)):
+                return True
+            else:
+                return False
+        else:
+            print("Sorry you're not an admin")
+            return False
 
-    def deleteBook(self, ISBN):  # TODO:
-        pass
-
-    def deleteUser(self, userID):  # TODO:
-        pass
+    def deleteUser(self, userEmail):
+        
+        if self.loggedIn and self.isAdmin:
+            if(self.Library.deleteUser(userEmail)):
+                return True
+            else:
+                return False
+        else:
+            print("Sorry you're not an admin")
+            return False
 
     # def borrowBook(self, ISBN, copyID , userID): #TODO:
     #     pass
