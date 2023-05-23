@@ -65,7 +65,7 @@ class Controller:
         N, offset = None    # Need to put values for these
         if self.loggedIn:
             try:
-                bookCollection = Library.getNBooks(self, N, offset)
+                bookCollection = self.Library.getNBooks(self, N, offset)
                 data = []
                 for books in bookCollection:
                     data.append(books.__dict__)
