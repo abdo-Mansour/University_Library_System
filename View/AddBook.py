@@ -132,7 +132,7 @@ class AddBook(ttk.Frame):
         button_add_book.pack(side="left", padx=10)
 
         if "AdminMenu" in self.app.frames:
-            button_back = ttk.Button(button_frame, text="Back", command=self.app.show_frame("AdminMenu"))
+            button_back = ttk.Button(button_frame, text="Back", command=lambda: self.app.show_frame("AdminMenu"))
             button_back.pack(side="left", padx=10)
 
 

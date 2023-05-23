@@ -21,10 +21,10 @@ class StudentMenu(ttk.Frame):
         browse_books_button = ttk.Button(button_frame, text="Browse Books", command=self.browse)
         browse_books_button.pack(pady=10)
 
-        update_user_data_button = ttk.Button(button_frame, text="Update User Data", command=self.update_user_details())
+        update_user_data_button = ttk.Button(button_frame, text="Update User Data", command=self.update_user_details)
         update_user_data_button.pack(pady=10)
 
-        show_books_button = ttk.Button(button_frame, text="Show Books Based On Criteria", command=self.search_book())
+        show_books_button = ttk.Button(button_frame, text="Show Books Based On Criteria", command=self.search_book)
         show_books_button.pack(pady=10)
 
     def browse(self):
