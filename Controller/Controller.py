@@ -101,7 +101,7 @@ class Controller:
     def getAllBooks(self):
         if self.loggedIn:
             try:
-                bookCollection = self.Library.getAllBooks(self)
+                bookCollection = self.Library.getAllBooks()
                 data = []
                 for book in bookCollection:
                     bookDic = {}
@@ -206,8 +206,8 @@ class Controller:
                 book = Book(
                     BookID=bookInfo[0],
                     Title=bookInfo[1],
-                    ISBN=bookInfo[2],
-                    PageCount=bookInfo[3],
+                    PageCount=bookInfo[2],
+                    ISBN=bookInfo[3],
                     Language=bookInfo[4],
                     Description=bookInfo[5],
                     Publisher=bookInfo[6],

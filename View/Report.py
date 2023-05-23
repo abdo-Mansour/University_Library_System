@@ -34,7 +34,7 @@ class Report(ttk.Frame):
 
         number_of_spaces_in_tables = 40
 
-        genreList = tk.Listbox(self.app, width=number_of_spaces_in_tables + 20, font=18, height=6)
+        genreList = tk.Listbox(self, width=number_of_spaces_in_tables + 20, font=18, height=6)
         for i in report["nBooksForEveryGenre"]:
             first_part = str(i[0]) + ": "
             line_content = first_part + str(i[1])
@@ -48,7 +48,7 @@ class Report(ttk.Frame):
                                             font=18)
         language_table_header_label.place(x=5, y=370, anchor="w")
 
-        genreList = tk.Listbox(self.app, width=number_of_spaces_in_tables + 20, font=18, height=6)
+        genreList = tk.Listbox(self, width=number_of_spaces_in_tables + 20, font=18, height=6)
         for i in report["nBooksForEveryLang"]:
             first_part = str(i[0]) + ": "
             line_content = first_part + str(i[1])

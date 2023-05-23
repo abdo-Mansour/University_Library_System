@@ -44,8 +44,12 @@ class Login(ttk.Frame):
         isAdmin = self.checkbox.instate(['selected'])
         #print(isAdmin)
         if(self.controller.login(email,password,isAdmin)):
-            showinfo("Login Successful","Welcome to the Library System")
+            # showinfo("Login Successful","Welcome to the Library System")
             # self.app.show_frame("")
+            if isAdmin:
+                self.app.show_frame("AdminMenu")
+            else:
+                self.app.show_frame("StudentMenu")
         else:
             showinfo("Login Failed","Invalid Email or Password")
 
