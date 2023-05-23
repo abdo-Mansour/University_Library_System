@@ -72,7 +72,7 @@ class UpdateBookDetails(ttk.Frame):
             self.book_info_entries["Language"].get(),
             self.book_info_entries["Description"].get(),
             self.book_info_entries["Publisher"].get(),
-            self.book_info_entries["MinimumAgeToRead"].get(),
+            self.book_info_entries["MinAgeToRead"].get(),
             self.book_info_entries["PublicationYear"].get()
         ]
         self.controller.updateBookDetails(updated_details)
