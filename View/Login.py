@@ -15,20 +15,14 @@ class Login(ttk.Frame):
         #styles
 
         #widgets
-        # self.frame = ttk.Frame(self )
-        # # self.frame.grid(row = 0 , column = 0, pady=20,padx=40)
-        # # Configure the row and column weights
-        # parent.grid_rowconfigure(0, weight=1)
-        # parent.grid_columnconfigure(0, weight=1)
-        # self.frame.grid(row=0, column=0, pady=20, padx=40 ,sticky= "nswe")
         
-        self.label = ttk.Label(self,text='Enter Your Email and Password',font=("Arial",20,'bold'))
-        self.label.grid(row=0, column=0, pady=70, padx=275 , sticky= "nswe")
+        self.label = ttk.Label(self,text='Enter Your Email and Password',font=("Helvetica",20,'bold'))
+        self.label.grid(row=0, column=0, pady=50, padx=190 , sticky= "nswe")
         
-        self.user_entry= ttk.Entry(self,width=30,text="Email",font=("Arial",15))
+        self.user_entry= ttk.Entry(self,width=30,text="Email",font=("Helvetica",15))
         self.user_entry.grid(row=1, column=0, pady=12, padx=10)
         
-        self.user_pass= ttk.Entry(self,width=30,text="Password",show="*",font=("Arial",15))
+        self.user_pass= ttk.Entry(self,width=30,text="Password",show="*",font=("Helvetica",15))
         self.user_pass.grid(row=2, column=0, pady=12, padx=10)
         
         
@@ -46,7 +40,7 @@ class Login(ttk.Frame):
         #print(isAdmin)
         if(self.controller.login(email,password,isAdmin)):
             showinfo("Login Successful","Welcome to the Library System")
-            self.app.show_frame("Browse")
+            # self.app.show_frame("")
         else:
             showinfo("Login Failed","Invalid Email or Password")
 

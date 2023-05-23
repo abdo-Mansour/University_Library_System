@@ -27,13 +27,13 @@ class App(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
          
         self.title("Library System")
-        self.WIDTH = 1000
+        self.WIDTH = 800
         self.HEIGHT = 580
         self.geometry(f"{self.WIDTH}x{self.HEIGHT}")
         self.resizable(False,False)
         
         self.style = ThemedStyle(self)
-        self.style.set_theme("equilux")
+        self.style.set_theme("ubuntu")
         self.controller = controller
         
         # creating a container
