@@ -45,14 +45,16 @@ class Controller:
                        'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
 
             if query in queries:
-
-                # this function should return a list of lists
+                
+                bookCollection = []
+                # this function should return a list of books
                 data = Library.getBooksBy(query, value)
+                for book in data:
+                    bookCollection.append(book.__dict__)
 
-                # View should display this returned data, also the data should be returned as a list
-                return data
+                # View should display this returned data, also the data should be returned as a list of dictionaries
+                return bookCollection
             else:
-
                 # This should be displayed to the user as no books found
                 return False
         else:
