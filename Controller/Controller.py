@@ -4,8 +4,9 @@
 
 
 from Model.Person import Person
-from Model.Authenticator import Authenticator 
+from Model.Authenticator import Authenticator
 from Model.Library import Library, Book
+
 
 class Controller:
     def __init__(self):
@@ -25,12 +26,12 @@ class Controller:
             self.isAdmin = True if self.Person.isAdmin else False
             print(self.Person.isAdmin)
             # print(self.isAdmin)
-            #checks if the user is an admin or notS
-            if((self.isAdmin == False and isAdmin == True) or (self.isAdmin == True and isAdmin == False)):
+            # checks if the user is an admin or notS
+            if ((self.isAdmin == False and isAdmin == True) or (self.isAdmin == True and isAdmin == False)):
                 return False
-            
+
             self.loggedIn = True
-            
+
             # View should take true and display it as signed in
             return True
         else:
@@ -40,7 +41,8 @@ class Controller:
     def getBooksBy(self, query, value):     # DONE
 
         if self.loggedIn:
-            queries = ["bookGenre", "author", "ISBN", "title", "pageCount", "language", "publisher", "publicationYear"]
+            queries = ['Title', 'PageCount', 'ISBN', 'Language',
+                       'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
 
             if query in queries:
 
@@ -78,12 +80,11 @@ class Controller:
         else:
             print("You're not logged in")
 
-    
-    def getLocation(self, bookID , copyID):          # DONE
+    def getLocation(self, bookID, copyID):          # DONE
         # returns location of the book as dictionary
         if self.loggedIn:
             try:
-                location = Library.getBookCopyLocation(self,bookID, copyID)
+                location = Library.getBookCopyLocation(self, bookID, copyID)
                 return location.__dict__
             except:
                 print("Error retrieving book data")
@@ -132,29 +133,28 @@ class Controller:
     def updateUserDetails(self, personInfo):  # DONE
         if self.loggedIn and self.isAdmin:
             updatedPerson = Person(
-                id       = personInfo[0],
-                firstName= personInfo[1],
-                lastName = personInfo[2],
-                number   = personInfo[3],
-                dob      = personInfo[4],
-                sex      = personInfo[5],
-                isAdmin  = personInfo[6],
-                email    = personInfo[7],
-                password = personInfo[8]
+                id=personInfo[0],
+                firstName=personInfo[1],
+                lastName=personInfo[2],
+                number=personInfo[3],
+                dob=personInfo[4],
+                sex=personInfo[5],
+                isAdmin=personInfo[6],
+                email=personInfo[7],
+                password=personInfo[8]
             )
             self.auth.updatePerson(updatedPerson)
         else:
             print("Sorry you're not an admin")
-    
 
-    def deleteBook(self, ISBN):   #TODO:     
+    def deleteBook(self, ISBN):  # TODO:
         pass
 
-    def deleteUser(self, userID): #TODO:
+    def deleteUser(self, userID):  # TODO:
         pass
 
     # def borrowBook(self, ISBN, copyID , userID): #TODO:
     #     pass
 
-    # def returnBook(self, ISBN, copyID , userID): #TODO: 
-    #     pass  
+    # def returnBook(self, ISBN, copyID , userID): #TODO:
+    #     pass
