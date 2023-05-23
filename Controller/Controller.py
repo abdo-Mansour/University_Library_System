@@ -145,3 +145,16 @@ class Controller:
             self.auth.updatePerson(updatedPerson)
         else:
             print("Sorry you're not an admin")
+    
+
+    def deleteBook(self, ISBN):   #TODO:     
+        pass
+
+    def deleteUser(self, userID): #TODO:
+        pass
+
+    def borrowBook(self, ISBN, copyID , userID): #TODO:
+        pass
+
+    def returnBook(self, ISBN, copyID , userID): #TODO: 
+        pass  
