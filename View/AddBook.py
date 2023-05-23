@@ -1,5 +1,7 @@
+import random
 import tkinter as tk
 from tkinter import ttk
+from tkinter.messagebox import showinfo
 
 class AddBook(ttk.Frame):
     def __init__(self, parent, app, controller):
@@ -30,9 +32,8 @@ class AddBook(ttk.Frame):
         frame_details = ttk.Frame(self)
         frame_details.pack(pady=10)
 
-        self.entry_location_id = ttk.Entry(frame_details)
-        self.entry_location_id.pack(side="left", padx=10)
-        self.entry_location_id.insert(0, "Location ID")
+        frame_location = ttk.Frame(frame_details)
+        frame_location.pack(side="left", padx=10)
 
         self.entry_book_copies = ttk.Entry(frame_details)
         self.entry_book_copies.pack(side="left", padx=10)
@@ -41,6 +42,9 @@ class AddBook(ttk.Frame):
         self.entry_min_age = ttk.Entry(frame_details)
         self.entry_min_age.pack(side="left", padx=10)
         self.entry_min_age.insert(0, "Min Age to Read")
+
+        frame_language_genre = ttk.Frame(frame_details)
+        frame_language_genre.pack(side="left", padx=10)
 
         frame_isbn_page_year = ttk.Frame(self)
         frame_isbn_page_year.pack(pady=10)
@@ -57,18 +61,56 @@ class AddBook(ttk.Frame):
         self.entry_isbn.pack(side="left", padx=10)
         self.entry_isbn.insert(0, "ISBN")
 
-        frame_language = ttk.Frame(self)
-        frame_language.pack(pady=10)
+        label_location = ttk.Label(frame_location, text="Location")
+        label_location.pack(side="top")
 
-        label_language = ttk.Label(frame_language, text="Language:")
-        label_language.pack(side="left", padx=10)
+        frame_floor = ttk.Frame(frame_location)
+        frame_floor.pack(pady=5)
+
+        label_floor = ttk.Label(frame_floor, text="Floor no.")
+        label_floor.pack(side="left")
+
+        self.floor_var = tk.StringVar()
+        self.floor_var.set("")  # Default floor selection
+
+        floor_options = ["", "1", "2", "3"]
+        self.floor_dropdown = ttk.OptionMenu(frame_floor, self.floor_var, *floor_options)
+        self.floor_dropdown.pack(side="left", padx=5)
+
+        frame_shelf = ttk.Frame(frame_location)
+        frame_shelf.pack(pady=5)
+
+        label_shelf = ttk.Label(frame_shelf, text="Shelf no.")
+        label_shelf.pack(side="left")
+
+        self.shelf_var = tk.StringVar()
+        self.shelf_var.set("")  # Default shelf selection
+
+        shelf_options = ["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        self.shelf_dropdown = ttk.OptionMenu(frame_shelf, self.shelf_var, *shelf_options)
+        self.shelf_dropdown.pack(side="left", padx=5)
+
+        label_language = ttk.Label(frame_language_genre, text="Language")
+        label_language.pack(side="top")
 
         self.language_var = tk.StringVar()
         self.language_var.set("")  # Default language selection
 
         language_options = ["", "English", "French", "Arabic", "German", "Russian"]
-        self.language_dropdown = ttk.OptionMenu(frame_language, self.language_var, *language_options)
-        self.language_dropdown.pack(side="left", padx=10)
+        self.language_dropdown = ttk.OptionMenu(frame_language_genre, self.language_var, *language_options)
+        self.language_dropdown.pack(pady=5)
+
+        label_genre = ttk.Label(frame_language_genre, text="Genre")
+        label_genre.pack(pady=5)
+
+        genre_options = ["", "Mystery", "Romance", "Thriller", "Sci-Fi", "Fantasy", "Adventure", "Historical Fiction", "Biography", "Horror", 
+                         "Comedy", "Drama", "Action", "Crime", "Western", "Young Adult", "Children's", "Poetry", "Self-help", "Cooking"]
+
+        self.genre_var = tk.StringVar()
+        self.genre_var.set("")  # Default genre selection
+
+        self.genre_dropdown = ttk.OptionMenu(frame_language_genre, self.genre_var, *genre_options)
+        self.genre_dropdown.pack(pady=5)
 
         frame_description = ttk.Frame(self)
         frame_description.pack(pady=10)
@@ -96,9 +138,31 @@ class AddBook(ttk.Frame):
         language = self.language_var.get()
         publication_year = self.entry_publication_year.get()
         description = self.text_description.get("1.0", tk.END)
-        location_id = self.entry_location_id.get()
         book_copies = self.entry_book_copies.get()
         min_age = self.entry_min_age.get()
+        genre = self.genre_var.get()
+
+        # Check if any of the inputs are empty or None
+        if (
+            not author or author == "Author" or
+            not publisher or publisher == "Publisher" or
+            not book_title or book_title == "Title" or
+            not isbn or isbn == "ISBN" or
+            not page_count or page_count == "Page Count" or
+            not language or language == "" or
+            not publication_year or publication_year == "Publication Year" or
+            not description or description.strip() == "Description" or
+            not book_copies or book_copies == "Book Copies" or
+            not min_age or min_age == "Min Age to Read" or
+            not genre or genre == "" or
+            not self.floor_var.get() or not self.shelf_var.get()
+        ):
+            showinfo("Invalid Input", "Please fill all fields with correct values")
+            return
+
+        # Get the selected location values
+        floor_no = self.floor_var.get()
+        shelf_no = self.shelf_var.get()
 
         # Perform necessary actions to add the book
         # ...
