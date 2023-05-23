@@ -48,7 +48,7 @@ class Controller:
 
                 bookCollection = []
                 # this function should return a list of books
-                data = Library.getBooksBy(query, value)
+                data = self.Library.getBooksBy(query, value)
                 for book in data:
                     bookCollection.append(book.__dict__)
 
