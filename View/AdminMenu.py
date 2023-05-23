@@ -21,29 +21,29 @@ class AdminMenu(ttk.Frame):
         message.grid(row=0, column=1, padx=10, pady=10)
 
         # Row 1
-        browse_books_button = ttk.Button(self, text="Browse Books", command=self.app.show_frame("Browse"))
+        browse_books_button = ttk.Button(self, text="Browse Books", command=lambda: self.app.show_frame("Browse"))
         browse_books_button.grid(row=1, column=0, padx=0, pady=10)
 
         show_books_button = ttk.Button(self, text="Show Books Based On Criteria",
-                                       command=self.app.show_frame("SearchBook"))
+                                       command=lambda: self.app.show_frame("SearchBook"))
         show_books_button.grid(row=1, column=1, padx=0, pady=10)
 
         update_user_data_button = ttk.Button(self, text="Update User Data",
-                                             command=self.app.show_frame("UpdateUserDetails"))
+                                             command=lambda: self.app.show_frame("UpdateUserDetails"))
         update_user_data_button.grid(row=1, column=2, padx=0, pady=10)
 
         # Row 2
-        add_book_button = ttk.Button(self, text="Add Book", command=self.app.show_frame("AddBook"))
+        add_book_button = ttk.Button(self, text="Add Book", command=lambda: self.app.show_frame("AddBook"))
         add_book_button.grid(row=2, column=0, padx=0, pady=10)
 
         signup_new_user_button = ttk.Button(self, text="Sign Up New User / Admin",
-                                            command=self.app.show_frame("AddUser"))
+                                            command=lambda: self.app.show_frame("AddUser"))
         signup_new_user_button.grid(row=2, column=1, padx=0, pady=10)
 
         update_book_button = ttk.Button(self, text="Update Book Details",
-                                        command=self.app.show_frame("UpdateBookDetails"))
+                                        command=lambda: self.app.show_frame("UpdateBookDetails"))
         update_book_button.grid(row=2, column=2, padx=0, pady=10)
 
         # Row 3
-        add_book_button = ttk.Button(self, text="Statistics (Report)", command=self.app.show_frame("Report"))
+        add_book_button = ttk.Button(self, text="Statistics (Report)", command=lambda: self.app.show_frame("Report"))
         add_book_button.grid(row=3, column=1, padx=0, pady=10)
