@@ -17,7 +17,9 @@ create table bookGenre(
     bookID int not null ,
     genre nvarchar(50) not null ,
     primary key (bookID, genre),
-    foreign key (bookID) references book(bookID)
+    foreign key (bookID) references book(bookID),
+    CONSTRAINT fk_book_genre_book
+    FOREIGN KEY (bookID) REFERENCES book(bookID) ON DELETE CASCADE
 );
 
 create table author(
@@ -30,8 +32,8 @@ create table authorsOfBook(
     bookID int not null ,
     authorID int not null ,
     primary key (bookID,authorID),
-    foreign key (bookID) references book(bookID),
-    foreign key (authorID) references author(authorID)
+    foreign key (bookID) references book(bookID) ON DELETE CASCADE,
+    foreign key (authorID) references author(authorID)ON DELETE CASCADE
 );
 
 create table location(
