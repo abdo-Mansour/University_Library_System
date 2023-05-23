@@ -58,11 +58,12 @@ class App(tk.Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("Browse")
+        self.show_frame("Login")
     # to display the current frame passed as
     # parameter
 
     def show_frame(self, cont):
+        print("I am trying to show frame " + cont)
         frame = self.frames[cont]
         frame.tkraise()
 
