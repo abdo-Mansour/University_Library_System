@@ -11,7 +11,7 @@ from Model.Library import Library, Book
 class Controller:
     def __init__(self):
         self.Person = None
-        self.Library = None
+        self.Library = Library()
         self.auth = Authenticator()
         self.loggedIn = True
         self.isAdmin = True
@@ -41,11 +41,11 @@ class Controller:
     def getBooksBy(self, query, value):     # DONE
 
         if self.loggedIn:
-            queries = ['Title', 'PageCount', 'ISBN', 'Language',
-                       'Description', 'Publisher', 'MinimumAgeToRead', 'PublicationYear']
+            queries = ['Title', 'PageCount', 'ISBN', 'Language', 'Description',
+                       'Publisher', 'MinimumAgeToRead', 'PublicationYear']
 
             if query in queries:
-                
+
                 bookCollection = []
                 # this function should return a list of books
                 data = Library.getBooksBy(query, value)
@@ -92,7 +92,7 @@ class Controller:
                 print("Error retrieving book data")
         else:
             print("You're not logged in")
-            
+
     def updateUserDetails(self, personInfo):  # DONE
         if self.loggedIn:
             updatedPerson = Person(
@@ -125,12 +125,12 @@ class Controller:
                 password=userInfo[7]
             )
 
-            if(self.auth.addPerson(newUser)):
+            if (self.auth.addPerson(newUser)):
                 return True
             else:
                 return False
         else:
-            print("Sorry you're not an admin") 
+            print("Sorry you're not an admin")
             return False
 
     def addBook(self, listOfBookDetails):   # DONE
@@ -164,7 +164,6 @@ class Controller:
                 print("Error updating book details")
         else:
             print("Sorry you're not an admin")
-
 
     def deleteBook(self, ISBN):  # TODO:
         pass
