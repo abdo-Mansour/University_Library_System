@@ -43,7 +43,7 @@ class Controller:
 
         if self.loggedIn:
             queries = ['Title', 'PageCount', 'ISBN', 'Language', 'Description',
-                       'Publisher', 'MinimumAgeToRead', 'PublicationYear']
+                       'Publisher', 'MinAgeToRead', 'PublicationYear']
 
             if query in queries:
 
