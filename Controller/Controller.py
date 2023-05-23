@@ -90,6 +90,23 @@ class Controller:
                 print("Error retrieving book data")
         else:
             print("You're not logged in")
+            
+    def updateUserDetails(self, personInfo):  # DONE
+        if self.loggedIn:
+            updatedPerson = Person(
+                id=personInfo[0],
+                firstName=personInfo[1],
+                lastName=personInfo[2],
+                number=personInfo[3],
+                dob=personInfo[4],
+                sex=personInfo[5],
+                isAdmin=personInfo[6],
+                email=personInfo[7],
+                password=personInfo[8]
+            )
+            self.auth.updatePerson(updatedPerson)
+        else:
+            print("Sorry you're not an admin")
 
     # Functions related to Admin Only Use
     def addUser(self, userInfo):      # DONE
@@ -105,7 +122,7 @@ class Controller:
                 email=userInfo[6],
                 password=userInfo[7]
             )
-            
+
             if(self.auth.addPerson(newUser)):
                 return True
             else:
@@ -134,22 +151,6 @@ class Controller:
         else:
             print("Sorry you're not an admin")
 
-    def updateUserDetails(self, personInfo):  # DONE
-        if self.loggedIn:
-            updatedPerson = Person(
-                id=personInfo[0],
-                firstName=personInfo[1],
-                lastName=personInfo[2],
-                number=personInfo[3],
-                dob=personInfo[4],
-                sex=personInfo[5],
-                isAdmin=personInfo[6],
-                email=personInfo[7],
-                password=personInfo[8]
-            )
-            self.auth.updatePerson(updatedPerson)
-        else:
-            print("Sorry you're not an admin")
 
     def deleteBook(self, ISBN):  # TODO:
         pass
