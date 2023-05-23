@@ -59,7 +59,7 @@ class Controller:
                     bookDic['Language'] = book.Language
                     bookDic['Description'] = book.Description
                     bookDic['Publisher'] = book.Publisher
-                    bookDic['MinimumAgeToRead'] = book.MinimumAgeToRead
+                    bookDic['MinAgeToRead'] = book.MinAgeToRead
                     bookDic['PublicationYear'] = book.PublicationYear
                     bookCollection.append(bookDic)
 
@@ -183,15 +183,15 @@ class Controller:
         if self.loggedIn and self.isAdmin:
             try:
                 book = Book(
-                    listOfBookDetails[0], 
-                    listOfBookDetails[1], 
-                    listOfBookDetails[2], 
-                    listOfBookDetails[3], 
-                    listOfBookDetails[4], 
-                    listOfBookDetails[5], 
-                    listOfBookDetails[6], 
+                    listOfBookDetails[0],
+                    listOfBookDetails[1],
+                    listOfBookDetails[2],
+                    listOfBookDetails[3],
+                    listOfBookDetails[4],
+                    listOfBookDetails[5],
+                    listOfBookDetails[6],
                     listOfBookDetails[7]
-                    )
+                )
                 self.Library.addBook(book)
                 return True
             except:
