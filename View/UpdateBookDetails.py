@@ -46,7 +46,7 @@ class UpdateBookDetails(ttk.Frame):
     def search_book(self):
         isbn = self.isbn_entry.get()
         book_info_list = self.controller.getBooksBy("ISBN", isbn)
-
+        print(book_info_list[0])
         if book_info_list:
             book_info = book_info_list[0]  # Assuming there's only one book with the given ISBN
             for key, entry in self.book_info_entries.items():
