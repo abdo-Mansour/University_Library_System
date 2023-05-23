@@ -43,7 +43,7 @@ class Controller:
 
         if self.loggedIn:
             queries = ['Title', 'PageCount', 'ISBN', 'Language', 'Description',
-                       'Publisher', 'MinimumAgeToRead', 'PublicationYear']
+                       'Publisher', 'MinAgeToRead', 'PublicationYear']
 
             if query in queries:
 
@@ -112,7 +112,7 @@ class Controller:
                     bookDic['Language'] = book.Language
                     bookDic['Description'] = book.Description
                     bookDic['Publisher'] = book.Publisher
-                    bookDic['MinimumAgeToRead'] = book.MinimumAgeToRead
+                    bookDic['MinAgeToRead'] = book.MinAgeToRead
                     bookDic['PublicationYear'] = book.PublicationYear
                     data.append(bookDic)
                 return data
