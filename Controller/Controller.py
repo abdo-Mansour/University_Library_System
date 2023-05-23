@@ -91,19 +91,19 @@ class Controller:
             print("You're not logged in")
 
     # Functions related to Admin Only Use
-    def addStudent(self, studentInfo):      # DONE
+    def addUser(self, userInfo):      # DONE
         # This is to check if the user is both LOGGED IN and IS AN ADMIN, because this function is only for admins
         if self.loggedIn and self.isAdmin:
             newUser = Person(
-                id=studentInfo[0],
-                firstName=studentInfo[1],
-                lastName=studentInfo[2],
-                number=studentInfo[3],
-                dob=studentInfo[4],
-                sex=studentInfo[5],
-                isAdmin=studentInfo[6],
-                email=studentInfo[7],
-                password=studentInfo[8]
+                id=userInfo[0],
+                firstName=userInfo[1],
+                lastName=userInfo[2],
+                number=userInfo[3],
+                dob=userInfo[4],
+                sex=userInfo[5],
+                isAdmin=userInfo[6],
+                email=userInfo[7],
+                password=userInfo[8]
             )
             self.auth.addPerson(newUser)
         else:
@@ -153,8 +153,8 @@ class Controller:
     def deleteUser(self, userID): #TODO:
         pass
 
-    def borrowBook(self, ISBN, copyID , userID): #TODO:
-        pass
+    # def borrowBook(self, ISBN, copyID , userID): #TODO:
+    #     pass
 
-    def returnBook(self, ISBN, copyID , userID): #TODO: 
-        pass  
+    # def returnBook(self, ISBN, copyID , userID): #TODO: 
+    #     pass  
