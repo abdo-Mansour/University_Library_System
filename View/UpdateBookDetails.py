@@ -37,7 +37,7 @@ class UpdateBookDetails(ttk.Frame):
             "Language": "Language",
             "Description": "Description",
             "Publisher": "Publisher",
-            "MinimumAgeToRead": "Minimum Age to Read",
+            "MinAgeToRead": "Minimum Age to Read",
             "PublicationYear": "Publication Year"
         }
 
