@@ -71,7 +71,12 @@ class SearchBook(ttk.Frame):
 
         self.bookListView.place(x=50, y=150)
         self.displayBookListView()
+# ----------------------------------------------------------------------------------------------
+        self.returnButton = ttk.Button(
+            self, text="Return to mainmenu", command=self.returningToMainMenu)
+        self.returnButton.place(x=600, y=10)
 
+# -----------------------------------------------------------------------------------------------
     def displayBookListView(self):
         for l in self.bookViewLables:
             l.destroy()
@@ -100,3 +105,12 @@ class SearchBook(ttk.Frame):
         else:
             self.bookList = result
             self.displayBookListView()
+
+    def returningToMainMenu(self):
+        if self.controller.isAdmin:
+            self.app.show_frame("AdminMenu")
+        else:
+            self.app.show_frame("StudentMenu")
+        # button_back = ttk.Button(
+        #     self, text="Back", command=self.app.show_frame("AdminMenu"))
+        # button_back.place(x=600, y=400)
