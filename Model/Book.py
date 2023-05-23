@@ -1,5 +1,5 @@
 class Book:
-    def __init__(self, Title=None, ISBN=None, PageCount=None, Language=None, Description=None, Publisher=None, MinAgeToRead=None, PublicationYear=None,BookID=None):
+    def __init__(self, Title=None, ISBN=None, PageCount=None, Language=None, Description=None, Publisher=None, MinAgeToRead=None, PublicationYear=None, BookID=None):
         self.BookID = BookID
         self.Title = Title
         self.ISBN = ISBN
@@ -10,4 +10,4 @@ class Book:
         self.MinimumAgeToRead = MinAgeToRead
         self.PublicationYear = PublicationYear
         self.attributes = ['BookID', 'Title', 'PageCount',
-                           'ISBN', 'Language', ' Description', 'Publisher', 'MinAgeToRead', 'PublicationYear']
+                           'ISBN', 'Language', 'Description', 'Publisher', 'MinAgeToRead', 'PublicationYear']
