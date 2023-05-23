@@ -1,6 +1,8 @@
 
 import tkinter as tk
+
 from tkinter import ttk
+from tkinter.messagebox import showinfo
 
 
 class Login(ttk.Frame):
@@ -34,8 +36,19 @@ class Login(ttk.Frame):
         button.grid(row=3, column=0,rowspan=2, pady=50, padx=10, sticky= "ns")
         
         self.checkbox = ttk.Checkbutton(self,text='Login as Admin')
+        self.checkbox.state()
         self.checkbox.grid(row=5, column=0, pady=22, padx=10)
     
     def login(self):
-        pass
+        email = self.user_entry.get()
+        password = self.user_pass.get()
+        isAdmin = self.checkbox.instate(['selected'])
+        #print(isAdmin)
+        if(self.controller.login(email,password,isAdmin)):
+            showinfo("Login Successful","Welcome to the Library System")
+            self.app.show_frame("Browse")
+        else:
+            showinfo("Login Failed","Invalid Email or Password")
+
+
        

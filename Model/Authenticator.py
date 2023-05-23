@@ -46,15 +46,15 @@ class Authenticator:
                 if row[email_index] == email:
                     if row[password_index] == password:
                         self.pr = Person(
-                            row[id_index],
-                            row[Fname_index],
-                            row[Lname_index],
-                            row[phone_index],
-                            row[sex_index],
-                            row[isAdmin_index],
-                            row[dateOfBirth_index],
-                            row[email_index],
-                            row[password_index]
+                            id = row[id_index],
+                            firstName = row[Fname_index],
+                            lastName = row[Lname_index],
+                            number = row[phone_index],
+                            sex = row[sex_index],
+                            isAdmin = row[isAdmin_index],
+                            dob = row[dateOfBirth_index],
+                            email = row[email_index],
+                            password = row[password_index]
                         )
         return self.pr
 

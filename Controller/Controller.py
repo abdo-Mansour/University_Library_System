@@ -16,13 +16,19 @@ class Controller:
         self.isAdmin = False
 
     # Functions related to normal user query
-    def logIn(self, email, password):       # DONE
+    def login(self, email, password, isAdmin):       # DONE
 
         # Returns Exceptions if something wrong happened or true if success
         if self.auth.isAuth(email, password):
             self.Person = self.auth.returnPersonData(email, password)
 
             self.isAdmin = True if self.Person.isAdmin else False
+            print(self.Person.isAdmin)
+            # print(self.isAdmin)
+            #checks if the user is an admin or notS
+            if((self.isAdmin == False and isAdmin == True) or (self.isAdmin == True and isAdmin == False)):
+                return False
+            
             self.loggedIn = True
             
             # View should take true and display it as signed in
