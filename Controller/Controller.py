@@ -13,8 +13,8 @@ class Controller:
         self.Person = None
         self.Library = Library()
         self.auth = Authenticator()
-        self.loggedIn = False
-        self.isAdmin = False
+        self.loggedIn = True
+        self.isAdmin = True
 
     # Functions related to normal user query
     def login(self, email, password, isAdmin):       # DONE
@@ -50,7 +50,17 @@ class Controller:
                 # this function should return a list of books
                 data = self.Library.getBooksBy(query, value)
                 for book in data:
-                    bookCollection.append(book.__dict__)
+                    bookDic = {}
+                    bookDic['BookID'] = book.BookID
+                    bookDic['Title'] = book.Title
+                    bookDic['ISBN'] = book.ISBN
+                    bookDic['PageCount'] = book.PageCount
+                    bookDic['Language'] = book.Language
+                    bookDic['Description'] = book.Description
+                    bookDic['Publisher'] = book.Publisher
+                    bookDic['MinimumAgeToRead'] = book.MinimumAgeToRead
+                    bookDic['PublicationYear'] = book.PublicationYear
+                    bookCollection.append(bookDic)
 
                 # View should display this returned data, also the data should be returned as a list of dictionaries
                 return bookCollection
@@ -69,8 +79,18 @@ class Controller:
             try:
                 bookCollection = self.Library.getNBooks(self, N, offset)
                 data = []
-                for books in bookCollection:
-                    data.append(books.__dict__)
+                for book in bookCollection:
+                    bookDic = {}
+                    bookDic['BookID'] = book.BookID
+                    bookDic['Title'] = book.Title
+                    bookDic['ISBN'] = book.ISBN
+                    bookDic['PageCount'] = book.PageCount
+                    bookDic['Language'] = book.Language
+                    bookDic['Description'] = book.Description
+                    bookDic['Publisher'] = book.Publisher
+                    bookDic['MinimumAgeToRead'] = book.MinimumAgeToRead
+                    bookDic['PublicationYear'] = book.PublicationYear
+                    data.append(bookDic)
                 return data
             except:
                 print("Error getting data")
@@ -80,10 +100,20 @@ class Controller:
     def getAllBooks(self):
         if self.loggedIn:
             try:
-                bookCollection = self.Library.getAllBooks()
+                bookCollection = self.Library.getAllBooks(self)
                 data = []
-                for books in bookCollection:
-                    data.append(books.__dict__)
+                for book in bookCollection:
+                    bookDic = {}
+                    bookDic['BookID'] = book.BookID
+                    bookDic['Title'] = book.Title
+                    bookDic['ISBN'] = book.ISBN
+                    bookDic['PageCount'] = book.PageCount
+                    bookDic['Language'] = book.Language
+                    bookDic['Description'] = book.Description
+                    bookDic['Publisher'] = book.Publisher
+                    bookDic['MinimumAgeToRead'] = book.MinimumAgeToRead
+                    bookDic['PublicationYear'] = book.PublicationYear
+                    data.append(bookDic)
                 return data
             except:
                 print("Error getting data")
