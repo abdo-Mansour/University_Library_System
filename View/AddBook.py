@@ -75,10 +75,7 @@ class AddBook(ttk.Frame):
 
         frame_description = ttk.Frame(self)
         frame_description.pack(pady=10)
-
-        label_description = ttk.Label(frame_description, text="Description")
-        label_description.pack(side="top", padx=10)
-
+        
         self.text_description = tk.Text(frame_description, width=40, height=5)
         self.text_description.pack(side="top", padx=10, pady=5)
         self.text_description.insert("1.0", "Description")  # Placeholder text
