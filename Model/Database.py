@@ -20,7 +20,9 @@ class Database:
         self.__driver = None
 
     def connectToDataBase(self):
-        
+        if self.cursor is not None:
+            return self.cursor
+
         # Used to connect to the database
         self.__serverName = 'SQL8005.site4now.net'
 

@@ -2,6 +2,7 @@ from Model.Database import Database as db
 from Model.Person import Person 
 import sys
 
+TODO = 'REMOVE PRINT STATEMENTS'
 
 class Authenticator:
     def __init__(self):
@@ -69,6 +70,7 @@ class Authenticator:
         self.database.connectionHead.commit()
         
         print("Student has been Added Successfully")
+        return True
     
     def updatePerson(self, updatedPerson: Person):
 
