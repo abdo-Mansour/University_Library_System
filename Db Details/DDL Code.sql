@@ -18,13 +18,13 @@ create table bookGenre(
     genre nvarchar(50) not null ,
     primary key (bookID, genre),
     foreign key (bookID) references book(bookID)
-)
+);
 
 create table author(
     authorID int primary key identity,
     firstName nvarchar(500) not null ,
     lastName nvarchar(500) not null ,
-)
+);
 
 create table authorsOfBook(
     bookID int not null ,
@@ -32,14 +32,14 @@ create table authorsOfBook(
     primary key (bookID,authorID),
     foreign key (bookID) references book(bookID),
     foreign key (authorID) references author(authorID)
-)
+);
 
 create table location(
     locationID int primary key identity,
     floor smallint,
     section nvarchar(500),
     shelfNumber int check (shelfNumber > 0)
-)
+);
 
 
 create table person(
@@ -52,7 +52,7 @@ create table person(
     dateOfBirth date,
     sex smallint,
     isAdmin smallint,
-)
+);
 
 create table bookCopy(
     copyID int not null,
@@ -69,4 +69,4 @@ create table bookCopy(
     -- the following two lines are probably not good for our use
 --     foreign key (borrowerID) references person (personID),
 --     foreign key (locationID) references location (locationID)
-)
+);
