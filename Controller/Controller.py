@@ -48,7 +48,7 @@ class Controller:
 
                 bookCollection = []
                 # this function should return a list of books
-                data = Library.getBooksBy(query, value)
+                data = self.Library.getBooksBy(query, value)
                 for book in data:
                     bookCollection.append(book.__dict__)
 
@@ -62,7 +62,7 @@ class Controller:
 
     def getNBooks(self):              # SEMI DONE
         # return a list of book dictionaries
-        N =100
+        N = 100
         offset = 0    # Need to put values for these
         if self.loggedIn:
             try:
@@ -75,7 +75,7 @@ class Controller:
                 print("Error getting data")
         else:
             print("You're not logged in")
-            
+
     def getAllBooks(self):
         if self.loggedIn:
             try:
@@ -88,7 +88,6 @@ class Controller:
                 print("Error getting data")
         else:
             print("You're not logged in")
-
 
     def getUserDetails(self):               # DONE
         if self.loggedIn:
@@ -192,7 +191,7 @@ class Controller:
 
     def deleteBook(self, ISBN):
         if self.loggedIn and self.isAdmin:
-            if(self.Library.deleteBook(ISBN)):
+            if (self.Library.deleteBook(ISBN)):
                 return True
             else:
                 return False
@@ -201,9 +200,9 @@ class Controller:
             return False
 
     def deleteUser(self, userEmail):
-        
+
         if self.loggedIn and self.isAdmin:
-            if(self.Library.deleteUser(userEmail)):
+            if (self.Library.deleteUser(userEmail)):
                 return True
             else:
                 return False
