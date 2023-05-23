@@ -1,10 +1,11 @@
-import random
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
+from Controller.Controller import Controller
+
 
 class AddBook(ttk.Frame):
-    def __init__(self, parent, app, controller):
+    def __init__(self, parent, app, controller: Controller):
         ttk.Frame.__init__(self, parent)
         self.style = ttk.Style(self)
         self.controller = controller
@@ -61,63 +62,71 @@ class AddBook(ttk.Frame):
         self.entry_isbn.pack(side="left", padx=10)
         self.entry_isbn.insert(0, "ISBN")
 
-        label_location = ttk.Label(frame_location, text="Location")
-        label_location.pack(side="top")
-
-        frame_floor = ttk.Frame(frame_location)
-        frame_floor.pack(pady=5)
-
-        label_floor = ttk.Label(frame_floor, text="Floor no.")
-        label_floor.pack(side="left")
-
-        self.floor_var = tk.StringVar()
-        self.floor_var.set("")  # Default floor selection
-
-        floor_options = ["", "1", "2", "3"]
-        self.floor_dropdown = ttk.OptionMenu(frame_floor, self.floor_var, *floor_options)
-        self.floor_dropdown.pack(side="left", padx=5)
-
-        frame_shelf = ttk.Frame(frame_location)
-        frame_shelf.pack(pady=5)
-
-        label_shelf = ttk.Label(frame_shelf, text="Shelf no.")
-        label_shelf.pack(side="left")
-
-        self.shelf_var = tk.StringVar()
-        self.shelf_var.set("")  # Default shelf selection
-
-        shelf_options = ["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-        self.shelf_dropdown = ttk.OptionMenu(frame_shelf, self.shelf_var, *shelf_options)
-        self.shelf_dropdown.pack(side="left", padx=5)
-
         label_language = ttk.Label(frame_language_genre, text="Language")
-        label_language.pack(side="top")
+        label_language.pack(side="left", padx=10)
 
         self.language_var = tk.StringVar()
         self.language_var.set("")  # Default language selection
 
         language_options = ["", "English", "French", "Arabic", "German", "Russian"]
         self.language_dropdown = ttk.OptionMenu(frame_language_genre, self.language_var, *language_options)
-        self.language_dropdown.pack(pady=5)
+        self.language_dropdown.pack(side="left", pady=5)
 
-        label_genre = ttk.Label(frame_language_genre, text="Genre")
-        label_genre.pack(pady=5)
-
-        genre_options = ["", "Mystery", "Romance", "Thriller", "Sci-Fi", "Fantasy", "Adventure", "Historical Fiction", "Biography", "Horror", 
-                         "Comedy", "Drama", "Action", "Crime", "Western", "Young Adult", "Children's", "Poetry", "Self-help", "Cooking"]
-
-        self.genre_var = tk.StringVar()
-        self.genre_var.set("")  # Default genre selection
-
-        self.genre_dropdown = ttk.OptionMenu(frame_language_genre, self.genre_var, *genre_options)
-        self.genre_dropdown.pack(pady=5)
 
         frame_description = ttk.Frame(self)
         frame_description.pack(pady=10)
 
+        label_description = ttk.Label(frame_description, text="Description")
+        label_description.pack(side="top", padx=10)
+
         self.text_description = tk.Text(frame_description, width=40, height=5)
-        self.text_description.pack(side="left", padx=10)
+        self.text_description.pack(side="top", padx=10, pady=5)
         self.text_description.insert("1.0", "Description")  # Placeholder text
+
+        frame_location = ttk.Frame(self)
+        frame_location.pack(pady=10)
+
+        label_location = ttk.Label(frame_location, text="Location:")
+        label_location.pack(side="top", padx=10)
+
+        frame_floor_shelf_genre = ttk.Frame(frame_location)
+        frame_floor_shelf_genre.pack(pady=5)
+
+        frame_floor_shelf = ttk.Frame(frame_floor_shelf_genre)
+        frame_floor_shelf.pack(side="left")
+
+        label_floor = ttk.Label(frame_floor_shelf, text="Floor no.")
+        label_floor.pack(side="left")
+
+        self.floor_var = tk.StringVar()
+        self.floor_var.set("")  # Default floor selection
+
+        floor_options = ["", "1", "2", "3"]
+        self.floor_dropdown = ttk.OptionMenu(frame_floor_shelf, self.floor_var, *floor_options)
+        self.floor_dropdown.pack(side="left", padx=5)
+
+        label_shelf = ttk.Label(frame_floor_shelf, text="Shelf no.")
+        label_shelf.pack(side="left", padx=10)
+
+        self.shelf_var = tk.StringVar()
+        self.shelf_var.set("")  # Default shelf selection
+
+        shelf_options = ["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        self.shelf_dropdown = ttk.OptionMenu(frame_floor_shelf, self.shelf_var, *shelf_options)
+        self.shelf_dropdown.pack(side="left", padx=5)
+
+        label_genre = ttk.Label(frame_floor_shelf_genre, text="Genre")
+        label_genre.pack(side="left", padx=10)
+
+        genre_options = ["", "Mystery", "Romance", "Thriller", "Sci-Fi", "Fantasy", "Adventure", "Historical Fiction", "Biography", "Horror", 
+                        "Comedy", "Drama", "Action", "Crime", "Western", "Young Adult", "Children's", "Poetry", "Self-help", "Cooking"]
+
+        self.genre_var = tk.StringVar()
+        self.genre_var.set("")  # Default genre selection
+
+        self.genre_dropdown = ttk.OptionMenu(frame_floor_shelf_genre, self.genre_var, *genre_options)
+        self.genre_dropdown.pack(side="left", padx=5)
+
 
         button_frame = ttk.Frame(self)
         button_frame.pack(pady=10)

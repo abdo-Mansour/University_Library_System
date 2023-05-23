@@ -28,7 +28,7 @@ class AddUser(ttk.Frame):
         frame_email_password = ttk.Frame(self)
         frame_email_password.pack(pady=10)
 
-        self.entry_email = ttk.Entry(frame_email_password)
+        self.entry_email = ttk.Entry(frame_email_password, width=35)
         self.entry_email.pack(side="left", padx=10)
         self.entry_email.insert(0, "Email")
 
