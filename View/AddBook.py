@@ -174,16 +174,8 @@ class AddBook(ttk.Frame):
         if self.controller.addBook(data):
             self.controller.addBookGenre(isbn, genre)
             self.controller.addBookCopy(isbn, floor_no, genre , shelf_no , int(book_copies))
-            # self.app.frames["Browse"].refreshList()
-            # self.app.frames["Report"].refresh_report()
             showinfo("Success", "Book added successfully")
             self.go_back()
         else:
             showinfo("Error", "Something went wrong")
-        pass
-
-    def go_back(self):
-        # Perform necessary actions to go back
-        # ...
-        # You can use the self.controller or self.app to interact with the rest of the application
         pass

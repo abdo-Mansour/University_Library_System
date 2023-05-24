@@ -22,9 +22,7 @@ class App(tk.Tk):
         from View.DeleteBook import DeleteBook
         from View.DeleteUser import DeleteUser
         from View.BookLocation import BookLocation
-        # from View.BorrowBook import BorrowBook
         from View.StudentMenu import StudentMenu
-        # from View.AdminMenu import AdminMenu
 
         print("I AM DYING")
 
@@ -72,7 +70,4 @@ class App(tk.Tk):
 
     # to display the current frame passed as
     # parameter
-
-    # def printName(self):
-    #     print("App.py")
 
