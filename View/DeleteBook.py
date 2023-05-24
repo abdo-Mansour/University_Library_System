@@ -37,7 +37,7 @@ class DeleteBook(ttk.Frame):
             showinfo("Invalid Input", "Please fill the field with correct ISBN")
         else:
             if (self.controller.deleteBook(isbn)):
-                self.app.frames["Browse"].refresh()
+                self.app.frames["Browse"].refreshList()
                 self.app.frames["Report"].refresh_report()
                 showinfo("Success", "Book deleted successfully")
             else:
