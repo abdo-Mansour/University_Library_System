@@ -255,6 +255,12 @@ class Controller:
         else:
             return False
     
+    def addBookCopy(self, ISBN, floor , section , shelfNumber , copyID):
+        if self.loggedIn:
+            self.Library.addBookCopy(ISBN, floor , section , shelfNumber , copyID)
+        else:
+            return False
+    
     # def borrowBook(self, ISBN, copyID , userID): #TODO:
     #     pass
 
