@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter.messagebox import showinfo
 
 
 class UpdateUserDetails(ttk.Frame):
@@ -102,6 +103,7 @@ class UpdateUserDetails(ttk.Frame):
             print(value)
         # Call the controller function to save the updated details
         self.controller.updateUserDetails(updated_details)
+        showinfo("Success", "User details updated successfully")
 
     def back(self):
         if self.controller.isAdmin:
