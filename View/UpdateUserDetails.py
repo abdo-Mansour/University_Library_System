@@ -86,7 +86,7 @@ class UpdateUserDetails(ttk.Frame):
             if key == "ID":
                 updated_details.append(user_id)
             elif key == "sex":
-                if entry.get() == "Male":
+                if entry.get() == "Male" or entry.get() == "male":
                     updated_details.append(0)
                 else:
                     updated_details.append(1)
