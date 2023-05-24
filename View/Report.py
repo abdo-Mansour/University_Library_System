@@ -83,4 +83,4 @@ class Report(ttk.Frame):
         for i in self.report["nBooksForEveryLang"]:
             first_part = str(i[0]) + ": "
             line_content = first_part + str(i[1])
-            self.genreList.insert(tk.END, line_content)
+            self.language_list.insert(tk.END, line_content)
