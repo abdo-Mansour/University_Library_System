@@ -23,10 +23,10 @@ class UpdateUserDetails(ttk.Frame):
             self.ShowUserInfo()
 
         ttk.Button(self, text="Back", command=self.back).grid(
-            row=15, column=0, padx=5, pady=20, sticky=tk.W)
+            row=15, column=0, padx=(220,5), pady=20, sticky=tk.W)
 
         ttk.Button(self, text="Save Changes", command=self.save_changes).grid(
-            row=15, column=1, padx=(220,5), pady=20, sticky=tk.W)
+            row=15, column=1, padx=5, pady=20, sticky=tk.W)
 
     def create_user_info_table(self):
         user_info_labels = {
