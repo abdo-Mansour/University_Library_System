@@ -24,7 +24,8 @@ class Library:
             return self.getBookByGenre(value)
         if (column == 'author'):
             return self.getBooksByAuthor(value)
-        query = f'SELECT * FROM Book WHERE {column} = ?'
+        query = f'SELECT * FROM Book WHERE {column} like ?'
+        value = '%' + value + '%'
         self.cursor.execute(query, value)
         return self.bookDataParse()
 
