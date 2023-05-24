@@ -40,7 +40,7 @@ class Controller:
 
         if self.loggedIn:
             queries = ['Title', 'PageCount', 'ISBN', 'Language', 'Description',
-                       'Publisher', 'MinAgeToRead', 'PublicationYear']
+                       'Publisher', 'MinimumAgeToRead', 'PublicationYear']
 
             if query in queries:
 
@@ -254,13 +254,13 @@ class Controller:
             self.Library.addBookGenre(ISBN, genre)
         else:
             return False
-    
-    def addBookCopy(self, ISBN, floor , section , shelfNumber , copyID):
+
+    def addBookCopy(self, ISBN, floor, section, shelfNumber, copyID):
         if self.loggedIn:
-            self.Library.addBookCopy(ISBN, floor , section , shelfNumber , copyID)
+            self.Library.addBookCopy(ISBN, floor, section, shelfNumber, copyID)
         else:
             return False
-    
+
     # def borrowBook(self, ISBN, copyID , userID): #TODO:
     #     pass
 

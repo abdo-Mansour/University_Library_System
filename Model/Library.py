@@ -25,6 +25,7 @@ class Library:
             return self.getBookByGenre(value)
         if (column == 'author'):
             return self.getBooksByAuthor(value)
+
         query = f'SELECT * FROM Book WHERE {column} like ?'
         value = '%' + value + '%'
         self.cursor.execute(query, value)
@@ -131,21 +132,21 @@ class Library:
         self.cursor.execute(query, (bookID, genre))
         self.database.connectionHead.commit()
 
-    def addBookCopy(self, ISBN, floor , section , shelfNumber, copyID):
-        bookID = self.getBooksBy("ISBN",ISBN)[0].BookID
-        #insert to location table
+    def addBookCopy(self, ISBN, floor, section, shelfNumber, copyID):
+        bookID = self.getBooksBy("ISBN", ISBN)[0].BookID
+        # insert to location table
         query = "INSERT INTO location (floor, section, shelfNumber) VALUES (?, ?, ?)"
-        self.cursor.execute(query, (floor , section , shelfNumber))
+        self.cursor.execute(query, (floor, section, shelfNumber))
         self.database.connectionHead.commit()
-        #get location ID
-        locationID = self.getLocationID(floor , section , shelfNumber)[0][0]
+        # get location ID
+        locationID = self.getLocationID(floor, section, shelfNumber)[0][0]
         query = "INSERT INTO bookCopy (copyID, bookID, locationID) VALUES (?, ?, ?)"
         self.cursor.execute(query, (copyID, bookID, locationID))
         self.database.connectionHead.commit()
 
-    def getLocationID(self, floor , section , shelfNumber):
+    def getLocationID(self, floor, section, shelfNumber):
         query = "SELECT locationID FROM location WHERE floor = ? AND section = ? AND shelfNumber = ?"
-        self.cursor.execute(query, (floor , section , shelfNumber))
+        self.cursor.execute(query, (floor, section, shelfNumber))
         return self.cursor.fetchall()
 # you can use DBHead like the following (not real code):
 
