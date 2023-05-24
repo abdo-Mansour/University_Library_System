@@ -36,14 +36,33 @@ class AdminMenu(ttk.Frame):
         add_book_button = ttk.Button(self, text="Add Book", command=lambda: self.app.show_frame("AddBook"))
         add_book_button.grid(row=2, column=0, padx=0, pady=10)
 
-        signup_new_user_button = ttk.Button(self, text="Sign Up New User / Admin",
-                                            command=lambda: self.app.show_frame("AddUser"))
+        signup_new_user_button = ttk.Button(self, text="Sign Up New User / Admin", command=lambda: self.app.show_frame("AddUser"))
         signup_new_user_button.grid(row=2, column=1, padx=0, pady=10)
+
+        add_book_button = ttk.Button(self, text="Delete User", command=lambda: self.app.show_frame("DeleteUser"))
+        add_book_button.grid(row=2, column=2, padx=0, pady=10)
+
+        # Row 3
+        add_book_button = ttk.Button(self, text="Book Location", command=lambda: self.app.show_frame("BookLocation"))
+        add_book_button.grid(row=3, column=0, padx=0, pady=10)
 
         update_book_button = ttk.Button(self, text="Update Book Details",
                                         command=lambda: self.app.show_frame("UpdateBookDetails"))
-        update_book_button.grid(row=2, column=2, padx=0, pady=10)
+        update_book_button.grid(row=3, column=1, padx=0, pady=10)
 
-        # Row 3
+
+        add_book_button = ttk.Button(self, text="Delete Book", command=lambda: self.app.show_frame("DeleteBook"))
+        add_book_button.grid(row=3, column=2, padx=0, pady=10)
+
+        # Row 4
         add_book_button = ttk.Button(self, text="Statistics (Report)", command=lambda: self.app.show_frame("Report"))
-        add_book_button.grid(row=3, column=1, padx=0, pady=10)
+        add_book_button.grid(row=4, column=1, padx=0, pady=10)
+
+        # Row 5
+        add_book_button = ttk.Button(self, text="Log Out", command=self.log_out)
+        add_book_button.grid(row=5, column=1, padx=0, pady=10)
+
+
+
+    def log_out(self):
+        pass
