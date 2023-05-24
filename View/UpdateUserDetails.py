@@ -69,7 +69,7 @@ class UpdateUserDetails(ttk.Frame):
             entry.delete(0, tk.END)
             if key == "sex":
                 sex_value = user_details.get(key, "")
-                sex_text = "Male" if sex_value == 1 else "Female"
+                sex_text = "Male" if sex_value == 0 else "Female"
                 entry.insert(0, sex_text)
             
             else:
@@ -86,9 +86,9 @@ class UpdateUserDetails(ttk.Frame):
                 updated_details.append(user_id)
             elif key == "sex":
                 if entry.get() == "Male":
-                    updated_details.append(1)
-                else:
                     updated_details.append(0)
+                else:
+                    updated_details.append(1)
             elif key == "isAdmin":
                 if entry.get() == "Yes":
                     updated_details.append(1)
