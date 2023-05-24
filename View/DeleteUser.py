@@ -40,3 +40,5 @@ class DeleteUser(ttk.Frame):
             else:
                 showinfo("Error", "User not found")
 
+    def go_back(self):
+        pass

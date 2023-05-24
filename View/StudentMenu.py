@@ -9,7 +9,7 @@ class StudentMenu(ttk.Frame):
         self.controller = controller
         self.app = app
 
-        message = Label(self, text="Hello, Student! How may I server you ?")
+        message = Label(self, text="Hello, Student! How may I serve you ?")
         message.pack(pady=(200, 0))
 
         button_frame = ttk.Frame(self)

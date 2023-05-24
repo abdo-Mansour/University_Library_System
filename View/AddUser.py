@@ -106,3 +106,6 @@ class AddUser(ttk.Frame):
             self.go_back()
         else:
             showinfo("Error", "Something went wrong")
+     
+    def go_back(self):
+        pass

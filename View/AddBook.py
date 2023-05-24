@@ -179,3 +179,6 @@ class AddBook(ttk.Frame):
         else:
             showinfo("Error", "Something went wrong")
         pass
+
+    def go_back(self):
+        pass
