@@ -23,9 +23,9 @@ class UpdateBookDetails(ttk.Frame):
         self.show_info_label.grid(row=0, column=0, columnspan=2, pady=10)
 
         ttk.Label(self, text="ISBN", font=("Helvetica", 14, 'bold')).grid(
-            row=1, column=0, padx=10, pady=5, sticky=tk.E)
+            row=1, column=0, padx=(230,0), pady=5, sticky=tk.W)
         self.isbn_entry = ttk.Entry(self, width=30)
-        self.isbn_entry.grid(row=1, column=1, padx=10, pady=5, sticky=tk.W)
+        self.isbn_entry.grid(row=1, column=1, padx=(0,210), pady=5, sticky=tk.E)
 
         self.book_info_entries = {}
         self.create_book_info_table()
@@ -34,10 +34,10 @@ class UpdateBookDetails(ttk.Frame):
         search_button.grid(row=2, column=0, columnspan=2, pady=10)
 
         save_button = ttk.Button(self, text="Save Changes", command=self.save_changes)
-        save_button.grid(row=3, column=0, padx=5, pady=20, sticky=tk.E)
+        save_button.grid(row=16, column=0, padx=(260,5), pady=20, sticky=tk.W)
 
         button_back = ttk.Button(self, text="Back", command=lambda: self.app.show_frame("AdminMenu"))
-        button_back.grid(row=3, column=1, padx=5, pady=20, sticky=tk.W)
+        button_back.grid(row=16, column=1, padx=5, pady=20, sticky=tk.W)
 
     def create_book_info_table(self):
         book_info_labels = {
@@ -48,16 +48,16 @@ class UpdateBookDetails(ttk.Frame):
             "Language": "Language",
             "Description": "Description",
             "Publisher": "Publisher",
-            "MinAgeToRead": "Minimum Age to Read",
+            "MinAgeToRead": "Minimum Age",
             "PublicationYear": "Publication Year"
         }
 
         row = 4
         for key, label_text in book_info_labels.items():
             ttk.Label(self, text=label_text, font=("Helvetica", 14, 'bold')).grid(
-                row=row, column=0, padx=10, pady=5, sticky=tk.E)
+                row=row, column=0, padx=(230,5), pady=5, sticky=tk.W)
             entry = ttk.Entry(self, width=30)
-            entry.grid(row=row, column=1, padx=10, pady=5, sticky=tk.W)
+            entry.grid(row=row, column=1, padx=(20,210), pady=5, sticky=tk.E)
             self.book_info_entries[key] = entry
             row += 1
 
