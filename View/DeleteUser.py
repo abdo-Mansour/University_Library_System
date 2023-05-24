@@ -40,6 +40,7 @@ class DeleteUser(ttk.Frame):
             showinfo("Invalid Input", "Please fill the field with correct email")
         else:
             if(self.controller.deleteUser(email)):
+                self.app.frames["Report"].refresh_report()
                 showinfo("Success", "User deleted successfully")
             else:
                 showinfo("Error", "User not found")
