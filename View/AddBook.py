@@ -170,6 +170,7 @@ class AddBook(ttk.Frame):
         data = [book_title, isbn, page_count, language, description, publisher, min_age, publication_year]
 
         if self.controller.addBook(data):
+            self.controller.addBookGenre(isbn, genre)
             self.app.frames["Browse"].refreshList()
             self.app.frames["Report"].refresh_report()
             showinfo("Success", "Book added successfully")

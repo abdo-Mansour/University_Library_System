@@ -257,6 +257,12 @@ class Controller:
             print("Sorry you're not an admin")
             return False
 
+    def addBookGenre(self, ISBN, genre):
+        if self.loggedIn and self.isAdmin:
+            self.Library.addBookGenre(ISBN, genre)
+        else:
+            print("Sorry you're not an admin")
+            return False
     # def borrowBook(self, ISBN, copyID , userID): #TODO:
     #     pass
 
