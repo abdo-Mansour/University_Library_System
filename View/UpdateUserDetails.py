@@ -14,7 +14,7 @@ class UpdateUserDetails(ttk.Frame):
         self.show_info_label = ttk.Label(
             self, text='Update User Details', font=("Helvetica", 18, 'bold'), anchor="center")
         self.show_info_label.grid(
-            row=0, column=0, columnspan=2, pady=10, sticky='we')
+            row=0, column=0, columnspan=2,padx=(280), pady=10, sticky='we')
 
         self.user_info_entries = {}
 
@@ -23,7 +23,7 @@ class UpdateUserDetails(ttk.Frame):
             self.ShowUserInfo()
 
         ttk.Button(self, text="Save Changes", command=self.save_changes).grid(
-            row=15, column=0, padx=5, pady=20, sticky=tk.E)
+            row=15, column=0, padx=(220,5), pady=20, sticky=tk.W)
 
         ttk.Button(self, text="Back", command=self.back).grid(
             row=15, column=1, padx=5, pady=20, sticky=tk.W)
@@ -47,7 +47,7 @@ class UpdateUserDetails(ttk.Frame):
         row = 1
         for key, label_text in user_info_labels.items():
             ttk.Label(self, text=label_text, font=("Helvetica", 14, 'bold')).grid(
-                row=row, column=0, padx=10, pady=5, sticky=tk.W)
+                row=row, column=0, padx=(210,10), pady=5, sticky=tk.W)
             entry = ttk.Entry(self, width=30)
 
             if key == "ID":
