@@ -82,13 +82,13 @@ class SearchBook(ttk.Frame):
         y = 50
 
         for i in range(len(self.bookList)):
-            label = Label(self.bookListView, text=str(i + 1) + ")\nBook title: " +
+            label = ttk.Label(self.bookListView, text=str(i + 1) + ")\nBook title: " +
                           self.bookList[i]['Title'] + '\n' + "ISBN: " + str(self.bookList[i]['ISBN']) + '\n', font=("Courier", 15))
             self.bookViewLables.append(label)
             self.bookListView.create_window(0, y, window=label, anchor='w')
             y += 100
-
-        scrollbar = tk.Scrollbar(
+        
+        scrollbar = ttk.Scrollbar(
             self.bookListView, orient='vertical', command=self.bookListView.yview)
         scrollbar.place(relx=1, rely=0, relheight=1, anchor='ne')
         self.bookListView.config(yscrollcommand=scrollbar.set,

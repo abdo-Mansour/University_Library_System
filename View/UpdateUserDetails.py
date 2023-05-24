@@ -23,9 +23,10 @@ class UpdateUserDetails(ttk.Frame):
         button_back.grid(row=15, column=0, columnspan=2, pady=30, sticky=tk.W)
 
         self.user_info_entries = {}
-        self.create_user_info_table()
 
-        self.ShowUserInfo()
+        if(self.controller.Person != None):
+            self.create_user_info_table()
+            self.ShowUserInfo()
 
     def create_user_info_table(self):
         user_info_labels = {
@@ -47,8 +48,7 @@ class UpdateUserDetails(ttk.Frame):
             entry = ttk.Entry(self, width=30)
 
             if key == "ID":
-                self.controller.login(
-                    "user3@example.com", "02829fb05c3076ec5a6caebd12477dec", 0)
+    
                 user_details = self.controller.getUserDetails()
                 user_id = user_details['id']
 
