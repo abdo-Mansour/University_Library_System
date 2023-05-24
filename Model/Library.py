@@ -73,6 +73,7 @@ class Library:
         tempTuple = tuple(valuesList)
         self.cursor.execute(query, tempTuple)
         self.database.connectionHead.commit()
+        return True
 
     def getBookCopyLocation(self, bookID, copyID):
         query = "SELECT location.* FROM location, bookCopy WHERE bookCopy.bookID = ? AND bookCopy.copyID = ? AND bookCopy.locationID = location.locationID"

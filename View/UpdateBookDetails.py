@@ -1,10 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
+from Controller.Controller import Controller
 
 
 class UpdateBookDetails(ttk.Frame):
-    def __init__(self, parent, app, controller):
+    def __init__(self, parent, app, controller: Controller):
         ttk.Frame.__init__(self, parent)
         self.style = ttk.Style(self)
         self.controller = controller
