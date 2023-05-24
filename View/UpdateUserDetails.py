@@ -100,7 +100,7 @@ class UpdateUserDetails(ttk.Frame):
 
         # Call the controller function to save the updated details
         if(self.controller.updateUserDetails(updated_details)):
-            self.app.frames["Report"].refresh_report()
+            # self.app.frames["Report"].refresh_report()
             showinfo("Success", "User details updated successfully")
         else:
             showinfo("Error", "Failed to update user details")

@@ -37,7 +37,7 @@ class DeleteBook(ttk.Frame):
         else:
             if (self.controller.deleteBook(isbn)):
                 # self.app.frames["Browse"].refreshList()
-                self.app.frames["Report"].refresh_report()
+                # self.app.frames["Report"].refresh_report()
                 showinfo("Success", "Book deleted successfully")
             else:
                 showinfo("Error", "Book not found")

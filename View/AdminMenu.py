@@ -52,7 +52,7 @@ class AdminMenu(ttk.Frame):
         add_book_button.grid(row=3, column=2, padx=0, pady=10)
 
         # Row 4
-        add_book_button = ttk.Button(self, text="Statistics (Report)", command=lambda: self.app.show_frame("Report"))
+        add_book_button = ttk.Button(self, text="Statistics (Report)", command=self.report)
         add_book_button.grid(row=4, column=1, padx=0, pady=10)
 
         # Row 5
@@ -62,6 +62,10 @@ class AdminMenu(ttk.Frame):
     def log_out(self):
         self.controller.Person = None
         self.app.show_frame("Login")
+
+    def report(self):
+        self.app.frames["Report"].refresh_report()
+        command = self.app.show_frame("Report")
 
     def browse(self):
         self.app.frames["Browse"].refreshList()

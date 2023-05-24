@@ -98,7 +98,7 @@ class UpdateBookDetails(ttk.Frame):
 
         if(self.controller.updateBookDetails(updated_details)):
             # self.app.frames["Browse"].refreshList()
-            self.app.frames["Report"].refresh_report()
+            # self.app.frames["Report"].refresh_report()
             
             showinfo("Success", "Book details updated successfully")
         else:
