@@ -32,14 +32,14 @@ class Report(ttk.Frame):
 
         self.number_of_spaces_in_tables = 40
 
-        self.genreList = tk.Listbox(self, width=self.number_of_spaces_in_tables + 20, font=18, height=6)
+        self.genre_list = tk.Listbox(self, width=self.number_of_spaces_in_tables + 20, font=18, height=6)
 
         # for i in self.report["nBooksForEveryGenre"]:
         #     first_part = str(i[0]) + ": "
         #     line_content = first_part + str(i[1])
         #     self.genreList.insert(tk.END, line_content)
 
-        self.genreList.place(x=5, y=240, anchor="w")
+        self.genre_list.place(x=5, y=240, anchor="w")
 
         language_table_header_label = Label(self,
                                             text=f"Language: Number Of books of that Language",
@@ -69,13 +69,13 @@ class Report(ttk.Frame):
         self.nbooks_label.config(text=f"Total Number Of Books: {self.report['nBooks']}")
         self.nstudents_label.config(text=f"Total Number Of Students: {self.report['nStudents']}", font=18)
 
-        self.genreList.delete(0, END)
+        self.genre_list.delete(0, END)
         self.language_list.delete(0, END)
 
         for i in self.report["nBooksForEveryGenre"]:
             first_part = str(i[0]) + ": "
             line_content = first_part + str(i[1])
-            self.genreList.insert(tk.END, line_content)
+            self.genre_list.insert(tk.END, line_content)
 
         for i in self.report["nBooksForEveryLang"]:
             first_part = str(i[0]) + ": "
