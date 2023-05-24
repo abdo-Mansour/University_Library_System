@@ -38,3 +38,7 @@ class StudentMenu(ttk.Frame):
 
     def search_book(self):
         command = self.app.show_frame("SearchBook")
+    
+    def log_out(self):
+        self.controller.Person = None
+        command = self.app.show_frame("Login")
