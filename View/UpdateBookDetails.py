@@ -79,7 +79,6 @@ class UpdateBookDetails(ttk.Frame):
                         entry.insert(0, ISBN)
                         entry.config(state="disabled")
                     else:
-                        entry.delete(0, tk.END)
                         entry.insert(tk.END, book_info.get(key, ""))
         else:
             showinfo("Error", "Book not found")
@@ -91,7 +90,7 @@ class UpdateBookDetails(ttk.Frame):
             self.book_info_entries["PageCount"].get(),
             self.isbn_entry.get(),
             self.book_info_entries["Language"].get(),
-            self.book_info_entries["Description"].get(),
+            self.book_info_entries["Description"].get("1.0", tk.END).strip(),
             self.book_info_entries["Publisher"].get(),
             self.book_info_entries["MinAgeToRead"].get(),
             self.book_info_entries["PublicationYear"].get()
