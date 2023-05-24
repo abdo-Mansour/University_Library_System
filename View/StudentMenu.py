@@ -28,6 +28,7 @@ class StudentMenu(ttk.Frame):
         add_book_button.pack(pady=10)
 
     def browse(self):
+        self.app.frames["Browse"].refreshList()
         command = self.app.show_frame("Browse")
 
     def update_user_details(self):
