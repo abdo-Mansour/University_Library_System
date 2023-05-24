@@ -254,17 +254,15 @@ class Controller:
             self.Library.addBookGenre(ISBN, genre)
         else:
             return False
-<<<<<<< HEAD
+
     
     def addBookCopy(self, ISBN, floor , section , shelfNumber , copyID):
         if self.loggedIn:
             self.Library.addBookCopy(ISBN, floor , section , shelfNumber , copyID)
         else:
             return False
-    
-=======
 
->>>>>>> 8ad128c244d678e5212495fb07ff120171740ca7
+
     # def borrowBook(self, ISBN, copyID , userID): #TODO:
     #     pass
 
