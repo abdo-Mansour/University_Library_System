@@ -72,6 +72,7 @@ class UpdateBookDetails(ttk.Frame):
                 # Assuming there's only one book with the given ISBN
                 book_info = book_info_list[0]
                 for key, entry in self.book_info_entries.items():
+                    entry.delete('0', tk.END)
                     if key == "BookID":
                         entry.insert(0, bookID)
                         entry.config(state="disabled")
