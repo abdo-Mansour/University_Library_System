@@ -49,7 +49,6 @@ class Database:
             # confirmation message
             print("Connected to Database")
         except Exception as e:
-            print(e)
             print("Connection To Data Base failed, make sure you have internet connection.")
             sys.exit(0)
 

@@ -10,4 +10,3 @@ class Person:
         self.email = email
         self.password = password
         self.id = id
-

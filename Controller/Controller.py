@@ -1,6 +1,5 @@
 # Warning: MVC Pattern is applied here, DO NOT RETURN BOOK Object for example
 # Only Pass data to viewer, not objects
-# ALL PRINT STATEMENTS MUST BE REMOVED
 
 
 from Model.Person import Person
@@ -25,9 +24,7 @@ class Controller:
             self.Person = self.auth.returnPersonData(email, password)
 
             self.isAdmin = True if self.Person.isAdmin else False
-            print(self.Person.isAdmin)
-            # print(self.isAdmin)
-            # checks if the user is an admin or notS
+            # checks if the user is an admin or not
             if ((self.isAdmin == False and isAdmin == True) or (self.isAdmin == True and isAdmin == False)):
                 return False
 
@@ -70,7 +67,7 @@ class Controller:
                 # This should be displayed to the user as no books found
                 return False
         else:
-            print("You're not logged in")
+            return False
 
     def getNBooks(self):              # SEMI DONE
         # return a list of book dictionaries
@@ -94,9 +91,9 @@ class Controller:
                     data.append(bookDic)
                 return data
             except:
-                print("Error getting data")
+                return False
         else:
-            print("You're not logged in")
+            return False
 
     def getAllBooks(self):
         if self.loggedIn:
@@ -117,16 +114,16 @@ class Controller:
                     data.append(bookDic)
                 return data
             except:
-                print("Error getting data")
+                return False
         else:
-            print("You're not logged in")
+            return False
 
     def getUserDetails(self):               # DONE
         if self.loggedIn:
             # Returns all data of user as a dictionary for view to use
             return self.Person.__dict__
         else:
-            print("You're not logged in")
+            return False
 
     def getLocation(self, bookID, copyID):          # DONE
         # returns location of the book as dictionary
@@ -135,9 +132,9 @@ class Controller:
                 location = self.Library.getBookCopyLocation(bookID, copyID)
                 return location.__dict__
             except:
-                print("Error retrieving book data")
+                return False
         else:
-            print("You're not logged in")
+            return False
 
     def updateUserDetails(self, personInfo):  # DONE
         if self.loggedIn:
@@ -158,7 +155,7 @@ class Controller:
             else:
                 return False
         else:
-            print("Sorry you're not an admin")
+            return False
 
     # Functions related to Admin Only Use
     def addUser(self, userInfo):      # DONE
@@ -180,7 +177,6 @@ class Controller:
             else:
                 return False
         else:
-            print("Sorry you're not an admin")
             return False
 
     def addBook(self, listOfBookDetails):   # DONE
@@ -199,10 +195,9 @@ class Controller:
                 self.Library.addBook(book)
                 return True
             except:
-                print("Failed to add book to database")
                 return False
         else:
-            print("Sorry you're not an admin")
+            return False
 
     def updateBookDetails(self, bookInfo):  # DONE
         if self.loggedIn and self.isAdmin:
@@ -224,10 +219,9 @@ class Controller:
                 else:
                     return False
             except:
-                print("Error updating book details")
                 return False
         else:
-            print("Sorry you're not an admin")
+            return False
 
     def generateStatisticsReport(self):
         report = {"nBooks": int(self.Library.getNoOfBooks()[0][0]),
@@ -243,7 +237,6 @@ class Controller:
             else:
                 return False
         else:
-            print("Sorry you're not an admin")
             return False
 
     def deleteUser(self, userEmail):
@@ -254,15 +247,14 @@ class Controller:
             else:
                 return False
         else:
-            print("Sorry you're not an admin")
             return False
 
     def addBookGenre(self, ISBN, genre):
         if self.loggedIn and self.isAdmin:
             self.Library.addBookGenre(ISBN, genre)
         else:
-            print("Sorry you're not an admin")
             return False
+    
     # def borrowBook(self, ISBN, copyID , userID): #TODO:
     #     pass
 

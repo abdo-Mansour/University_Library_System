@@ -10,7 +10,6 @@ class UpdateBookDetails(ttk.Frame):
         self.style = ttk.Style(self)
         self.controller = controller
         self.app = app
-        print("UpdateBookDetails.__init__")
 
         # Configure grid weights
         self.grid_rowconfigure(0, weight=1)
@@ -65,9 +64,7 @@ class UpdateBookDetails(ttk.Frame):
     def search_book(self):
         isbn = self.isbn_entry.get()
         book_info_list = self.controller.getBooksBy("ISBN", isbn)
-        
-        print(book_info_list[0])
-        
+                
         if book_info_list:
             # Assuming there's only one book with the given ISBN
             book_info = book_info_list[0]
