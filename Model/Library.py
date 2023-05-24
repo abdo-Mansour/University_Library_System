@@ -43,22 +43,16 @@ class Library:
         query = "SELECT * FROM book ORDER BY bookID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;"
         self.cursor.execute(query, (offset, N))
         return self.bookDataParse()
-    
+
     def getAllBooks(self):
         query = "SELECT * FROM book"
         self.cursor.execute(query)
         return self.bookDataParse()
-    
+
     def addBook(self, book):
         attributes = ['Title', 'PageCount', 'ISBN', 'Language',
                       'Description', 'Publisher', 'MinAgeToRead', 'PublicationYear']
-        query = "INSERT INTO book ("
-        for i in range(len(attributes)):
-            query += attributes[i]
-            if i < len(attributes) - 1:
-                query += ', '
-            else:
-                query += ') '
+        query = "INSERT INTO book (Title, PageCount, ISBN, Language, Description, Publisher, MinimumAgeToRead, PublicationYear)"
         query += "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)"
         valuesList = []
         for i in range(len(attributes)):
@@ -104,6 +98,7 @@ class Library:
         self.cursor.execute(query, userEmail)
         self.database.connectionHead.commit()
         return True
+
     def getNoOfBooks(self):
         query = "select count(*) from book"
         self.cursor.execute(query)
