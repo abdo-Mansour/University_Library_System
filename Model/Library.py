@@ -122,6 +122,11 @@ class Library:
         cursor.execute(query)
         return cursor.fetchall()
 
+    def addBookGenre(self, ISBN, genre):
+        bookID = self.getBooksBy("ISBN",ISBN)[0].BookID
+        query = "INSERT INTO bookGenre (bookID, genre) VALUES (?, ?)"
+        self.cursor.execute(query, (bookID, genre))
+        self.database.connectionHead.commit()
 # you can use DBHead like the following (not real code):
 
 # try:
