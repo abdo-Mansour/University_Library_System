@@ -66,4 +66,4 @@ class AdminMenu(ttk.Frame):
 
     def log_out(self):
         self.controller.Person = None
-        command = self.app.show_frame("Login")
+        self.app.show_frame("Login")
