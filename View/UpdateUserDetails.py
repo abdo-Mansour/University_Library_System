@@ -8,22 +8,21 @@ class UpdateUserDetails(ttk.Frame):
         self.style = ttk.Style(self)
         self.controller = controller
         self.app = app
-        # print("UpdateUserDetails.__init__")
-        # styles
-
-        # widgets
 
         # show User info
         self.show_info_label = ttk.Label(
-            self, text='Update User Details', font=("Helvetica", 18, 'bold'))
+            self, text='Update User Details', font=("Helvetica", 18, 'bold'), anchor="center")
         self.show_info_label.grid(
-            row=0, column=0, columnspan=2, pady=10, sticky=tk.W)
-
-        button_back = ttk.Button(self, text="Back", command=self.back)
-        button_back.grid(row=15, column=0, columnspan=2, pady=30, sticky=tk.W)
+            row=0, column=0, columnspan=2, pady=10, sticky='we')
 
         self.user_info_entries = {}
         self.create_user_info_table()
+
+        ttk.Button(self, text="Save Changes", command=self.save_changes).grid(
+            row=15, column=0, padx=5, pady=20, sticky=tk.E)
+
+        ttk.Button(self, text="Back", command=self.back).grid(
+            row=15, column=1, padx=5, pady=20, sticky=tk.W)
 
         self.ShowUserInfo()
 
@@ -58,9 +57,6 @@ class UpdateUserDetails(ttk.Frame):
             entry.grid(row=row, column=1, padx=10, pady=5, sticky=tk.W)
             self.user_info_entries[key] = entry
             row += 1
-
-        ttk.Button(self, text="Save Changes", command=lambda: self.save_changes).grid(
-            row=row, column=0, columnspan=2, pady=20)
 
     def ShowUserInfo(self):
         user_details = self.controller.getUserDetails()
