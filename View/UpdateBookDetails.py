@@ -10,27 +10,33 @@ class UpdateBookDetails(ttk.Frame):
         self.app = app
         print("UpdateBookDetails.__init__")
 
+        # Configure grid weights
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_rowconfigure(1, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=1)
+
         # Widgets
         self.show_info_label = ttk.Label(
             self, text='Update Book Details', font=("Helvetica", 18, 'bold'))
-        self.show_info_label.grid(
-            row=0, column=0, columnspan=2, pady=10, sticky=tk.W)
+        self.show_info_label.grid(row=0, column=0, columnspan=2, pady=10)
 
+        ttk.Label(self, text="ISBN", font=("Helvetica", 14, 'bold')).grid(
+            row=1, column=0, padx=10, pady=5, sticky=tk.E)
         self.isbn_entry = ttk.Entry(self, width=30)
         self.isbn_entry.grid(row=1, column=1, padx=10, pady=5, sticky=tk.W)
-        ttk.Label(self, text="ISBN", font=("Helvetica", 14, 'bold')).grid(
-            row=1, column=0, padx=10, pady=5, sticky=tk.W)
 
         self.book_info_entries = {}
         self.create_book_info_table()
 
-        ttk.Button(self, text="Search", command=self.search_book).grid(
-            row=2, column=0, columnspan=2, pady=10)
-        ttk.Button(self, text="Save Changes", command=self.save_changes).grid(
-            row=3, column=0, columnspan=2, pady=20)
+        search_button = ttk.Button(self, text="Search", command=self.search_book)
+        search_button.grid(row=2, column=0, columnspan=2, pady=10)
 
-        button_back = ttk.Button(self, text="Back", command=lambda: self.app.show_frame("AdminMenu")) # might be an error here, check if self is right and not ttk.Frame(self)
-        button_back.grid(row=15, column=0, columnspan=2, pady=10)
+        save_button = ttk.Button(self, text="Save Changes", command=self.save_changes)
+        save_button.grid(row=3, column=0, padx=5, pady=20, sticky=tk.E)
+
+        button_back = ttk.Button(self, text="Back", command=lambda: self.app.show_frame("AdminMenu"))
+        button_back.grid(row=3, column=1, padx=5, pady=20, sticky=tk.W)
 
     def create_book_info_table(self):
         book_info_labels = {
@@ -48,7 +54,7 @@ class UpdateBookDetails(ttk.Frame):
         row = 4
         for key, label_text in book_info_labels.items():
             ttk.Label(self, text=label_text, font=("Helvetica", 14, 'bold')).grid(
-                row=row, column=0, padx=10, pady=5, sticky=tk.W)
+                row=row, column=0, padx=10, pady=5, sticky=tk.E)
             entry = ttk.Entry(self, width=30)
             entry.grid(row=row, column=1, padx=10, pady=5, sticky=tk.W)
             self.book_info_entries[key] = entry
