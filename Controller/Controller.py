@@ -152,7 +152,11 @@ class Controller:
                 email=personInfo[7],
                 password=personInfo[8]
             )
-            self.auth.updatePerson(updatedPerson)
+            
+            if(self.auth.updatePerson(updatedPerson)):
+                return True
+            else:
+                return False
         else:
             print("Sorry you're not an admin")
 
@@ -215,9 +219,13 @@ class Controller:
                     PublicationYear=bookInfo[8]
                 )
 
-                self.Library.updateBookDetails(book)
+                if(self.Library.updateBookDetails(book)):
+                    return True
+                else:
+                    return False
             except:
                 print("Error updating book details")
+                return False
         else:
             print("Sorry you're not an admin")
 

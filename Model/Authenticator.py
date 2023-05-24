@@ -90,4 +90,5 @@ class Authenticator:
         self.database.connectionHead.commit()
 
         print("Person has been Updated Successfully")
+        return True
 
