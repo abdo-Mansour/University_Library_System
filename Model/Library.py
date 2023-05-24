@@ -139,8 +139,8 @@ class Library:
         self.database.connectionHead.commit()
         #get location ID
         locationID = self.getLocationID(floor , section , shelfNumber)[0][0]
-        query = "INSERT INTO bookCopy (copyID, bookID, locationID) VALUES (?, ?, ?)"
-        self.cursor.execute(query, (copyID, bookID, locationID))
+        query = "INSERT INTO bookCopy (bookID, locationID) VALUES (?, ?)"
+        self.cursor.execute(query, (bookID, locationID))
         self.database.connectionHead.commit()
 
     def getLocationID(self, floor , section , shelfNumber):
