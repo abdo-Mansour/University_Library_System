@@ -24,6 +24,9 @@ class StudentMenu(ttk.Frame):
         show_books_button = ttk.Button(button_frame, text="Show Books Based On Criteria", command=self.search_book)
         show_books_button.pack(pady=10)
 
+        show_books_button = ttk.Button(button_frame, text="Search About Book Location", command=lambda: self.app.show_frame("BookLocation"))
+        show_books_button.pack(pady=10)
+
         add_book_button = ttk.Button(self, text="Log Out", command=self.log_out)
         add_book_button.pack(pady=10)
 
