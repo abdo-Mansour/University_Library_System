@@ -56,7 +56,10 @@ class UpdateBookDetails(ttk.Frame):
         for key, label_text in book_info_labels.items():
             ttk.Label(self, text=label_text, font=("Helvetica", 14, 'bold')).grid(
                 row=row, column=0, padx=10, pady=5, sticky=tk.E)
-            entry = ttk.Entry(self, width=30)
+            if key == "Description":
+                entry = tk.Text(self, width=30, height=5)
+            else:
+                entry = ttk.Entry(self, width=30)
             entry.grid(row=row, column=1, padx=10, pady=5, sticky=tk.W)
             self.book_info_entries[key] = entry
             row += 1
@@ -79,7 +82,6 @@ class UpdateBookDetails(ttk.Frame):
                         entry.insert(0, ISBN)
                         entry.config(state="disabled")
                     else:
-                        entry.delete(0, tk.END)
                         entry.insert(tk.END, book_info.get(key, ""))
         else:
             showinfo("Error", "Book not found")
@@ -91,7 +93,7 @@ class UpdateBookDetails(ttk.Frame):
             self.book_info_entries["PageCount"].get(),
             self.isbn_entry.get(),
             self.book_info_entries["Language"].get(),
-            self.book_info_entries["Description"].get(),
+            self.book_info_entries["Description"].get("1.0", tk.END).strip(),
             self.book_info_entries["Publisher"].get(),
             self.book_info_entries["MinAgeToRead"].get(),
             self.book_info_entries["PublicationYear"].get()
