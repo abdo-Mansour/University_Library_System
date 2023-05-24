@@ -26,9 +26,6 @@ class DeleteUser(ttk.Frame):
 
         button_delete_user = ttk.Button(button_frame, text="Delete User", command=self.delete_user)
         button_delete_user.pack(side="left", padx=10)
-    
-        button_back = ttk.Button(button_frame, text="Back", command=self.go_back)
-        button_back.pack(side="left", padx=10)
 
         button_back = ttk.Button(button_frame, text="Back", command=lambda: self.app.show_frame("AdminMenu"))
         button_back.pack(side="left", padx=10)
