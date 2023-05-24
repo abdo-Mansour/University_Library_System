@@ -42,18 +42,18 @@ class App(tk.Tk):
         self.controller = controller
 
         # creating a container
-        self.container = ttk.Frame(self)
+        container = ttk.Frame(self)
         # set width and height
-        self.container.config(width=1000, height=580)
-        self.container.pack(side="top", fill="both", expand=True)
+        container.config(width=1000, height=580)
+        container.pack(side="top", fill="both", expand=True)
 
-        self.container.grid_rowconfigure(0, weight=1)
-        self.container.grid_columnconfigure(0, weight=1)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
         for F in (Login, Report, Browse, UpdateUserDetails, UpdateBookDetails, SearchBook, AddBook, AddUser, StudentMenu, AdminMenu):
             page_name = F.__name__
-            frame = F(parent=self.container, app=self, controller=self.controller)
+            frame = F(parent=container, app=self, controller=self.controller)
             self.frames[page_name] = frame
 
             # put all of the pages in the same location;
@@ -66,29 +66,13 @@ class App(tk.Tk):
     # parameter
 
     def show_frame(self, cont):
-        print("I am trying to show frame " + cont)
+        # print("I am trying to show frame " + cont)
         frame = self.frames[cont]
         frame.tkraise()
+
     # to display the current frame passed as
     # parameter
 
-    def printName(self):
-        print("App.py")
+    # def printName(self):
+    #     print("App.py")
 
-    # def create_if_doesnt_exist(self, name_of_frame):
-    #     if(name_of_frame not in self.frames):
-    #         frame = self.frameClasses[name_of_frame](parent= self.container, app=self, controller=self.controller)
-    #         self.frames[name_of_frame] = frame 
-        
-    
-    # def destroy_frame(self, name_of_frame):
-    #     self.frames[name_of_frame].grid_forget()
-    
-
-    # def show_frame(self, cont):
-    #     print("I am trying to show frame " + cont)
-    #     frame = self.frames[cont]
-    #     frame.tkraise()
-
-
-# first window frame startpage

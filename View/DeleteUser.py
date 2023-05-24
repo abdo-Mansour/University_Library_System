@@ -30,6 +30,9 @@ class DeleteUser(ttk.Frame):
         button_back = ttk.Button(button_frame, text="Back", command=self.go_back)
         button_back.pack(side="left", padx=10)
 
+        button_back = ttk.Button(button_frame, text="Back", command=lambda: self.app.show_frame("AdminMenu"))
+        button_back.pack(side="left", padx=10)
+
     def delete_user(self):
         email = self.entry_email.get()
 

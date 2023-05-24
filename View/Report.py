@@ -41,10 +41,8 @@ class Report(ttk.Frame):
             genreList.insert(tk.END, line_content)
         genreList.place(x=5, y=240, anchor="w")
 
-
-
         language_table_header_label = Label(self,
-                                            text=f"Langue: Number Of books of that Languge",
+                                            text=f"Language: Number Of books of that Language",
                                             font=18)
         language_table_header_label.place(x=5, y=370, anchor="w")
 
@@ -55,4 +53,11 @@ class Report(ttk.Frame):
             genreList.insert(tk.END, line_content)
         genreList.place(x=5, y=470, anchor="w")
 
+        button_back = ttk.Button(self, text="Back", command=self.back)
+        button_back.place(x=5, y=550, anchor="w")
 
+    def back(self):
+        if self.controller.isAdmin:
+            command = self.app.show_frame("AdminMenu")
+        else:
+            command = self.app.show_frame("StudentMenu")
