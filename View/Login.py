@@ -48,6 +48,7 @@ class Login(ttk.Frame):
             # self.app.show_frame("")
             self.app.frames["UpdateUserDetails"].create_user_info_table()
             self.app.frames["UpdateUserDetails"].ShowUserInfo()
+            self.app.frames["Browse"].refreshList()
             if isAdmin:
                 self.app.show_frame("AdminMenu")
             else:

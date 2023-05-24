@@ -183,14 +183,14 @@ class Controller:
         if self.loggedIn and self.isAdmin:
             try:
                 book = Book(
-                    listOfBookDetails[0],
-                    listOfBookDetails[1],
-                    listOfBookDetails[2],
-                    listOfBookDetails[3],
-                    listOfBookDetails[4],
-                    listOfBookDetails[5],
-                    listOfBookDetails[6],
-                    listOfBookDetails[7]
+                    Title = listOfBookDetails[0],
+                    ISBN = listOfBookDetails[1],
+                    PageCount = listOfBookDetails[2],
+                    Language = listOfBookDetails[3],
+                    Description = listOfBookDetails[4],
+                    Publisher = listOfBookDetails[5],
+                    MinAgeToRead = listOfBookDetails[6],
+                    PublicationYear = listOfBookDetails[7]
                 )
                 self.Library.addBook(book)
                 return True
