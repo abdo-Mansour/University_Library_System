@@ -125,11 +125,11 @@ class Controller:
         else:
             return False
 
-    def getLocation(self, bookID, copyID):          # DONE
+    def getLocation(self, ISBN, copyID):          # DONE
         # returns location of the book as dictionary
         if self.loggedIn:
             try:
-                location = self.Library.getBookCopyLocation(bookID, copyID)
+                location = self.Library.getBookCopyLocation(ISBN, copyID)
                 return location.__dict__
             except:
                 return False
@@ -149,8 +149,8 @@ class Controller:
                 email=personInfo[7],
                 password=personInfo[8]
             )
-            
-            if(self.auth.updatePerson(updatedPerson)):
+
+            if (self.auth.updatePerson(updatedPerson)):
                 return True
             else:
                 return False
@@ -183,14 +183,14 @@ class Controller:
         if self.loggedIn and self.isAdmin:
             try:
                 book = Book(
-                    Title = listOfBookDetails[0],
-                    ISBN = listOfBookDetails[1],
-                    PageCount = listOfBookDetails[2],
-                    Language = listOfBookDetails[3],
-                    Description = listOfBookDetails[4],
-                    Publisher = listOfBookDetails[5],
-                    MinAgeToRead = listOfBookDetails[6],
-                    PublicationYear = listOfBookDetails[7]
+                    Title=listOfBookDetails[0],
+                    ISBN=listOfBookDetails[1],
+                    PageCount=listOfBookDetails[2],
+                    Language=listOfBookDetails[3],
+                    Description=listOfBookDetails[4],
+                    Publisher=listOfBookDetails[5],
+                    MinAgeToRead=listOfBookDetails[6],
+                    PublicationYear=listOfBookDetails[7]
                 )
                 self.Library.addBook(book)
                 return True
@@ -214,7 +214,7 @@ class Controller:
                     PublicationYear=bookInfo[8]
                 )
 
-                if(self.Library.updateBookDetails(book)):
+                if (self.Library.updateBookDetails(book)):
                     return True
                 else:
                     return False
@@ -254,7 +254,7 @@ class Controller:
             self.Library.addBookGenre(ISBN, genre)
         else:
             return False
-    
+
     # def borrowBook(self, ISBN, copyID , userID): #TODO:
     #     pass
 

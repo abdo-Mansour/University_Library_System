@@ -1,5 +1,6 @@
 from tkinter import ttk
 
+
 class BookLocation(ttk.Frame):
     def __init__(self, parent, controller, app):
         ttk.Frame.__init__(self, parent)
@@ -8,7 +9,7 @@ class BookLocation(ttk.Frame):
         self.app = app
         self.locationLabel = ttk.Label()
         # widgets
-        self.bookIDInput = ttk.Entry(self, width=50)
+        self.ISBNInput = ttk.Entry(self, width=50)
         self.bookCopyIDInput = ttk.Entry(self, width=50)
         self.window = self.app
 # ------------------------------------------------------------------------------------
@@ -16,21 +17,21 @@ class BookLocation(ttk.Frame):
             "Helvetica", 17, 'bold'))
         Title.place(relx=0.5, y=10, anchor='center')
 # ------------------------------------------------------------------------------------
-        bookIDLableX = 50
-        bookIDLableY = 130
+        ISBNLableX = 50
+        ISBNLableY = 130
 
-        bookIDLabel = ttk.Label(self, text='Book ID:', font=(
+        ISBNLabel = ttk.Label(self, text='ISBN:', font=(
             "Helvetica", 14, 'bold'))
-        bookIDLabel.place(x=bookIDLableX, y=bookIDLableY, anchor='w')
+        ISBNLabel.place(x=ISBNLableX, y=ISBNLableY, anchor='w')
 # ------------------------------------------------------------------------------------
-        bookIDInputX = bookIDLableX + 140
-        bookIDInputY = bookIDLableY - 9
+        ISBNInputX = ISBNLableX + 140
+        ISBNInputY = ISBNLableY - 9
 
-        self.bookIDInput.place(x=bookIDInputX, y=bookIDInputY)
+        self.ISBNInput.place(x=ISBNInputX, y=ISBNInputY)
 # ------------------------------------------------------------------------------------
 
-        bookCopyIDLableX = bookIDLableX
-        bookCopyIDLableY = bookIDLableY + 50
+        bookCopyIDLableX = ISBNLableX
+        bookCopyIDLableY = ISBNLableY + 50
 
         bookCopyID = ttk.Label(self, text='Book copy ID:', font=(
             "Helvetica", 14, 'bold'))
@@ -46,8 +47,8 @@ class BookLocation(ttk.Frame):
         # Create the "Search" button
         self.searchButton = ttk.Button(
             self, text="Search", command=self.searchExecute)
-        searchButtonX = bookIDInputX + 350
-        searchButtonY = (bookIDInputY + bookCopyIDLableY)/2 - 10
+        searchButtonX = ISBNInputX + 350
+        searchButtonY = (ISBNInputY + bookCopyIDLableY)/2 - 10
         self.searchButton.place(x=searchButtonX, y=searchButtonY)
 
 # ------------------------------------------------------------------------------------
@@ -60,7 +61,7 @@ class BookLocation(ttk.Frame):
     def searchExecute(self):
         self.locationLabel.destroy()
         dic = self.controller.getLocation(
-            int(self.bookIDInput.get()), int(self.bookCopyIDInput.get()))
+            str(self.ISBNInput.get()), int(self.bookCopyIDInput.get()))
         if dic == False:
             pass
         else:

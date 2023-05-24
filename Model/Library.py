@@ -2,6 +2,7 @@ import Model.Database as db
 import Model.Book as Book
 import Model.Location as Location
 
+
 class Library:
     def __init__(self):
         # This is used as the curser for the database
@@ -75,7 +76,8 @@ class Library:
         self.database.connectionHead.commit()
         return True
 
-    def getBookCopyLocation(self, bookID, copyID):
+    def getBookCopyLocation(self, ISBN, copyID):
+        bookID = self.getBooksBy("ISBN", ISBN)[0].BookID
         query = "SELECT location.* FROM location, bookCopy WHERE bookCopy.bookID = ? AND bookCopy.copyID = ? AND bookCopy.locationID = location.locationID"
         resultLocation = Location.Location()
         self.cursor.execute(query, (bookID, copyID))
@@ -124,7 +126,7 @@ class Library:
         return cursor.fetchall()
 
     def addBookGenre(self, ISBN, genre):
-        bookID = self.getBooksBy("ISBN",ISBN)[0].BookID
+        bookID = self.getBooksBy("ISBN", ISBN)[0].BookID
         query = "INSERT INTO bookGenre (bookID, genre) VALUES (?, ?)"
         self.cursor.execute(query, (bookID, genre))
         self.database.connectionHead.commit()
