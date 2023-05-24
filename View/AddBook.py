@@ -173,8 +173,7 @@ class AddBook(ttk.Frame):
 
         if self.controller.addBook(data):
             self.controller.addBookGenre(isbn, genre)
-            for i in range(int(book_copies)):
-                self.controller.addBookCopy(isbn, book_copies, floor_no, shelf_no , i+1)
+            self.controller.addBookCopy(isbn, book_copies, floor_no, shelf_no , int(book_copies))
             # self.app.frames["Browse"].refreshList()
             # self.app.frames["Report"].refresh_report()
             showinfo("Success", "Book added successfully")

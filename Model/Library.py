@@ -131,7 +131,7 @@ class Library:
         self.cursor.execute(query, (bookID, genre))
         self.database.connectionHead.commit()
 
-    def addBookCopy(self, ISBN, floor , section , shelfNumber, copyID):
+    def addBookCopy(self, ISBN, floor , section , shelfNumber, numberOfCopies):
         bookID = self.getBooksBy("ISBN",ISBN)[0].BookID
         #insert to location table
         query = "INSERT INTO location (floor, section, shelfNumber) VALUES (?, ?, ?)"
@@ -139,9 +139,10 @@ class Library:
         self.database.connectionHead.commit()
         #get location ID
         locationID = self.getLocationID(floor , section , shelfNumber)[0][0]
-        query = "INSERT INTO bookCopy (bookID, locationID) VALUES (?, ?)"
-        self.cursor.execute(query, (bookID, locationID))
-        self.database.connectionHead.commit()
+        for i in range(numberOfCopies):
+            query = "INSERT INTO bookCopy (bookID, locationID , physicalCondition) VALUES (?, ?, ?)"
+            self.cursor.execute(query, (bookID, locationID , "Excellent"))
+            self.database.connectionHead.commit()
 
     def getLocationID(self, floor , section , shelfNumber):
         query = "SELECT locationID FROM location WHERE floor = ? AND section = ? AND shelfNumber = ?"

@@ -255,9 +255,9 @@ class Controller:
         else:
             return False
     
-    def addBookCopy(self, ISBN, floor , section , shelfNumber , copyID):
+    def addBookCopy(self, ISBN, floor , section , shelfNumber , numberOfCopies):
         if self.loggedIn:
-            self.Library.addBookCopy(ISBN, floor , section , shelfNumber , copyID)
+            self.Library.addBookCopy(ISBN, floor , section , shelfNumber , numberOfCopies)
         else:
             return False
     
