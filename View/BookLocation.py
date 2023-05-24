@@ -56,7 +56,7 @@ class BookLocation(ttk.Frame):
 # ------------------------------------------------------------------------------------
 
         self.returnToMainmenu = ttk.Button(
-            self, text="Return to mainmenu", command=self.mainmenu)
+            self, text="Return to Menu", command=self.mainmenu)
         self.returnToMainmenu.place(x=600, y=500)
 # ------------------------------------------------------------------------------------
 
