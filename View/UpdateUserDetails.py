@@ -99,8 +99,10 @@ class UpdateUserDetails(ttk.Frame):
                 updated_details.append(entry.get())
 
         # Call the controller function to save the updated details
-        self.controller.updateUserDetails(updated_details)
-        showinfo("Success", "User details updated successfully")
+        if(self.controller.updateUserDetails(updated_details)):
+            showinfo("Success", "User details updated successfully")
+        else:
+            showinfo("Error", "Failed to update user details")
 
     def back(self):
         if self.controller.isAdmin:
