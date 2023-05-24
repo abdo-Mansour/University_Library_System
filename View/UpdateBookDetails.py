@@ -66,11 +66,21 @@ class UpdateBookDetails(ttk.Frame):
         book_info_list = self.controller.getBooksBy("ISBN", isbn)
                 
         if book_info_list:
-            # Assuming there's only one book with the given ISBN
-            book_info = book_info_list[0]
-            for key, entry in self.book_info_entries.items():
-                entry.delete(0, tk.END)
-                entry.insert(tk.END, book_info.get(key, ""))
+            bookID = book_info_list[0]["BookID"]
+            ISBN = book_info_list[0]["ISBN"]
+            if book_info_list:
+                # Assuming there's only one book with the given ISBN
+                book_info = book_info_list[0]
+                for key, entry in self.book_info_entries.items():
+                    if key == "BookID":
+                        entry.insert(0, bookID)
+                        entry.config(state="disabled")
+                    elif key == "ISBN":
+                        entry.insert(0, ISBN)
+                        entry.config(state="disabled")
+                    else:
+                        entry.delete(0, tk.END)
+                        entry.insert(tk.END, book_info.get(key, ""))
         else:
             showinfo("Error", "Book not found")
 
