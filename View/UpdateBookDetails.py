@@ -90,7 +90,7 @@ class UpdateBookDetails(ttk.Frame):
             self.book_info_entries["PageCount"].get(),
             self.isbn_entry.get(),
             self.book_info_entries["Language"].get(),
-            self.book_info_entries["Description"].get("1.0", tk.END).strip(),
+            self.book_info_entries["Description"].get(),
             self.book_info_entries["Publisher"].get(),
             self.book_info_entries["MinAgeToRead"].get(),
             self.book_info_entries["PublicationYear"].get()
