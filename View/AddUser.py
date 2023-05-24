@@ -102,6 +102,7 @@ class AddUser(ttk.Frame):
         data = [first_name, last_name, phone_number, dob, gender, admin, email, password]
         
         if self.Controller.addUser(data):
+            self.app.frames["Report"].refresh_report()
             showinfo("Success", "User added successfully")
             self.go_back()
         else:

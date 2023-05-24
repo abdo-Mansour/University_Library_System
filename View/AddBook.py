@@ -171,6 +171,7 @@ class AddBook(ttk.Frame):
 
         if self.controller.addBook(data):
             self.app.frames["Browse"].refreshList()
+            self.app.frames["Report"].refresh_report()
             showinfo("Success", "Book added successfully")
             self.go_back()
         else:
