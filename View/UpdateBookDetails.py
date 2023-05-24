@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter.messagebox import showinfo
 
 
 class UpdateBookDetails(ttk.Frame):
@@ -63,7 +64,9 @@ class UpdateBookDetails(ttk.Frame):
     def search_book(self):
         isbn = self.isbn_entry.get()
         book_info_list = self.controller.getBooksBy("ISBN", isbn)
+        
         print(book_info_list[0])
+        
         if book_info_list:
             # Assuming there's only one book with the given ISBN
             book_info = book_info_list[0]
@@ -71,8 +74,7 @@ class UpdateBookDetails(ttk.Frame):
                 entry.delete(0, tk.END)
                 entry.insert(tk.END, book_info.get(key, ""))
         else:
-            # Display an error message or handle the case when the book is not found
-            pass
+            showinfo("Error", "Book not found")
 
     def save_changes(self):
         updated_details = [
@@ -86,5 +88,8 @@ class UpdateBookDetails(ttk.Frame):
             self.book_info_entries["MinAgeToRead"].get(),
             self.book_info_entries["PublicationYear"].get()
         ]
-        self.controller.updateBookDetails(updated_details)
-        print("New Info Updated Successfully")
+
+        if(self.controller.updateBookDetails(updated_details)):
+            showinfo("Success", "Book details updated successfully")
+        else:
+            showinfo("Error", "Failed to update book details")
