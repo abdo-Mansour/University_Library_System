@@ -9,45 +9,72 @@ class BookLocation(ttk.Frame):
         self.style = ttk.Style(self)
         self.controller = controller
         self.app = app
-
+        self.locationLabel = ttk.Label()
         # widgets
-        self.bookTitleInput = ttk.Entry(self, width=50)
-        self.ISBNInput = ttk.Entry(self, width=50)
+        self.bookIDInput = ttk.Entry(self, width=50)
+        self.bookCopyIDInput = ttk.Entry(self, width=50)
         self.window = self.app
 # ------------------------------------------------------------------------------------
         Title = ttk.Label(self, text='Book location', font=(
             "Helvetica", 17, 'bold'))
         Title.place(relx=0.5, y=10, anchor='center')
 # ------------------------------------------------------------------------------------
-        bookTitleLableX = 50
-        bookTitleLableY = 130
+        bookIDLableX = 50
+        bookIDLableY = 130
 
-        bookTitleLabel = ttk.Label(self, text='Title:', font=(
+        bookIDLabel = ttk.Label(self, text='Book ID:', font=(
             "Helvetica", 14, 'bold'))
-        bookTitleLabel.place(x=bookTitleLableX, y=bookTitleLableY, anchor='w')
+        bookIDLabel.place(x=bookIDLableX, y=bookIDLableY, anchor='w')
 # ------------------------------------------------------------------------------------
-        bookTitleInputX = bookTitleLableX + 80
-        bookTitleInputY = bookTitleLableY - 9
+        bookIDInputX = bookIDLableX + 140
+        bookIDInputY = bookIDLableY - 9
 
-        self.bookTitleInput.place(x=bookTitleInputX, y=bookTitleInputY)
+        self.bookIDInput.place(x=bookIDInputX, y=bookIDInputY)
 # ------------------------------------------------------------------------------------
 
-        ISBNLableX = bookTitleLableX
-        ISBNLableY = bookTitleLableY + 50
+        bookCopyIDLableX = bookIDLableX
+        bookCopyIDLableY = bookIDLableY + 50
 
-        ISBN = ttk.Label(self, text='ISBN:', font=(
+        bookCopyID = ttk.Label(self, text='Book copy ID:', font=(
             "Helvetica", 14, 'bold'))
-        ISBN.place(x=ISBNLableX, y=ISBNLableY, anchor='w')
+        bookCopyID.place(x=bookCopyIDLableX,
+                         y=bookCopyIDLableY, anchor='w')
 # ------------------------------------------------------------------------------------
-        ISBNInputX = ISBNLableX + 80
-        ISBNInputY = ISBNLableY - 9
+        bookCopyIDInputX = bookCopyIDLableX + 140
+        bookCopyIDInputY = bookCopyIDLableY - 9
 
-        self.ISBNInput.place(x=ISBNInputX, y=ISBNInputY)
+        self.bookCopyIDInput.place(x=bookCopyIDInputX, y=bookCopyIDInputY)
 # ------------------------------------------------------------------------------------
 
         # Create the "Search" button
         self.searchButton = ttk.Button(
-            self, text="Search")
-        searchButtonX = bookTitleInputX + 350
-        searchButtonY = (bookTitleInputY + ISBNLableY)/2 - 10
+            self, text="Search", command=self.searchExecute)
+        searchButtonX = bookIDInputX + 350
+        searchButtonY = (bookIDInputY + bookCopyIDLableY)/2 - 10
         self.searchButton.place(x=searchButtonX, y=searchButtonY)
+
+# ------------------------------------------------------------------------------------
+
+        self.returnToMainmenu = ttk.Button(
+            self, text="Return to mainmenu", command=self.mainmenu)
+        self.returnToMainmenu.place(x=600, y=500)
+# ------------------------------------------------------------------------------------
+
+    def searchExecute(self):
+        self.locationLabel.destroy()
+        dic = self.controller.getLocation(
+            int(self.bookIDInput.get()), int(self.bookCopyIDInput.get()))
+        if dic == False:
+            pass
+        else:
+            self.locationLabel = ttk.Label(
+                self, text="Floor: " + str(dic['floor']) + "\nSection: " + str(dic['section']) + "\nShelf number: " + str(dic['shelfNumber']), font=("Courier", 15))
+            self.locationLabel.place(
+                x=self.app.WIDTH/2, y=400, anchor='center')
+# ------------------------------------------------------------------------------------
+
+    def mainmenu(self):
+        if self.controller.isAdmin:
+            self.app.show_frame("AdminMenu")
+        else:
+            self.app.show_frame("StudentMenu")
