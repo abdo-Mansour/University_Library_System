@@ -132,7 +132,7 @@ class Controller:
         # returns location of the book as dictionary
         if self.loggedIn:
             try:
-                location = Library.getBookCopyLocation(self, bookID, copyID)
+                location = self.Library.getBookCopyLocation(bookID, copyID)
                 return location.__dict__
             except:
                 print("Error retrieving book data")

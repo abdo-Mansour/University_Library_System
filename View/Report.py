@@ -42,7 +42,7 @@ class Report(ttk.Frame):
         genreList.place(x=5, y=240, anchor="w")
 
         language_table_header_label = Label(self,
-                                            text=f"Langue: Number Of books of that Languge",
+                                            text=f"Language: Number Of books of that Language",
                                             font=18)
         language_table_header_label.place(x=5, y=370, anchor="w")
 

@@ -72,7 +72,7 @@ class SearchBook(ttk.Frame):
         self.displayBookListView()
 # ----------------------------------------------------------------------------------------------
         self.returnButton = ttk.Button(
-            self, text="Return to mainmenu", command=self.returningToMainMenu)
+            self, text="Return to Menu", command=self.returningToMainMenu)
         self.returnButton.place(x=600, y=10)
 
 # -----------------------------------------------------------------------------------------------
