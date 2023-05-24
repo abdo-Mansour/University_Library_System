@@ -1,6 +1,5 @@
 from Model.Database import Database as db
 from Model.Person import Person 
-import sys
 
 class Authenticator:
     def __init__(self):

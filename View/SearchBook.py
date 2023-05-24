@@ -1,9 +1,6 @@
-
 import tkinter as tk
 from tkinter import ttk
-import tkinter as tk
 from tkinter.messagebox import showinfo
-from tkinter.ttk import Label
 
 
 class SearchBook(ttk.Frame):

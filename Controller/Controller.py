@@ -2,10 +2,10 @@
 # Only Pass data to viewer, not objects
 
 
-from Model.Person import Person
-from Model.Authenticator import Authenticator
-from Model.Library import Library
 from Model.Book import Book
+from Model.Person import Person
+from Model.Library import Library
+from Model.Authenticator import Authenticator
 
 
 class Controller:

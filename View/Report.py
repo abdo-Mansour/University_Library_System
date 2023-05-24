@@ -1,8 +1,5 @@
-import tkinter
 import tkinter as tk
-
 from tkinter import ttk, CENTER, NW, W, LEFT, END
-from tkinter.messagebox import showinfo
 from tkinter.ttk import Label
 
 

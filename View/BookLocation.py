@@ -1,7 +1,4 @@
-
-import tkinter as tk
 from tkinter import ttk
-
 
 class BookLocation(ttk.Frame):
     def __init__(self, parent, controller, app):

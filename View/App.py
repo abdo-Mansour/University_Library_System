@@ -1,7 +1,7 @@
 
-from ttkthemes import ThemedStyle
-from tkinter import ttk
 import tkinter as tk
+from tkinter import ttk
+from ttkthemes import ThemedStyle
 LARGEFONT = ("Verdana", 35)
 
 

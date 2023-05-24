@@ -2,7 +2,6 @@ import Model.Database as db
 import Model.Book as Book
 import Model.Location as Location
 
-
 class Library:
     def __init__(self):
         # This is used as the curser for the database
