@@ -1,6 +1,3 @@
-
-import tkinter as tk
-
 from tkinter import ttk
 from tkinter.messagebox import showinfo
 
@@ -11,7 +8,6 @@ class Login(ttk.Frame):
         self.style = ttk.Style(self)
         self.controller = controller
         self.app = app
-        print("Login.__init__")
         # styles
 
         # widgets
@@ -42,7 +38,7 @@ class Login(ttk.Frame):
         email = self.user_entry.get()
         password = self.user_pass.get()
         isAdmin = self.checkbox.instate(['selected'])
-        #print(isAdmin)
+
         if(self.controller.login(email,password,isAdmin)):
             # showinfo("Login Successful","Welcome to the Library System")
             # self.app.show_frame("")

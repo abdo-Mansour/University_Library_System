@@ -1,7 +1,7 @@
 
-from ttkthemes import ThemedStyle
-from tkinter import ttk
 import tkinter as tk
+from tkinter import ttk
+from ttkthemes import ThemedStyle
 LARGEFONT = ("Verdana", 35)
 
 
@@ -26,7 +26,7 @@ class App(tk.Tk):
         from View.StudentMenu import StudentMenu
         # from View.AdminMenu import AdminMenu
 
-        print("I AM RUNNING")
+        print("I AM DYING")
 
         # __init__ function for class Tk
         tk.Tk.__init__(self, *args, **kwargs)

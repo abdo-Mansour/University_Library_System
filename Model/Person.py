@@ -1,4 +1,3 @@
-
 class Person:
     def __init__(self, firstName, lastName, number, dob, sex, isAdmin, email= None, password= None, id= None):
         self.firstName = firstName
@@ -10,4 +9,3 @@ class Person:
         self.email = email
         self.password = password
         self.id = id
-
