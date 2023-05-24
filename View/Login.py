@@ -46,6 +46,8 @@ class Login(ttk.Frame):
         if(self.controller.login(email,password,isAdmin)):
             # showinfo("Login Successful","Welcome to the Library System")
             # self.app.show_frame("")
+            self.app.frames["UpdateUserDetails"].create_user_info_table()
+            self.app.frames["UpdateUserDetails"].ShowUserInfo()
             if isAdmin:
                 self.app.show_frame("AdminMenu")
             else:

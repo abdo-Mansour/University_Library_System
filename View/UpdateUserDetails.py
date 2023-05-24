@@ -16,15 +16,16 @@ class UpdateUserDetails(ttk.Frame):
             row=0, column=0, columnspan=2, pady=10, sticky='we')
 
         self.user_info_entries = {}
-        self.create_user_info_table()
+
+        if(self.controller.Person != None):
+            self.create_user_info_table()
+            self.ShowUserInfo()
 
         ttk.Button(self, text="Save Changes", command=self.save_changes).grid(
             row=15, column=0, padx=5, pady=20, sticky=tk.E)
 
         ttk.Button(self, text="Back", command=self.back).grid(
             row=15, column=1, padx=5, pady=20, sticky=tk.W)
-
-        self.ShowUserInfo()
 
     def create_user_info_table(self):
         user_info_labels = {
@@ -39,6 +40,9 @@ class UpdateUserDetails(ttk.Frame):
             "password": "Password"
         }
 
+        user_details = self.controller.getUserDetails()
+        user_id = user_details['id']
+        user_isAdmin = user_details['isAdmin']
         row = 1
         for key, label_text in user_info_labels.items():
             ttk.Label(self, text=label_text, font=("Helvetica", 14, 'bold')).grid(
@@ -46,12 +50,11 @@ class UpdateUserDetails(ttk.Frame):
             entry = ttk.Entry(self, width=30)
 
             if key == "ID":
-                self.controller.login(
-                    "user3@example.com", "02829fb05c3076ec5a6caebd12477dec", 0)
-                user_details = self.controller.getUserDetails()
-                user_id = user_details['id']
-
                 entry.insert(0, user_id)
+                entry.config(state="disabled")
+            if key == "isAdmin":
+                value = "Yes" if user_isAdmin == 1 else "No"
+                entry.insert(0, value)
                 entry.config(state="disabled")
 
             entry.grid(row=row, column=1, padx=10, pady=5, sticky=tk.W)
@@ -68,11 +71,7 @@ class UpdateUserDetails(ttk.Frame):
                 sex_value = user_details.get(key, "")
                 sex_text = "Male" if sex_value == 1 else "Female"
                 entry.insert(0, sex_text)
-            elif key == "isAdmin":
-                value = "Yes" if user_details.get(key, 0) == 1 else "No"
-                entry.insert(0, value)
-            elif key == "ID":
-                entry.insert(0, user_details.get(key, ""))
+            
             else:
                 entry.insert(0, user_details.get(key, ""))
 
